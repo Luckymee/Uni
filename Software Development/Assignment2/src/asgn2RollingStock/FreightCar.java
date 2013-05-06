@@ -27,6 +27,8 @@ public class FreightCar extends RollingStock {
      */
     public FreightCar(Integer grossWeight, String goodsType)
 	    throws TrainException {
+
+	// Inherited grossWeight.
 	super(grossWeight);
 
 	if (!classificationCheck(goodsType)) { // Invalid goods type

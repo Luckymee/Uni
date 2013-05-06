@@ -4,15 +4,24 @@ import asgn2Exceptions.TrainException;
 
 public class PassengerCar extends RollingStock {
     private static final int MIN_PASSENGERS = 0;
-    private int numOnBoard, numOfSeats;
+    private int numOnBoard;
+    private final int numOfSeats;
 
     public PassengerCar(Integer grossWeight, Integer numberOfSeats)
 	    throws TrainException {
+
+	// Inherited grossWeight.
 	super(grossWeight);
-	// TODO Auto-generated constructor stub
+
+	if (numberOfSeats < MIN_PASSENGERS) { // Invalid seats
+	    throw new TrainException("Invalid Seats: Not enough seats.");
+	} else { // Valid seats
+	    numOfSeats = numberOfSeats;
+	}
     }
 
     public Integer board(Integer newPassengers) throws TrainException {
+	// #warning - THINK MORE ON THIS
 	int newBoarding, numSeatsLeft;
 	if (newPassengers < MIN_PASSENGERS) { // Invalid Passengers
 	    throw new TrainException("Invalid number of passengers boarding.");
@@ -32,7 +41,18 @@ public class PassengerCar extends RollingStock {
     }
 
     public void alight(Integer departingPassengers) throws TrainException {
-	// TODO
+	if (departingPassengers < MIN_PASSENGERS
+		|| departingPassengers > numOnBoard) { // Invalid passengers
+	    if (departingPassengers < MIN_PASSENGERS) { // Not enough passengers
+		throw new TrainException(
+			"Invalid Passengers: Not enough passengers.");
+	    } else { // Too many passengers
+		throw new TrainException(
+			"Invalid Passengers: Too many passengers.");
+	    }
+	} else { // Valid passengers
+	    numOnBoard -= departingPassengers;
+	}
     }
 
     public Integer numberOnBoard() {

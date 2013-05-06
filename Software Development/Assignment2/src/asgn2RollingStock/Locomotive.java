@@ -40,16 +40,40 @@ public class Locomotive extends RollingStock {
 	if (!classificationCheck(classification) || !validPower) {
 	    if (!classificationCheck(classification) && !validPower) { // Invalid power
 								       // and Engine Type
-		throw new TrainException(
-			"Invalid Classifcation: Engine Type and Power Range.");
+		if (classification.charAt(POWER_RATING) == '-') {
+		    throw new TrainException( // Negative number
+			    "Invalid Classifcation: Power Range.");
+		} else {
+		    throw new TrainException(
+			    "Invalid Classifcation: Engine Type and Power Range.");
+		}
 	    } else if (!validPower) { // Invalid power
 		throw new TrainException("Invalid Classification: Power Type.");
 	    } else { // Invalid engine type
-		throw new TrainException("Invalid Classification: Engine Type.");
+
+		if (!isInteger(classification.charAt(CLASS_CODE))) { // Invalid engine
+		    throw new TrainException(
+			    "Invalid Classification: Engine Type.");
+		} else { // Invalid power > 9
+		    System.out.println("HIT");
+		    throw new TrainException(
+			    "Invalid Classification: Power Type.");
+		}
 	    }
 	} else { // Valid Classification
 	    _classification = classification;
 	}
+    }
+
+    // #warning - Do you need this ?
+    public static boolean isInteger(char input) {
+	try {
+	    String testInput = Character.toString(input);
+	    Integer.parseInt(testInput);
+	} catch (NumberFormatException e) { // Not a number
+	    return false;
+	}
+	return true;
     }
 
     /**
@@ -63,7 +87,7 @@ public class Locomotive extends RollingStock {
 	validPower = true;
 	int power = Character.getNumericValue(classCode.charAt(POWER_RATING));
 
-	if (power <= MIN_POWER || power > MAX_POWER) { // Incorrect power
+	if (power < MIN_POWER || power > MAX_POWER) { // Incorrect power
 	    validPower = false;
 	}
 

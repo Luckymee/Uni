@@ -24,7 +24,7 @@ public abstract class RollingStock {
     public RollingStock(Integer grossWeight) throws TrainException {
 	if (grossWeight < 0) { // Gross weight not positive
 	    throw new TrainException(
-		    "Gross Weight must be more a positive number");
+		    "Invalid Weight: Gross Weight must be more a positive number.");
 	} else { // Valid gross weight
 	    _grossWeight = grossWeight;
 	}

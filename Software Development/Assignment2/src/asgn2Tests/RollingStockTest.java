@@ -2,7 +2,9 @@ package asgn2Tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,6 +25,16 @@ import asgn2RollingStock.RollingStock;
  */
 public class RollingStockTest {
     private static final int VALID_TEST_SEATS = 10;
+
+    /**
+     * Simplify Java println();
+     * 
+     * @param line
+     *            A valid String for printing.
+     */
+    private static void println(String line) {
+	System.out.println(line);
+    }
 
     /**
      * Run the Integer getGrossWeight() method test.
@@ -112,6 +124,26 @@ public class RollingStockTest {
 
 	assertNotNull(result);
 	assertTrue(result == 100);
+    }
+
+    /**
+     * Run the Integer getGrossWeight() method test.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testGetGrossWeight_nullGrossWeight() throws Exception {
+	String goodsCode = "G";
+	Integer grossWeight = null;
+
+	try {
+	    @SuppressWarnings("unused")
+	    RollingStock fixture = new FreightCar(grossWeight, goodsCode);
+	    fail("Didn't catch exception.");
+	} catch (NullPointerException expected) {
+	    assertNull(grossWeight);
+	    println(expected.toString() + " Gross Weight: " + grossWeight);
+	}
     }
 
     /**

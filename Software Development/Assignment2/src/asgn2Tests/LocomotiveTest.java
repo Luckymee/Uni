@@ -2,6 +2,7 @@ package asgn2Tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -201,6 +202,46 @@ public class LocomotiveTest {
 	    fail("Didn't catch exception.");
 	} catch (TrainException expected) {
 	    println(expected.toString() + " Found: " + grossWeight);
+	}
+    }
+
+    /**
+     * Run the Locomotive(Integer,String) constructor test.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testLocomotive_nullClassification() throws Exception {
+	Integer grossWeight = new Integer(1);
+	String classification = null;
+
+	try {
+	    @SuppressWarnings("unused")
+	    Locomotive result = new Locomotive(grossWeight, classification);
+	    fail("Did not catch exception");
+	} catch (NullPointerException expected) {
+	    assertNull(classification);
+	    println(expected.toString() + " Classification: " + classification);
+	}
+    }
+
+    /**
+     * Run the Locomotive(Integer,String) constructor test.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testLocomotive_nullGrossWeight() throws Exception {
+	Integer grossWeight = null;
+	String classification = "1E";
+
+	try {
+	    @SuppressWarnings("unused")
+	    Locomotive result = new Locomotive(grossWeight, classification);
+	    fail("Did not catch exception");
+	} catch (NullPointerException expected) {
+	    assertNull(grossWeight);
+	    println(expected.toString() + " Gross Weight: " + grossWeight);
 	}
     }
 

@@ -38,6 +38,7 @@ public class Locomotive extends RollingStock {
 
 	// Invalid Classification or Power
 	if (!classificationCheck(classification) || !validPower) {
+
 	    if (!classificationCheck(classification) && !validPower) { // Invalid power
 								       // and Engine Type
 		if (classification.charAt(POWER_RATING) == '-') {
@@ -47,25 +48,30 @@ public class Locomotive extends RollingStock {
 		    throw new TrainException(
 			    "Invalid Classifcation: Engine Type and Power Range.");
 		}
-	    } else if (!validPower) { // Invalid power
+	    } else if (!validPower) { // Invalid power < MIN_POWER
 		throw new TrainException("Invalid Classification: Power Type.");
 	    } else { // Invalid engine type
-
 		if (!isInteger(classification.charAt(CLASS_CODE))) { // Invalid engine
+								     // character
 		    throw new TrainException(
 			    "Invalid Classification: Engine Type.");
-		} else { // Invalid power > 9
-		    System.out.println("HIT");
+		} else { // Invalid power > MAX_POWER
 		    throw new TrainException(
 			    "Invalid Classification: Power Type.");
 		}
 	    }
-	} else { // Valid Classification
-	    _classification = classification;
+	} else { // Valid Classification: Must be upperCase
+	    _classification = classification.toUpperCase();
 	}
     }
 
-    // #warning - Do you need this ?
+    /**
+     * Checks if given input character is an integer.
+     * 
+     * @param input
+     *            char: the position of CLASS_CODE
+     * @return boolean: True if integer is matched.
+     */
     public static boolean isInteger(char input) {
 	try {
 	    String testInput = Character.toString(input);
@@ -91,7 +97,8 @@ public class Locomotive extends RollingStock {
 	    validPower = false;
 	}
 
-	switch (classCode.charAt(CLASS_CODE)) {
+	// Must be uppercase
+	switch (classCode.toUpperCase().charAt(CLASS_CODE)) {
 	case 'E': // Electric Locomotive
 	    return true;
 	case 'D': // Diesel Locomotive

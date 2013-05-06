@@ -32,9 +32,9 @@ public class FreightCar extends RollingStock {
 	super(grossWeight);
 
 	if (!classificationCheck(goodsType)) { // Invalid goods type
-	    throw new TrainException("Invalid Classification: Goods Type");
+	    throw new TrainException("Invalid Classification: Goods Type.");
 	} else { // Valid goods type
-	    this.goodsType = goodsType;
+	    this.goodsType = goodsType.toUpperCase();
 	}
     }
 
@@ -47,7 +47,8 @@ public class FreightCar extends RollingStock {
      */
     private boolean classificationCheck(String goodsCode) {
 
-	switch (goodsCode.charAt(GOODS_CODE)) {
+	// Must be uppercase
+	switch (goodsCode.toUpperCase().charAt(GOODS_CODE)) {
 	case 'G': // General Goods
 	    return true;
 	case 'R': // Refrigerated Goods

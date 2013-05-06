@@ -246,6 +246,23 @@ public class LocomotiveTest {
     }
 
     /**
+     * Run the Locomotive(Integer,String) constructor test.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testLocomotive_lowerCase() throws Exception {
+	Integer grossWeight = new Integer(9);
+	String classification = "9s";
+
+	Locomotive result = new Locomotive(grossWeight, classification);
+
+	// add additional test code here
+	assertNotNull(result);
+	assertEquals("Locomotive(9S)", result.toString());
+    }
+
+    /**
      * Run the Integer power() method test.
      * 
      * @throws Exception

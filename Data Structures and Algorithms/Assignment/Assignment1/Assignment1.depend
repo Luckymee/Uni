@@ -1,0 +1,84 @@
+# depslib dependency file v1.0
+1367131806 source:c:\users\connor\desktop\c++\assignment\assignment1\src\card.cpp
+	"card.h"
+
+1367136198 c:\users\connor\desktop\c++\assignment\assignment1\include\card.h
+	<iostream>
+	<string>
+
+1367131818 source:c:\users\connor\desktop\c++\assignment\assignment1\src\deck.cpp
+	"deck.h"
+
+1367136219 c:\users\connor\desktop\c++\assignment\assignment1\include\deck.h
+	<iostream>
+	"card.h"
+	"random.h"
+
+1367131832 source:c:\users\connor\desktop\c++\assignment\assignment1\src\hand.cpp
+	"hand.h"
+	"handCompare.h"
+
+1367136240 c:\users\connor\desktop\c++\assignment\assignment1\include\hand.h
+	<iostream>
+	<vector>
+	<list>
+	<sstream>
+	"card.h"
+	"cardComparer.h"
+	<math.h>
+	<algorithm>
+
+1366517728 source:c:\users\connor\desktop\c++\assignment\assignment1\src\handcomparer.cpp
+	"handcomparer.h"
+
+1366517728 c:\users\connor\desktop\c++\assignment\assignment1\include\handcomparer.h
+
+1367136200 c:\users\connor\desktop\c++\assignment\assignment1\include\random.h
+	<iostream>
+	<cstdlib>
+	<ctime>
+
+1367131874 source:c:\users\connor\desktop\c++\assignment\assignment1\src\random.cpp
+	"random.h"
+
+1367128788 source:c:\users\connor\desktop\c++\assignment\assignment1\main.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+	<vector>
+	<algorithm>
+	"deck.h"
+	"card.h"
+	"hand.h"
+	"handCompare.h"
+
+1366533962 c:\users\connor\desktop\c++\assignment\assignment1\include\utilities.h
+	<string>
+	<sstream>
+	<iomanip>
+
+1367136195 c:\users\connor\desktop\c++\assignment\assignment1\include\cardcomparer.h
+	<iostream>
+	"card.h"
+
+1367131799 source:c:\users\connor\desktop\c++\assignment\assignment1\src\cardcomparer.cpp
+	"cardComparer.h"
+
+1367136243 c:\users\connor\desktop\c++\assignment\assignment1\include\handcompare.h
+	<iostream>
+	"hand.h"
+
+1367150535 source:c:\users\connor\desktop\c++\assignment\assignment1\src\handcompare.cpp
+	"handCompare.h"
+
+1367149643 source:c:\users\connor\desktop\c++\assignment\assignment1\src\main.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+	<vector>
+	<algorithm>
+	"deck.h"
+	"card.h"
+	"hand.h"
+	"handCompare.h"
+

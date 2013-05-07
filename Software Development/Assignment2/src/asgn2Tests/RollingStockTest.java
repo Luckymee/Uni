@@ -237,6 +237,36 @@ public class RollingStockTest {
     }
 
     /**
+     * Method testToString_PassengerCarValid.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testToString_PassengerLowerBound() throws Exception {
+	RollingStock fixture = new PassengerCar(new Integer(100), 1);
+
+	String result = fixture.toString();
+
+	assertNotNull(result);
+	assertEquals("Passenger(0|1)", result);
+    }
+
+    /**
+     * Method testToString_PassengerCarValid.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testToString_noPassengers() throws Exception {
+	RollingStock fixture = new PassengerCar(new Integer(100), 0);
+
+	String result = fixture.toString();
+
+	assertNotNull(result);
+	assertEquals("Passenger(0|0)", result);
+    }
+
+    /**
      * Method testRollingStock_LocomotiveConstructorNotNull.
      * 
      * @throws TrainException

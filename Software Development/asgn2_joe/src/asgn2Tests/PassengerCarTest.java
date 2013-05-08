@@ -111,6 +111,7 @@ public class PassengerCarTest {
      * Run the void alight(Integer) method test.
      * 
      * @throws TrainException
+     * @throws NullPointerException
      */
     @Test
     public void testAlight_invalidAlightingPassengerNull()

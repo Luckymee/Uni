@@ -36,10 +36,10 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testLocomotive_notNullCheck() throws Exception {
+    public void testLocomotive_notNullCheck() throws TrainException {
 	Integer grossWeight = new Integer(1);
 	String classification = "1E";
 
@@ -51,10 +51,10 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testLocomotive_lowerPower() throws Exception {
+    public void testLocomotive_lowerPower() throws TrainException {
 	Integer grossWeight = new Integer(1);
 	String classification = "1E";
 
@@ -68,10 +68,10 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testLocomotive_upperPower() throws Exception {
+    public void testLocomotive_upperPower() throws TrainException {
 	Integer grossWeight = new Integer(9);
 	String classification = "9E";
 
@@ -85,7 +85,7 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
     public void testLocomotive_lowerOutOfBounds() throws TrainException {
@@ -103,7 +103,7 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
     public void testLocomotive_upperOutOfBounds() throws TrainException {
@@ -121,10 +121,10 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testLocomotive_electricLocomotive() throws Exception {
+    public void testLocomotive_electricLocomotive() throws TrainException {
 	Integer grossWeight = new Integer(9);
 	String classification = "9E";
 
@@ -138,10 +138,10 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testLocomotive_dieselLocomotive() throws Exception {
+    public void testLocomotive_dieselLocomotive() throws TrainException {
 	Integer grossWeight = new Integer(9);
 	String classification = "9D";
 
@@ -155,10 +155,10 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testLocomotive_steamLocomotive() throws Exception {
+    public void testLocomotive_steamLocomotive() throws TrainException {
 	Integer grossWeight = new Integer(9);
 	String classification = "9S";
 
@@ -172,7 +172,7 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
     public void testLocomotive_invalidLocomotive() throws TrainException {
@@ -190,7 +190,7 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
     public void testLocomotive_invalidGrossWeight() throws TrainException {
@@ -208,10 +208,10 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testLocomotive_nullClassification() throws Exception {
+    public void testLocomotive_nullClassification() throws TrainException {
 	Integer grossWeight = new Integer(1);
 	String classification = null;
 
@@ -228,10 +228,10 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testLocomotive_nullGrossWeight() throws Exception {
+    public void testLocomotive_nullGrossWeight() throws TrainException {
 	Integer grossWeight = null;
 	String classification = "1E";
 
@@ -248,10 +248,10 @@ public class LocomotiveTest {
     /**
      * Run the Locomotive(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testLocomotive_lowerCase() throws Exception {
+    public void testLocomotive_lowerCase() throws TrainException {
 	Integer grossWeight = new Integer(9);
 	String classification = "9s";
 
@@ -265,10 +265,10 @@ public class LocomotiveTest {
     /**
      * Run the Integer power() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testPower_getPower() throws Exception {
+    public void testPower_getPower() throws TrainException {
 	Locomotive fixture = new Locomotive(new Integer(1), "1E");
 
 	Integer result = fixture.power();
@@ -280,10 +280,10 @@ public class LocomotiveTest {
     /**
      * Run the Integer power() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testPower() throws Exception {
+    public void testPower() throws TrainException {
 	Integer grossWeight = new Integer(1);
 	Integer power = new Integer(-1);
 	try {
@@ -299,10 +299,10 @@ public class LocomotiveTest {
     /**
      * Run the String toString() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_1() throws Exception {
+    public void testToString_1() throws TrainException {
 	Locomotive fixture = new Locomotive(new Integer(1), "1E");
 
 	String result = fixture.toString();
@@ -314,22 +314,22 @@ public class LocomotiveTest {
     /**
      * Perform pre-test initialization.
      * 
-     * @throws Exception
+     * @throws TrainException
      *             if the initialization fails for some reason
      */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws TrainException {
 	// add additional set up code here
     }
 
     /**
      * Perform post-test clean-up.
      * 
-     * @throws Exception
+     * @throws TrainException
      *             if the clean-up fails for some reason
      */
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() throws TrainException {
 	// Add additional tear down code here
     }
 

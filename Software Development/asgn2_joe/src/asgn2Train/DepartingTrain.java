@@ -12,9 +12,10 @@ public class DepartingTrain {
 	
 	private final int FIRST_CAR = 0;
 	private final int ONE_PASSENGER = 1;
+	private final int NEXT_CARRIAGE = 1;
 	
-	ArrayList<RollingStock> train = new ArrayList<RollingStock>();
-	private int currentCarNum;
+	ArrayList<RollingStock> train = new ArrayList<RollingStock>(); //an arraylist might not be the best way to do this
+	private int currentCarNum; //tracks the last train carriage that was called with firstCarriage/nextCarriage
 	
 	
 	public RollingStock firstCarriage(){
@@ -27,11 +28,10 @@ public class DepartingTrain {
 		
 		RollingStock nextCar;
 		
-		if ((currentCarNum) == train.size()){
+		if ((currentCarNum) == train.size()){ //if on last carriage return nothing 
 			nextCar = null;
-			currentCarNum = FIRST_CAR;
 		} else {
-			nextCar = train.get(currentCarNum + 1);
+			nextCar = train.get(currentCarNum + NEXT_CARRIAGE); //get next carriage in line
 			currentCarNum++;
 		}
 		return nextCar;
@@ -40,11 +40,12 @@ public class DepartingTrain {
 	public Integer numberOnBoard(){
 		
 		int numberOnBoard = 0;		
+		RollingStock currentCar = firstCarriage(); //go to locomotive
 		
-		for (int i = 0; i < train.size(); i++){
-			RollingStock currentCar = nextCarriage();
-			if (currentCar instanceof PassengerCar){
-				numberOnBoard += ((PassengerCar) currentCar).numberOnBoard();
+		while (currentCar!= null){
+			currentCar = nextCarriage(); //get next car
+			if (currentCar instanceof PassengerCar){ //each passenger car in train
+				numberOnBoard += ((PassengerCar) currentCar).numberOnBoard(); //add passenger number on carriage to total
 			}
 		}
 		
@@ -53,12 +54,13 @@ public class DepartingTrain {
 	
 	public Integer numberOfSeats(){
 		
-		int numberOfSeats = 0;
+		int numberOfSeats = 0;		
+		RollingStock currentCar = firstCarriage(); //go to locomotive
 		
-		for (int i = 0; i < train.size(); i++){
-			RollingStock currentCar = nextCarriage();
-			if (currentCar instanceof PassengerCar){
-				numberOfSeats += ((PassengerCar) currentCar).numberOfSeats();
+		while (currentCar!= null){
+			currentCar = nextCarriage(); //get next car
+			if (currentCar instanceof PassengerCar){ //each passenger car in train
+				numberOfSeats += ((PassengerCar) currentCar).numberOfSeats(); //add capactiy of carriage to total
 			}
 		}
 		
@@ -67,31 +69,34 @@ public class DepartingTrain {
 	
 	public Integer board(Integer newPassengers) throws TrainException{
 		
-		int passengersToBoard = newPassengers;
+		int passengersToBoard = newPassengers;		
+		RollingStock currentCar = firstCarriage(); //go to locomotive
 		
-		for (int i = 0; i < train.size(); i++){
-			RollingStock currentCar = nextCarriage();
-			if (currentCar instanceof PassengerCar){
-				passengersToBoard -= ((PassengerCar) currentCar).board(passengersToBoard);
+		while (currentCar!= null){
+			currentCar = nextCarriage(); //get next car
+			if (currentCar instanceof PassengerCar){ //each passenger car in train
+				passengersToBoard -= ((PassengerCar) currentCar).board(passengersToBoard); //add passengers to train car
 			}
 		}
 		
-		return passengersToBoard;
+		return passengersToBoard; //returns how many didn't board
 	}
 	
 	public boolean trainCanMove(){
 		
 		int trainWeight = 0;
-		int power = ((Locomotive) firstCarriage()).power();
+		int power = ((Locomotive) firstCarriage()).power(); //get power of locomotive
+		RollingStock currentCar = firstCarriage(); //go to locomotive
 		
-		for (int i = 0; i < train.size(); i++){
-			RollingStock currentCar = nextCarriage();
-			trainWeight += currentCar.getGrossWeight();
+		while (currentCar!= null){ //each car in train
+			trainWeight += currentCar.getGrossWeight(); //add weight of car to total
+			currentCar = nextCarriage(); //get next car
 		}
 		
 		return power > trainWeight;
 	}
 	
+	//needs more work,
 	public void addCarriage(RollingStock newCarriage) throws TrainException{
 		
 		if (numberOnBoard() < ONE_PASSENGER){ // has no passengers
@@ -102,46 +107,42 @@ public class DepartingTrain {
 			} else if(newCarriage instanceof Locomotive){
 				if (!locomotiveAtFront()){
 					train.add(FIRST_CAR, newCarriage); //add to front if no locomotive  (don't know if we have to show "shunting")
-				} else {
-					throw new TrainException("Invalid Configuration : Cant have two locomotives");
-				}
+				} 
 			}
-		} else {
-			throw new TrainException("Passengers on board");
-		}
+		} 
 	}
 	
 	public void removeCarriage(){
-		train.remove(train.size());
+		train.remove(train.size()); //remove last carriage
 	}
 	
 	@Override
 	public String toString(){
 		
-		String trainString = "";
+		String trainString = "";		
+		RollingStock currentCar = firstCarriage(); //go to locomotive
 		
-		trainString += firstCarriage().toString() + " - ";
-		
-		for (int i = 0; i < train.size(); i++){
-			trainString += nextCarriage().toString();
-			
-			if (i < train.size() - 1){
-				trainString += " - ";
-			}
+		while (currentCar!= null){
+			trainString += currentCar.toString(); //add car string to train string
+			currentCar = nextCarriage(); //get next car
+			if (currentCar != null){
+				trainString += " - "; //add hyphen in between if not last car
+			}		
 		}
 		
 		return trainString;
 	}
 
+	//may be useful when doing the shunting process
 	private int getLastPassengerCar() {
 
 		int lastCar = 0;
 		
-		firstCarriage(); //skip the locomotive
-		for (int i = 0; i < train.size(); i++){
+		firstCarriage(); //go to locomotive and skip it
+		for (int i = 0; i < train.size(); i++){ //each carriage in train
 			RollingStock currentCar = nextCarriage();
-			if (!(currentCar instanceof PassengerCar)){
-				lastCar = i - 1;
+			if (!(currentCar instanceof PassengerCar)){ //if not a passenger car
+				lastCar = i - 1; //last passenger car was one before it (assumes train in correct order)
 			}
 		}
 		
@@ -177,7 +178,7 @@ public class DepartingTrain {
 		
 		boolean atFront = false;
 		
-		if (firstCarriage() instanceof Locomotive){
+		if (firstCarriage() instanceof Locomotive){ //first car is a locomotive
 			atFront = true;
 		}
 		

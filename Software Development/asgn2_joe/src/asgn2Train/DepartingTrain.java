@@ -39,7 +39,7 @@ public class DepartingTrain {
 	
 	public Integer numberOnBoard(){
 		
-		int numberOnBoard = 0;		
+		Integer numberOnBoard = 0;		
 		RollingStock currentCar = firstCarriage(); //go to locomotive
 		
 		while (currentCar!= null){
@@ -54,7 +54,7 @@ public class DepartingTrain {
 	
 	public Integer numberOfSeats(){
 		
-		int numberOfSeats = 0;		
+		Integer numberOfSeats = 0;		
 		RollingStock currentCar = firstCarriage(); //go to locomotive
 		
 		while (currentCar!= null){
@@ -69,7 +69,7 @@ public class DepartingTrain {
 	
 	public Integer board(Integer newPassengers) throws TrainException{
 		
-		int passengersToBoard = newPassengers;		
+		Integer passengersToBoard = newPassengers;		
 		RollingStock currentCar = firstCarriage(); //go to locomotive
 		
 		while (currentCar!= null){

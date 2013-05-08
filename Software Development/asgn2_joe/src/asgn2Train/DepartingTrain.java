@@ -169,7 +169,7 @@ public class DepartingTrain {
 		for (int i = 0; i < carsToShunt; i++){
 			RollingStock carToBeAdded = shuntedCars.get(FIRST_CAR);
 			shuntedCars.remove(FIRST_CAR); //remove from shunted train
-			addCarriage(carToBeAdded);		 //add it to the end of the train
+			addCarriage(carToBeAdded); 		 //add it to the end of the train
 		}
 		
 	}

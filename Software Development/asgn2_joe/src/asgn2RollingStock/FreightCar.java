@@ -30,9 +30,7 @@ public class FreightCar extends RollingStock {
 		
 		super(grossWeight);
 		
-		if (grossWeight < MIN_WEIGHT){ //invalid weight
-			throw new TrainException("The weight must be positive");
-		} else if (!checkGoodsCode(goodsType)){ //invalid goods
+		if (!checkGoodsCode(goodsType)){ //invalid goods
 			throw new TrainException("Invalid goods code");
 		}
 		

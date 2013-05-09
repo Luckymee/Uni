@@ -35,9 +35,7 @@ public class Locomotive extends RollingStock {
 		
 		super(grossWeight);
 		
-		if (grossWeight < MIN_WEIGHT){ //invalid weight
-			throw new TrainException("Weight is not strictly positive");
-		} else if (!checkClassificationCode(classification)){ //invalid classification
+		if (!checkClassificationCode(classification)){ //invalid classification
 			throw new TrainException("Invalid classification: " + classificationError);
 		}
 		

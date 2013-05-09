@@ -33,9 +33,7 @@ public class PassengerCar extends RollingStock {
 		
 		super(grossWeight);
 		
-		if (grossWeight < MIN_WEIGHT){ //Negative weight
-			throw new TrainException("Gross weight is not positive");
-		} else if (numberOfSeats < MIN_SEATS){ // negative seats
+		if (numberOfSeats < MIN_SEATS){ // negative seats
 			throw new TrainException("Number of seats cannot be negative");
 		}
 		

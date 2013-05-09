@@ -36,17 +36,17 @@ public class FreightCar extends RollingStock {
 		this.goodsType = goodsType.toUpperCase();
 	}
 	
-	 /**
-     * Checks inputed goodsCode to determine valid input.
+	/**
+     * Returns a human-readable description of the freight car. This has the form
+     * "Freight(x)" where x is a character ("G", "R" or "D") indicating the type of goods
+     * the car is designed to carry.
      * 
-     * @param goodsCode
-     *            String: The one character goods classification code.
-     * @return boolean: True if goodsCode is matched.
+     * @see asgn2RollingStock.RollingStock#toString
+     * @return String: a human-readable description of the freight car.
      */
 	@Override
 	public String toString(){
-		return "Freight(" + goodsType + ")";
-		
+		return "Freight(" + goodsType + ")";		
 	}
 	
 	/**
@@ -59,13 +59,13 @@ public class FreightCar extends RollingStock {
 		return goodsType;
 	}
 	
-	/**
-     * Returns a human-readable description of the freight car. This has the form
-     * "Freight(x)" where x is a character ("G", "R" or "D") indicating the type of goods
-     * the car is designed to carry.
+	
+	 /**
+     * Checks inputed goodsType to determine valid input.
      * 
-     * @see asgn2RollingStock.RollingStock#toString
-     * @return String: a human-readable description of the freight car.
+     * @param goodsType
+     *            String: The one character goods classification code.
+     * @return boolean: True if goodsType is matched.
      */
 	private boolean checkGoodsCode(String goodsType){;
 		
@@ -81,5 +81,4 @@ public class FreightCar extends RollingStock {
 		
 	}
 	
-
 }

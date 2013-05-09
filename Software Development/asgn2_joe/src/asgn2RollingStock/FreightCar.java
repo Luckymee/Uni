@@ -12,7 +12,6 @@ import asgn2Exceptions.TrainException;
 public class FreightCar extends RollingStock {
 	
 	private String goodsType;
-	final int MIN_WEIGHT = 0;
 	final int GOODS_TYPE = 0;
 	
 	/**

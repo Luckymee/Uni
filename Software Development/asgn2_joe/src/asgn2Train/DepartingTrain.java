@@ -99,16 +99,18 @@ public class DepartingTrain {
 	//needs more work,
 	public void addCarriage(RollingStock newCarriage) throws TrainException{
 		
-		if (numberOnBoard() < ONE_PASSENGER){ // has no passengers
-			if (newCarriage instanceof PassengerCar){
-				train.add(getLastPassengerCar(), newCarriage); //add car after last passenger car (don't know if we have to show "shunting")
-			} else if (newCarriage instanceof FreightCar){
-				train.add(newCarriage); //add to end of the train
-			} else if(newCarriage instanceof Locomotive){
-				if (!locomotiveAtFront()){
-					train.add(FIRST_CAR, newCarriage); //add to front if no locomotive  (don't know if we have to show "shunting")
-				} 
-			}
+		if (numberOnBoard() >= ONE_PASSENGER){
+			throw new TrainException("Cant shunt with passengers on board");
+		}
+		
+		if (newCarriage instanceof PassengerCar){
+			train.add(getLastPassengerCar(), newCarriage); //add car after last passenger car (don't know if we have to show "shunting")
+		} else if (newCarriage instanceof FreightCar){
+			train.add(newCarriage); //add to end of the train
+		} else if(newCarriage instanceof Locomotive){
+			if (!locomotiveAtFront()){
+				train.add(FIRST_CAR, newCarriage); //add to front if no locomotive  (don't know if we have to show "shunting")
+			} 
 		} 
 	}
 	

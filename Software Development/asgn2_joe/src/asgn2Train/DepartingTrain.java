@@ -152,6 +152,7 @@ public class DepartingTrain {
 	
 	//is of no use yet, im not sure if we actually have to demonstrate "shunting" or if its implied
 	//either way this is a very dodgy method and could be better
+	@SuppressWarnings("unused")
 	private void shunt(int indexToSplit, RollingStock carToAdd) throws TrainException{
 		
 		ArrayList<RollingStock> shuntedCars = new ArrayList<RollingStock>(); //new "train" of "shunted" cars
@@ -175,7 +176,6 @@ public class DepartingTrain {
 	}
 	
 	private boolean locomotiveAtFront(){
-		
 		boolean atFront = false;
 		
 		if (firstCarriage() instanceof Locomotive){ //first car is a locomotive

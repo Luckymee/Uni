@@ -39,10 +39,10 @@ public class RollingStockTest {
     /**
      * Run the Integer getGrossWeight() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testGetGrossWeight_FreightCarNotNull() throws Exception {
+    public void testGetGrossWeight_FreightCarNotNull() throws TrainException {
 	RollingStock fixture = new FreightCar(new Integer(100), "G");
 
 	Integer result = fixture.getGrossWeight();
@@ -53,10 +53,10 @@ public class RollingStockTest {
     /**
      * Run the Integer getGrossWeight() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testGetGrossWeight_FreightCarValid() throws Exception {
+    public void testGetGrossWeight_FreightCarValid() throws TrainException {
 	String goodsCode = "G";
 	RollingStock fixture = new FreightCar(new Integer(100), goodsCode);
 
@@ -69,10 +69,10 @@ public class RollingStockTest {
     /**
      * Run the Integer getGrossWeight() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testGetGrossWeight_LocomotiveNotNull() throws Exception {
+    public void testGetGrossWeight_LocomotiveNotNull() throws TrainException {
 	RollingStock fixture = new Locomotive(new Integer(100), "1E");
 
 	Integer result = fixture.getGrossWeight();
@@ -83,10 +83,10 @@ public class RollingStockTest {
     /**
      * Run the Integer getGrossWeight() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testGetGrossWeight_LocomotiveValid() throws Exception {
+    public void testGetGrossWeight_LocomotiveValid() throws TrainException {
 	RollingStock fixture = new FreightCar(new Integer(100), "G");
 
 	Integer result = fixture.getGrossWeight();
@@ -98,10 +98,10 @@ public class RollingStockTest {
     /**
      * Run the Integer getGrossWeight() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testGetGrossWeight_PassengerCarNotNull() throws Exception {
+    public void testGetGrossWeight_PassengerCarNotNull() throws TrainException {
 	Integer numOfSeats = 10;
 	RollingStock fixture = new PassengerCar(new Integer(100), numOfSeats);
 
@@ -113,10 +113,10 @@ public class RollingStockTest {
     /**
      * Run the Integer getGrossWeight() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testGetGrossWeight_PassengerCarValid() throws Exception {
+    public void testGetGrossWeight_PassengerCarValid() throws TrainException {
 	Integer numOfSeats = 10;
 	RollingStock fixture = new PassengerCar(new Integer(100), numOfSeats);
 
@@ -129,10 +129,11 @@ public class RollingStockTest {
     /**
      * Run the Integer getGrossWeight() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
+     * @throws NullPointerException
      */
     @Test
-    public void testGetGrossWeight_nullGrossWeight() throws Exception {
+    public void testGetGrossWeight_nullGrossWeight() throws TrainException {
 	String goodsCode = "G";
 	Integer grossWeight = null;
 
@@ -149,10 +150,10 @@ public class RollingStockTest {
     /**
      * Method testToString_LocomotiveNotNull.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_LocomotiveNotNull() throws Exception {
+    public void testToString_LocomotiveNotNull() throws TrainException {
 	RollingStock fixture = new Locomotive(new Integer(100), "1E");
 
 	String result = fixture.toString();
@@ -163,10 +164,10 @@ public class RollingStockTest {
     /**
      * Method testToString_FreightCarNotNull.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_FreightCarNotNull() throws Exception {
+    public void testToString_FreightCarNotNull() throws TrainException {
 	RollingStock fixture = new FreightCar(new Integer(100), "G");
 
 	String result = fixture.toString();
@@ -177,10 +178,10 @@ public class RollingStockTest {
     /**
      * Method testToString_PassengerCarNotNull.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_PassengerCarNotNull() throws Exception {
+    public void testToString_PassengerCarNotNull() throws TrainException {
 	RollingStock fixture = new PassengerCar(new Integer(100),
 		VALID_TEST_SEATS);
 
@@ -192,10 +193,10 @@ public class RollingStockTest {
     /**
      * Method testToString_LocomotiveValid.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_LocomotiveValid() throws Exception {
+    public void testToString_LocomotiveValid() throws TrainException {
 	RollingStock fixture = new Locomotive(new Integer(100), "1E");
 
 	String result = fixture.toString();
@@ -207,10 +208,10 @@ public class RollingStockTest {
     /**
      * Method testToString_FreightCarValid.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_FreightCarValid() throws Exception {
+    public void testToString_FreightCarValid() throws TrainException {
 	String goodsCode = "G";
 	RollingStock fixture = new FreightCar(new Integer(100), goodsCode);
 
@@ -223,10 +224,10 @@ public class RollingStockTest {
     /**
      * Method testToString_PassengerCarValid.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_PassengerCarValid() throws Exception {
+    public void testToString_PassengerCarValid() throws TrainException {
 	RollingStock fixture = new PassengerCar(new Integer(100),
 		VALID_TEST_SEATS);
 
@@ -239,10 +240,10 @@ public class RollingStockTest {
     /**
      * Method testToString_PassengerCarValid.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_PassengerLowerBound() throws Exception {
+    public void testToString_PassengerLowerBound() throws TrainException {
 	RollingStock fixture = new PassengerCar(new Integer(100), 1);
 
 	String result = fixture.toString();
@@ -254,10 +255,10 @@ public class RollingStockTest {
     /**
      * Method testToString_PassengerCarValid.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_noPassengers() throws Exception {
+    public void testToString_noPassengers() throws TrainException {
 	RollingStock fixture = new PassengerCar(new Integer(100), 0);
 
 	String result = fixture.toString();
@@ -309,22 +310,22 @@ public class RollingStockTest {
     /**
      * Perform pre-test initialization.
      * 
-     * @throws Exception
+     * @throws TrainException
      *             if the initialization fails for some reason
      */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws TrainException {
 	// add additional set up code here
     }
 
     /**
      * Perform post-test clean-up.
      * 
-     * @throws Exception
+     * @throws TrainException
      *             if the clean-up fails for some reason
      */
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() throws TrainException {
 	// Add additional tear down code here
     }
 

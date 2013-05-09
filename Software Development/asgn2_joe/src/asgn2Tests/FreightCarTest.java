@@ -36,10 +36,10 @@ public class FreightCarTest {
     /**
      * Run the FreightCar(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testFreightCar_notNull() throws Exception {
+    public void testFreightCar_notNull() throws TrainException {
 	Integer grossWeight = new Integer(1);
 	String goodsType = "D";
 
@@ -51,10 +51,11 @@ public class FreightCarTest {
     /**
      * Run the FreightCar(Integer,String) constructor test.
      * 
-     * @throws Exception
+     * @throws TrainException
+     * @throws NullPointerException
      */
     @Test
-    public void testFreightCar_nullGoodsType() throws Exception {
+    public void testFreightCar_nullGoodsType() throws TrainException {
 	Integer grossWeight = new Integer(1);
 	String goodsType = null;
 
@@ -70,10 +71,10 @@ public class FreightCarTest {
     /**
      * Run the String goodsType() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testGoodsType_ValidGoods() throws Exception {
+    public void testGoodsType_ValidGoods() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "D");
 
 	String result = fixture.goodsType();
@@ -84,10 +85,10 @@ public class FreightCarTest {
     /**
      * Run the String goodsType() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testGoodsType_validLowerCase() throws Exception {
+    public void testGoodsType_validLowerCase() throws TrainException {
 	String goodsType = "d";
 	FreightCar fixture = new FreightCar(new Integer(1), goodsType);
 
@@ -98,7 +99,7 @@ public class FreightCarTest {
     /**
      * Run the String goodsType() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
     public void testGoodsType_InvalidGoodsChar() throws TrainException {
@@ -115,7 +116,7 @@ public class FreightCarTest {
     /**
      * Run the String goodsType() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
     public void testGoodsType_InvalidGoodsInt() throws TrainException {
@@ -132,10 +133,10 @@ public class FreightCarTest {
     /**
      * Run the String toString() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_notNull() throws Exception {
+    public void testToString_notNull() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "D");
 
 	String result = fixture.toString();
@@ -146,10 +147,10 @@ public class FreightCarTest {
     /**
      * Run the String toString() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_validDangerous() throws Exception {
+    public void testToString_validDangerous() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "D");
 
 	String result = fixture.toString();
@@ -162,10 +163,10 @@ public class FreightCarTest {
     /**
      * Run the String toString() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_validRefrigerated() throws Exception {
+    public void testToString_validRefrigerated() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "R");
 
 	String result = fixture.toString();
@@ -178,10 +179,10 @@ public class FreightCarTest {
     /**
      * Run the String toString() method test.
      * 
-     * @throws Exception
+     * @throws TrainException
      */
     @Test
-    public void testToString_validGeneral() throws Exception {
+    public void testToString_validGeneral() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "G");
 
 	String result = fixture.toString();
@@ -194,22 +195,22 @@ public class FreightCarTest {
     /**
      * Perform pre-test initialization.
      * 
-     * @throws Exception
+     * @throws TrainException
      *             if the initialization fails for some reason
      */
     @Before
-    public void setUp() throws Exception {
+    public void setUp() throws TrainException {
 	// add additional set up code here
     }
 
     /**
      * Perform post-test clean-up.
      * 
-     * @throws Exception
+     * @throws TrainException
      *             if the clean-up fails for some reason
      */
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() throws TrainException {
 	// Add additional tear down code here
     }
 

@@ -60,7 +60,7 @@ public class DepartingTrain {
 		while (currentCar!= null){
 			currentCar = nextCarriage(); //get next car
 			if (currentCar instanceof PassengerCar){ //each passenger car in train
-				numberOfSeats += ((PassengerCar) currentCar).numberOfSeats(); //add capactiy of carriage to total
+				numberOfSeats += ((PassengerCar) currentCar).numberOfSeats(); //add capacity of carriage to total
 			}
 		}
 		

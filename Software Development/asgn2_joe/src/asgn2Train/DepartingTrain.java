@@ -22,8 +22,13 @@ public class DepartingTrain {
 	private final int ONE_PASSENGER = 1;
 	private final int NEXT_CARRIAGE = 1;
 	
-	ArrayList<RollingStock> train = new ArrayList<RollingStock>();
+	ArrayList<RollingStock> train;
 	private int currentCarNum; //tracks the last train carriage that was called with firstCarriage/nextCarriage
+	
+	
+	public DepartingTrain(){
+		train = new ArrayList<RollingStock>(); 
+	}
 	
 	/**
      * Returns the first carriage on the train (which must be a locomotive)
@@ -183,7 +188,7 @@ public class DepartingTrain {
 				throw new TrainException("Invalid Configuration: Passenger car placement");
 			}
 		} else if (newCarriage instanceof FreightCar){
-			if (locomotiveAtFront()){ //freight car can also be added except when no locomotive
+			if (locomotiveAtFront()){ //freight car can be added except when no locomotive
 				train.add(newCarriage);
 			} else {
 				throw new TrainException("Invalid Configuration: Freight car placement");

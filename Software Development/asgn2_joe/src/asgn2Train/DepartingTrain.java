@@ -37,8 +37,17 @@ public class DepartingTrain {
      * 			if there are no carriages.
      */
 	public RollingStock firstCarriage(){
-		RollingStock firstCar = train.get(FIRST_CAR);
+		
+		RollingStock firstCar;
+		
+		if (train.size() < ONE_CAR){
+			firstCar = null;
+		} else {
+			firstCar = train.get(FIRST_CAR);
+		}
+		
 		currentCarNum = FIRST_CAR;
+		
 		return firstCar;
 	}
 	

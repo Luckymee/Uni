@@ -22,7 +22,6 @@ public class TestAll {
      * @param args
      *            the command line arguments
      * 
-     * @generatedBy CodePro at 8/05/13 6:43 PM
      */
     public static void main(String[] args) {
 	JUnitCore.runClasses(new Class[] { TestAll.class });

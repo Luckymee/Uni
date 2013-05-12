@@ -26,10 +26,12 @@ public class DepartingTrain {
     private Locomotive locomotive;
     private int currentCarNum; // tracks the last train carriage that was called with
 			       // firstCarriage/nextCarriage
-
+    /**
+     * Constructs a (potential) train object containing no carriages (yet).
+     */
     public DepartingTrain() {
-	this.train = new ArrayList<RollingStock>();
-	this.currentCarNum = FIRST_CAR;
+		this.train = new ArrayList<RollingStock>();
+		this.currentCarNum = FIRST_CAR;
     }
 
     /**
@@ -40,13 +42,13 @@ public class DepartingTrain {
      */
     public RollingStock firstCarriage() {
 
-	if (locomotive != null) {
-	    currentCarNum = FIRST_CAR;
-	    return locomotive;
-	} else {
-	    currentCarNum = ONE_CAR;
-	    return train.get(FIRST_CAR);
-	}
+		if (locomotive != null) {
+		    currentCarNum = FIRST_CAR;
+		    return locomotive;
+		} else {
+		    currentCarNum = ONE_CAR;
+		    return train.get(FIRST_CAR);
+		}
 
     }
 
@@ -59,7 +61,7 @@ public class DepartingTrain {
      *         if there is no such carriage
      */
     public RollingStock nextCarriage() {
-	return train.get(++currentCarNum);
+    	return train.get(++currentCarNum);
     }
 
     /**
@@ -70,14 +72,15 @@ public class DepartingTrain {
      */
     public Integer numberOnBoard() {
 
-	Integer numberOnBoard = 0;
-	for (RollingStock rollingStock : train) { // Iterate through train
-	    if (rollingStock instanceof PassengerCar) { // Determine if Passenger Car
-		numberOnBoard += ((PassengerCar) rollingStock).numberOnBoard();
-	    }
-	}
-
-	return numberOnBoard;
+		Integer numberOnBoard = 0;
+		
+		for (RollingStock rollingStock : train) { // Iterate through train
+		    if (rollingStock instanceof PassengerCar) { // Determine if Passenger Car
+		    	numberOnBoard += ((PassengerCar) rollingStock).numberOnBoard();
+		    }
+		}
+	
+		return numberOnBoard;
     }
 
     /**
@@ -87,13 +90,16 @@ public class DepartingTrain {
      * @return Integer: the number of seats on the train
      */
     public Integer numberOfSeats() {
-	Integer totalSeats = 0;
-	for (RollingStock rollingStock : train) { // Iterate through train
-	    if (rollingStock instanceof PassengerCar) { // Determine if Passenger Car
-		totalSeats += ((PassengerCar) rollingStock).numberOfSeats();
-	    }
-	}
-	return totalSeats;
+    	
+    	Integer totalSeats = 0;
+    	
+		for (RollingStock rollingStock : train) { // Iterate through train
+		    if (rollingStock instanceof PassengerCar) { // Determine if Passenger Car
+		    	totalSeats += ((PassengerCar) rollingStock).numberOfSeats();
+		    }
+		}
+		
+		return totalSeats;
     }
 
     /**
@@ -110,21 +116,21 @@ public class DepartingTrain {
      */
     public Integer board(Integer newPassengers) throws TrainException {
 
-	Integer passengersToBoard = newPassengers;
-	for (RollingStock rollingStock : train) { // Iterate through train
-	    if (rollingStock instanceof PassengerCar) { // Found passenger car
-		if (((PassengerCar) rollingStock).numberOnBoard() < ((PassengerCar) rollingStock).numberOfSeats()) {
-		    // Number on board < Number of seats
-		    passengersToBoard = ((PassengerCar) rollingStock).board(passengersToBoard);
+    	Integer passengersToBoard = newPassengers;
+	
+		for (RollingStock rollingStock : train) { // Iterate through train
+			if (rollingStock instanceof PassengerCar) { // Found passenger car
+				if (((PassengerCar) rollingStock).numberOnBoard() < ((PassengerCar) rollingStock).numberOfSeats()) { // Number on board < Number of seats		    
+					passengersToBoard = ((PassengerCar) rollingStock).board(passengersToBoard);
+				}
+			}
+			
+		    if (passengersToBoard == NO_PASSENGERS) { // No passengers left
+		    	break;
+		    }
 		}
-	    }
 
-	    if (passengersToBoard == NO_PASSENGERS) { // No passengers left
-		break;
-	    }
-	}
-
-	return passengersToBoard; // returns how many didn't board
+		return passengersToBoard; // returns how many didn't board
     }
 
     /**
@@ -134,13 +140,14 @@ public class DepartingTrain {
      *         otherwise
      */
     public boolean trainCanMove() {
-	if (locomotive == null) { // No locomotive
-	    return false;
-	} else if (train.size() == FIRST_CAR) {
-	    return true;
-	}
+    	
+		if (locomotive == null) { // No locomotive
+		    return false;
+		} else if (train.size() == FIRST_CAR) {
+		    return true;
+		}
 
-	return locomotive.power() >= getTotalWeight();
+		return locomotive.power() >= getTotalWeight();
     }
 
     /**
@@ -154,29 +161,29 @@ public class DepartingTrain {
      *             configuration, or if there are passengers on the train
      */
     public void addCarriage(RollingStock newCarriage) throws TrainException {
-	if (passengersOnBoard()) { // Passengers have boarded
-	    throw new TrainException("Invalid Shunt: Passengers on board.");
-
-	} else if (newCarriage instanceof Locomotive) { // Locomotive
-
-	    if (locomotive != null) { // Locomotive exists
-		throw new TrainException("Invalid Configuration: Locomotive already exists");
-	    } else { // Add Locomotive
-		locomotive = (Locomotive) newCarriage;
-	    }
-
-	} else if (newCarriage instanceof FreightCar) { // Freight Car
-	    train.add(newCarriage);
-
-	} else if (newCarriage instanceof PassengerCar) { // Passenger Car
-
-	    if (train.size() == ONE_CAR && train.get(train.size() - ONE_CAR) instanceof FreightCar) {
-		// Freight Car found
-		throw new TrainException("Invalid Configuration: Passenger car placement");
-	    } else { // Add Passenger Car
-		train.add(newCarriage);
-	    }
-	}
+    	
+    	if (passengersOnBoard()) { // Passengers have boarded
+    		throw new TrainException("Invalid Shunt: Passengers on board.");
+    	
+    	} else if (newCarriage instanceof Locomotive) { // Locomotive
+    		
+		    if (locomotive != null) { // Locomotive exists
+		    	throw new TrainException("Invalid Configuration: Locomotive already exists");
+		    } else { // Add Locomotive
+		    	locomotive = (Locomotive) newCarriage;
+		    }
+		    
+    	} else if (newCarriage instanceof FreightCar) { // Freight Car
+    		train.add(newCarriage);
+    		
+    	} else if (newCarriage instanceof PassengerCar) { // Passenger Car
+    		
+    		if (train.size() == ONE_CAR && train.get(train.size() - ONE_CAR) instanceof FreightCar) {// Freight Car found	
+    			throw new TrainException("Invalid Configuration: Passenger car placement");
+    		} else { // Add Passenger Car
+    			train.add(newCarriage);
+    		}
+    	}
     }
 
     /**
@@ -187,15 +194,16 @@ public class DepartingTrain {
      *             on the train.
      */
     public void removeCarriage() throws TrainException {
-	if (locomotive == null && train.size() == 0) { // No Rolling stock
-	    throw new TrainException("Invalid Shunt: No rolling stock to remove");
-	} else if (passengersOnBoard()) { // Passengers have boarded
-	    throw new TrainException("Invalid Shunt: Passengers on board.");
-	} else if (train.size() == FIRST_CAR && locomotive != null) { // Remove locomotive
-	    locomotive = null;
-	} else {
-	    train.remove(train.size() - ONE_CAR);
-	}
+    	
+		if (locomotive == null && train.size() == 0) { // No Rolling stock
+		    throw new TrainException("Invalid Shunt: No rolling stock to remove");
+		} else if (passengersOnBoard()) { // Passengers have boarded
+		    throw new TrainException("Invalid Shunt: Passengers on board.");
+		} else if (train.size() == FIRST_CAR && locomotive != null) { // Remove locomotive
+		    locomotive = null;
+		} else {
+		    train.remove(train.size() - ONE_CAR);
+		}
     }
 
     /**
@@ -208,16 +216,18 @@ public class DepartingTrain {
      */
     @Override
     public String toString() {
-	String trainString = "";
-	if (locomotive != null) {
-	    trainString += locomotive;
-	}
+    	
+    	String trainString = "";
+    	
+		if (locomotive != null) {
+		    trainString += locomotive;
+		}
 
-	for (RollingStock rollingStock : train) {
-	    trainString += "-" + rollingStock;
-	}
+		for (RollingStock rollingStock : train) {
+		    trainString += "-" + rollingStock;
+		}
 
-	return trainString;
+		return trainString;
     }
 
     /**
@@ -226,15 +236,16 @@ public class DepartingTrain {
      * @return boolean: True if passengers on board
      */
     private boolean passengersOnBoard() {
-	for (RollingStock rollingStock : train) { // Iterate through Train
-	    if (rollingStock instanceof PassengerCar) { // Found Passenger Car
-		if (((PassengerCar) rollingStock).numberOnBoard() > NO_PASSENGERS) {
-		    // Has passengers
-		    return true;
+    	
+		for (RollingStock rollingStock : train) { // Iterate through Train
+		    if (rollingStock instanceof PassengerCar) { // Found Passenger Car
+		    	if (((PassengerCar) rollingStock).numberOnBoard() > NO_PASSENGERS) { // Has passengers		    
+		    		return true;
+		    	}
+		    }
 		}
-	    }
-	}
-	return false;
+		
+		return false;
     }
 
     /**
@@ -243,16 +254,16 @@ public class DepartingTrain {
      * @return Integer: totalWeight
      */
     private Integer getTotalWeight() {
-	int totalWeight = 0;
+    	int totalWeight = 0;
 
-	if (locomotive != null) { // Locomotive exists
-	    totalWeight += locomotive.getGrossWeight();
-	}
+    	if (locomotive != null) { // Locomotive exists
+    		totalWeight += locomotive.getGrossWeight();
+    	}
 
-	for (RollingStock rollingStock : train) { // Iterate through train
-	    totalWeight += rollingStock.getGrossWeight();
-	}
+    	for (RollingStock rollingStock : train) { // Iterate through train
+    		totalWeight += rollingStock.getGrossWeight();
+    	}
 
-	return totalWeight;
+    	return totalWeight;
     }
 }

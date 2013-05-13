@@ -12,8 +12,8 @@ import org.junit.runners.Suite;
  * @version $Revision: 1.0 $
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ FreightCarTest.class, PassengerCarTest.class,
-	LocomotiveTest.class, RollingStockTest.class, })
+@Suite.SuiteClasses({ FreightCarTest.class, PassengerCarTest.class, LocomotiveTest.class, RollingStockTest.class,
+	DepartingTrainTest.class })
 public class TestAll {
 
     /**

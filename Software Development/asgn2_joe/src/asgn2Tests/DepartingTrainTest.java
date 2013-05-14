@@ -539,6 +539,30 @@ public class DepartingTrainTest {
     }
 
     /**
+     * Special test to check if object instance already exits. Without this test using the
+     * same Rollingstock instance will be valid, causing strange states where boarding one
+     * will also inherently board the other.
+     * 
+     * @throws Exception
+     */
+    @Test
+    public void testAddCarriage_quantumMechanicsTest() throws TrainException {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+
+	try {
+	    Train.addCarriage(locomotive);
+	    Train.addCarriage(passengerCar);
+	    Train.addCarriage(passengerCar);
+	    fail("Didn't catch exception");
+	} catch (TrainException expected) {
+	    println(expected.toString());
+	}
+
+    }
+
+    /**
      * Run the Integer board(Integer) method test.
      * 
      * @throws Exception
@@ -773,7 +797,6 @@ public class DepartingTrainTest {
 
 	assertEquals(locomotive.toString() + "-" + passengerCar.toString() + "-" + passengerCarTwo.toString(),
 		Train.toString());
-	println(Train.toString());
     }
 
     /**

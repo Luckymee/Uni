@@ -65,7 +65,7 @@ public class DepartingTrain {
      */
     public RollingStock nextCarriage() {
 	if (++currentCarNum == 0) {
-	    return null;
+	    return locomotive;
 	} else {
 	    return currentCarNum > train.size() ? null : train.get(currentCarNum - 1);
 	}
@@ -168,6 +168,13 @@ public class DepartingTrain {
      *             configuration, or if there are passengers on the train
      */
     public void addCarriage(RollingStock newCarriage) throws TrainException {
+	// Special case for determining if a train instance already exits -- particularly
+	// a Passenger car -- enabling it to exist in multiple places and be boarded
+	// simultaneously.
+	if (train.contains(newCarriage)) {
+	    throw new TrainException("Quantum Mechanics Detected: Instance of Rolling Stock already exists.");
+	}
+
 	if (passengersOnBoard()) { // Passengers have boarded
 	    throw new TrainException("Invalid Shunt: Passengers on board.");
 

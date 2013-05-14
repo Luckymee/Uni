@@ -189,18 +189,20 @@ public class DepartingTrain {
 	    }
 
 	} else if (newCarriage instanceof FreightCar) { // Freight Car
-	    if (locomotive == null) { // No
-				      // Locomotive
+	    
+	    if (locomotive == null) { // No Locomotive
 		throw new TrainException("Invalid Configuration: No Locomotive");
 	    } else { // Valid Configuration
 		train.add(newCarriage);
 	    }
 
 	} else if (newCarriage instanceof PassengerCar) { // Passenger Car
+	    
 	    if (locomotive == null) { // No Locomotive
 		throw new TrainException("Invalid Configuration: No Locomotive");
 
 	    } else {
+		
 		if (train.size() == ONE_CAR && train.get(train.size() - ONE_CAR) instanceof FreightCar) {
 		    // Freight Car found
 		    throw new TrainException("Invalid Configuration: Passenger car placement");

@@ -1077,19 +1077,13 @@ public class DepartingTrainTest {
      * 
      */
     @Test
-    public void testToString_1() throws Exception {
-	DepartingTrain fixture = new DepartingTrain();
-	fixture.addCarriage(new FreightCar(new Integer(1), ""));
+    public void testToString_vaildLocomotive() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	Train.addCarriage(locomotive);
 
-	String result = fixture.toString();
-
-	// add additional test code here
-	// An unexpected exception was thrown in user code while executing this test:
-	// java.lang.StringIndexOutOfBoundsException: String index out of range: 0
-	// at java.lang.String.charAt(Unknown Source)
-	// at asgn2RollingStock.FreightCar.checkGoodsCode(FreightCar.java:74)
-	// at asgn2RollingStock.FreightCar.<init>(FreightCar.java:32)
-	assertNotNull(result);
+	assertNotNull(Train);
+	assertEquals(locomotive.toString(), Train.toString());
     }
 
     /**
@@ -1100,19 +1094,16 @@ public class DepartingTrainTest {
      * 
      */
     @Test
-    public void testToString_2() throws Exception {
-	DepartingTrain fixture = new DepartingTrain();
-	fixture.addCarriage(new FreightCar(new Integer(1), ""));
+    public void testToString_validEmptyPassengerCar() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
 
-	String result = fixture.toString();
+	Train.addCarriage(locomotive);
+	Train.addCarriage(passengerCar);
 
-	// add additional test code here
-	// An unexpected exception was thrown in user code while executing this test:
-	// java.lang.StringIndexOutOfBoundsException: String index out of range: 0
-	// at java.lang.String.charAt(Unknown Source)
-	// at asgn2RollingStock.FreightCar.checkGoodsCode(FreightCar.java:74)
-	// at asgn2RollingStock.FreightCar.<init>(FreightCar.java:32)
-	assertNotNull(result);
+	assertNotNull(Train);
+	assertEquals(locomotive.toString() + "-" + passengerCar.toString(), Train.toString());
     }
 
     /**
@@ -1123,19 +1114,181 @@ public class DepartingTrainTest {
      * 
      */
     @Test
-    public void testToString_3() throws Exception {
-	DepartingTrain fixture = new DepartingTrain();
-	fixture.addCarriage(new FreightCar(new Integer(1), ""));
+    public void testToString_validFullPassengerCar() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
 
-	String result = fixture.toString();
+	Train.addCarriage(locomotive);
+	Train.addCarriage(passengerCar);
+	Train.board(VALID_SEATS);
 
-	// add additional test code here
-	// An unexpected exception was thrown in user code while executing this test:
-	// java.lang.StringIndexOutOfBoundsException: String index out of range: 0
-	// at java.lang.String.charAt(Unknown Source)
-	// at asgn2RollingStock.FreightCar.checkGoodsCode(FreightCar.java:74)
-	// at asgn2RollingStock.FreightCar.<init>(FreightCar.java:32)
-	assertNotNull(result);
+	assertNotNull(Train);
+	assertEquals(locomotive.toString() + "-" + passengerCar.toString(), Train.toString());
+    }
+
+    /**
+     * Run the String toString() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testToString_validMultiPassengerCar() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+
+	Train.addCarriage(locomotive);
+	Train.addCarriage(passengerCar);
+	Train.addCarriage(passengerCarTwo);
+	Train.board(VALID_SEATS + 10);
+
+	assertNotNull(Train);
+	assertEquals(locomotive.toString() + "-" + passengerCar.toString() + "-" + passengerCarTwo.toString(),
+		Train.toString());
+    }
+
+    /**
+     * Run the String toString() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testToString_validDangerousFreightCar() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "D");
+
+	Train.addCarriage(locomotive);
+	Train.addCarriage(freightCar);
+
+	assertNotNull(Train);
+	assertEquals(locomotive.toString() + "-" + freightCar.toString(), Train.toString());
+    }
+
+    /**
+     * Run the String toString() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testToString_validGeneralFreightCar() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "G");
+
+	Train.addCarriage(locomotive);
+	Train.addCarriage(freightCar);
+
+	assertNotNull(Train);
+	assertEquals(locomotive.toString() + "-" + freightCar.toString(), Train.toString());
+    }
+
+    /**
+     * Run the String toString() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testToString_validRefrigerateFreightCar() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+
+	Train.addCarriage(locomotive);
+	Train.addCarriage(freightCar);
+
+	assertNotNull(Train);
+	assertEquals(locomotive.toString() + "-" + freightCar.toString(), Train.toString());
+    }
+
+    /**
+     * Run the String toString() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testToString_validMultiFreightCarConfig() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+	FreightCar freightCarTwo = new FreightCar(VALID_GROSSWEIGHT, "D");
+
+	Train.addCarriage(locomotive);
+	Train.addCarriage(freightCar);
+	Train.addCarriage(freightCarTwo);
+
+	assertNotNull(Train);
+	assertEquals(locomotive.toString() + "-" + freightCar.toString() + "-" + freightCarTwo.toString(),
+		Train.toString());
+    }
+
+    /**
+     * Run the String toString() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testToString_fullConfigurationEmptyPassengerCar() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+	FreightCar freightCarTwo = new FreightCar(VALID_GROSSWEIGHT, "D");
+
+	Train.addCarriage(locomotive);
+	Train.addCarriage(passengerCar);
+	Train.addCarriage(passengerCarTwo);
+	Train.addCarriage(freightCar);
+	Train.addCarriage(freightCarTwo);
+
+	assertNotNull(Train);
+	assertEquals(locomotive.toString() + "-" + passengerCar.toString() + "-" + passengerCarTwo.toString() + "-"
+		+ freightCar.toString() + "-" + freightCarTwo.toString(), Train.toString());
+    }
+
+    /**
+     * Run the String toString() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testToString_fullConfigurationWithPassengers() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+	FreightCar freightCarTwo = new FreightCar(VALID_GROSSWEIGHT, "D");
+
+	Train.addCarriage(locomotive);
+	Train.addCarriage(passengerCar);
+	Train.addCarriage(passengerCarTwo);
+	Train.addCarriage(freightCar);
+	Train.addCarriage(freightCarTwo);
+
+	Train.board(VALID_SEATS);
+
+	assertNotNull(Train);
+	println(Train.toString());
+	assertEquals(locomotive.toString() + "-" + passengerCar.toString() + "-" + passengerCarTwo.toString() + "-"
+		+ freightCar.toString() + "-" + freightCarTwo.toString(), Train.toString());
     }
 
     /**

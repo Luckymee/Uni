@@ -1524,6 +1524,138 @@ public class DepartingTrainTest {
      * 
      */
     @Test
+    public void testTrainCanMove_enoughPowerFullConfiguration() throws Exception {
+		DepartingTrain fixture = new DepartingTrain();
+		Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+		PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+		PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+		FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+
+		fixture.addCarriage(locomotive);
+		fixture.addCarriage(passengerCar);
+		fixture.addCarriage(passengerCarTwo);
+		fixture.addCarriage(freightCar);
+
+		boolean result = fixture.trainCanMove();
+
+		assertTrue(result);
+    }
+    
+    /**
+     * Run the boolean trainCanMove() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testTrainCanMove_equalPowerFullConfiguration() throws Exception {
+		DepartingTrain fixture = new DepartingTrain();
+		Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+		PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+		PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+		FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+		FreightCar freightCarTwo = new FreightCar(VALID_GROSSWEIGHT, "D");
+
+		fixture.addCarriage(locomotive);
+		fixture.addCarriage(passengerCar);
+		fixture.addCarriage(passengerCarTwo);
+		fixture.addCarriage(freightCar);
+		fixture.addCarriage(freightCarTwo);
+
+		boolean result = fixture.trainCanMove();
+
+		assertTrue(result);
+    }
+    
+    /**
+     * Run the boolean trainCanMove() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testTrainCanMove_notEnoughPowerFullConfiguration() throws Exception {
+		DepartingTrain fixture = new DepartingTrain();
+		Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "8E");
+		PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+		PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+		FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+		FreightCar freightCarTwo = new FreightCar(VALID_GROSSWEIGHT, "D");
+
+		fixture.addCarriage(locomotive);
+		fixture.addCarriage(passengerCar);
+		fixture.addCarriage(passengerCarTwo);
+		fixture.addCarriage(freightCar);
+		fixture.addCarriage(freightCarTwo);
+
+		boolean result = fixture.trainCanMove();
+
+		assertFalse(result);
+    }
+    
+    /**
+     * Run the boolean trainCanMove() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testTrainCanMove_EqualPower() throws Exception {
+	DepartingTrain fixture = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(new Integer(900), "9E");
+	fixture.addCarriage(locomotive);
+
+	boolean result = fixture.trainCanMove();
+
+	assertTrue(result);
+    }
+    
+    /**
+     * Run the boolean trainCanMove() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testTrainCanMove_NotEnoughPower() throws Exception {
+		DepartingTrain fixture = new DepartingTrain();
+		Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "1E");
+		fixture.addCarriage(locomotive);
+
+		boolean result = fixture.trainCanMove();
+
+		assertFalse(result);
+    }
+
+    /**
+     * Run the boolean trainCanMove() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testTrainCanMove_noRollingStock() throws Exception {
+	DepartingTrain fixture = new DepartingTrain();
+
+	boolean result = fixture.trainCanMove();
+
+	assertTrue(result);
+    }
+    
+    
+    /**
+     * Run the boolean trainCanMove() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
     public void testTrainCanMove_EnoughPower() throws Exception {
 	DepartingTrain fixture = new DepartingTrain();
 	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");

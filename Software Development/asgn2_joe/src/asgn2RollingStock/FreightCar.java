@@ -13,6 +13,7 @@ public class FreightCar extends RollingStock {
 	
 	private String goodsType;
 	final int GOODS_TYPE = 0;
+	final int ONE_CHAR = 1;
 	
 	/**
      * Constructs a freight car object.
@@ -69,12 +70,14 @@ public class FreightCar extends RollingStock {
      */
 	private boolean checkGoodsCode(String goodsType){;
 		
-	boolean validCode = false;
+		boolean validCode = false;
 		
-		switch(goodsType.toUpperCase().charAt(GOODS_TYPE)){
-			case 'G' : validCode = true; break;
-			case 'R' : validCode = true; break;
-			case 'D' : validCode = true; break;
+		if (goodsType.length() == ONE_CHAR){
+			switch(goodsType.toUpperCase().charAt(GOODS_TYPE)){
+				case 'G' : validCode = true; break;
+				case 'R' : validCode = true; break;
+				case 'D' : validCode = true; break;
+			}
 		}
 		
 		return validCode;

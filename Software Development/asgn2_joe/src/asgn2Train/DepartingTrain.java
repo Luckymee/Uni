@@ -118,25 +118,25 @@ public class DepartingTrain {
      *             if the number of new passengers is negative.
      */
     public Integer board(Integer newPassengers) throws TrainException {
-    	
-    	if (newPassengers < NO_PASSENGERS){ //negative new passengers
-			throw new TrainException("Number of passengers cannot be negative");
-		} else { 	
-			Integer passengersToBoard = newPassengers;
-			for (RollingStock rollingStock : train) { // Iterate through train
-			    if (rollingStock instanceof PassengerCar) { // Found passenger car
-			    	if (((PassengerCar) rollingStock).numberOnBoard() < ((PassengerCar) rollingStock).numberOfSeats()) {
-			    		// Number on board < Number of seats
-			    		passengersToBoard = ((PassengerCar) rollingStock).board(passengersToBoard);
-			    	}
-			    }	
-			    if (passengersToBoard == NO_PASSENGERS) { // No passengers left
-			    	break;
-			    }
-			}
 
-			return passengersToBoard; // returns how many didn't board
+	if (newPassengers < NO_PASSENGERS) { // negative new passengers
+	    throw new TrainException("Number of passengers cannot be negative");
+	} else {
+	    Integer passengersToBoard = newPassengers;
+	    for (RollingStock rollingStock : train) { // Iterate through train
+		if (rollingStock instanceof PassengerCar) { // Found passenger car
+		    if (((PassengerCar) rollingStock).numberOnBoard() < ((PassengerCar) rollingStock).numberOfSeats()) {
+			// Number on board < Number of seats
+			passengersToBoard = ((PassengerCar) rollingStock).board(passengersToBoard);
+		    }
 		}
+		if (passengersToBoard == NO_PASSENGERS) { // No passengers left
+		    break;
+		}
+	    }
+
+	    return passengersToBoard; // returns how many didn't board
+	}
     }
 
     /**
@@ -147,7 +147,7 @@ public class DepartingTrain {
      */
     public boolean trainCanMove() {
 	if (locomotive == null) { // No locomotive
-	    return false;
+	    return true;
 	} else if (train.size() == FIRST_CAR) {
 	    if (locomotive.power() >= getTotalWeight()) {
 		return true;
@@ -189,7 +189,7 @@ public class DepartingTrain {
 	    }
 
 	} else if (newCarriage instanceof FreightCar) { // Freight Car
-	    
+
 	    if (locomotive == null) { // No Locomotive
 		throw new TrainException("Invalid Configuration: No Locomotive");
 	    } else { // Valid Configuration
@@ -197,12 +197,12 @@ public class DepartingTrain {
 	    }
 
 	} else if (newCarriage instanceof PassengerCar) { // Passenger Car
-	    
+
 	    if (locomotive == null) { // No Locomotive
 		throw new TrainException("Invalid Configuration: No Locomotive");
 
 	    } else {
-		
+
 		if (train.size() == ONE_CAR && train.get(train.size() - ONE_CAR) instanceof FreightCar) {
 		    // Freight Car found
 		    throw new TrainException("Invalid Configuration: Passenger car placement");

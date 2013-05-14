@@ -23,7 +23,7 @@ import asgn2Train.DepartingTrain;
  * <code>{@link DepartingTrain}</code>.
  * 
  * 
- * @author Connor
+ * @author Connor Livsey - n8510873
  * @version $Revision: 1.0 $
  */
 public class DepartingTrainTest {
@@ -1428,7 +1428,6 @@ public class DepartingTrainTest {
 		+ freightCar.toString() + "-" + freightCarTwo.toString(), Train.toString());
     }
 
-    
     /**
      * Run the boolean trainCanMove() method test.
      * 
@@ -1437,10 +1436,10 @@ public class DepartingTrainTest {
      * 
      */
     @Test
-    public void testTrainCanMove_cannotMoveWithoutLoco() throws TrainException {
+    public void testTrainCanMove_canMoveWithoutLoco() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
 
-	assertFalse(Train.trainCanMove());
+	assertTrue(Train.trainCanMove());
     }
 
     /**
@@ -1515,7 +1514,6 @@ public class DepartingTrainTest {
 	assertTrue(Train.trainCanMove());
     }
 
-    
     /**
      * Run the boolean trainCanMove() method test.
      * 
@@ -1525,22 +1523,22 @@ public class DepartingTrainTest {
      */
     @Test
     public void testTrainCanMove_enoughPowerFullConfiguration() throws Exception {
-		DepartingTrain fixture = new DepartingTrain();
-		Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
-		PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
-		PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
-		FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+	DepartingTrain fixture = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
 
-		fixture.addCarriage(locomotive);
-		fixture.addCarriage(passengerCar);
-		fixture.addCarriage(passengerCarTwo);
-		fixture.addCarriage(freightCar);
+	fixture.addCarriage(locomotive);
+	fixture.addCarriage(passengerCar);
+	fixture.addCarriage(passengerCarTwo);
+	fixture.addCarriage(freightCar);
 
-		boolean result = fixture.trainCanMove();
+	boolean result = fixture.trainCanMove();
 
-		assertTrue(result);
+	assertTrue(result);
     }
-    
+
     /**
      * Run the boolean trainCanMove() method test.
      * 
@@ -1550,24 +1548,24 @@ public class DepartingTrainTest {
      */
     @Test
     public void testTrainCanMove_equalPowerFullConfiguration() throws Exception {
-		DepartingTrain fixture = new DepartingTrain();
-		Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
-		PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
-		PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
-		FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
-		FreightCar freightCarTwo = new FreightCar(VALID_GROSSWEIGHT, "D");
+	DepartingTrain fixture = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+	FreightCar freightCarTwo = new FreightCar(VALID_GROSSWEIGHT, "D");
 
-		fixture.addCarriage(locomotive);
-		fixture.addCarriage(passengerCar);
-		fixture.addCarriage(passengerCarTwo);
-		fixture.addCarriage(freightCar);
-		fixture.addCarriage(freightCarTwo);
+	fixture.addCarriage(locomotive);
+	fixture.addCarriage(passengerCar);
+	fixture.addCarriage(passengerCarTwo);
+	fixture.addCarriage(freightCar);
+	fixture.addCarriage(freightCarTwo);
 
-		boolean result = fixture.trainCanMove();
+	boolean result = fixture.trainCanMove();
 
-		assertTrue(result);
+	assertTrue(result);
     }
-    
+
     /**
      * Run the boolean trainCanMove() method test.
      * 
@@ -1577,24 +1575,24 @@ public class DepartingTrainTest {
      */
     @Test
     public void testTrainCanMove_notEnoughPowerFullConfiguration() throws Exception {
-		DepartingTrain fixture = new DepartingTrain();
-		Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "8E");
-		PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
-		PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
-		FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
-		FreightCar freightCarTwo = new FreightCar(VALID_GROSSWEIGHT, "D");
+	DepartingTrain fixture = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "8E");
+	PassengerCar passengerCar = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	PassengerCar passengerCarTwo = new PassengerCar(VALID_GROSSWEIGHT, VALID_SEATS);
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "R");
+	FreightCar freightCarTwo = new FreightCar(VALID_GROSSWEIGHT, "D");
 
-		fixture.addCarriage(locomotive);
-		fixture.addCarriage(passengerCar);
-		fixture.addCarriage(passengerCarTwo);
-		fixture.addCarriage(freightCar);
-		fixture.addCarriage(freightCarTwo);
+	fixture.addCarriage(locomotive);
+	fixture.addCarriage(passengerCar);
+	fixture.addCarriage(passengerCarTwo);
+	fixture.addCarriage(freightCar);
+	fixture.addCarriage(freightCarTwo);
 
-		boolean result = fixture.trainCanMove();
+	boolean result = fixture.trainCanMove();
 
-		assertFalse(result);
+	assertFalse(result);
     }
-    
+
     /**
      * Run the boolean trainCanMove() method test.
      * 
@@ -1612,7 +1610,7 @@ public class DepartingTrainTest {
 
 	assertTrue(result);
     }
-    
+
     /**
      * Run the boolean trainCanMove() method test.
      * 
@@ -1622,13 +1620,13 @@ public class DepartingTrainTest {
      */
     @Test
     public void testTrainCanMove_NotEnoughPower() throws Exception {
-		DepartingTrain fixture = new DepartingTrain();
-		Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "1E");
-		fixture.addCarriage(locomotive);
+	DepartingTrain fixture = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "1E");
+	fixture.addCarriage(locomotive);
 
-		boolean result = fixture.trainCanMove();
+	boolean result = fixture.trainCanMove();
 
-		assertFalse(result);
+	assertFalse(result);
     }
 
     /**
@@ -1646,8 +1644,7 @@ public class DepartingTrainTest {
 
 	assertTrue(result);
     }
-    
-    
+
     /**
      * Run the boolean trainCanMove() method test.
      * 
@@ -1665,8 +1662,6 @@ public class DepartingTrainTest {
 
 	assertTrue(result);
     }
-    
-    
 
     /**
      * Perform pre-test initialization.

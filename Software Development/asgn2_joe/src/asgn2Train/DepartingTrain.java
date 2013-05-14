@@ -118,23 +118,25 @@ public class DepartingTrain {
      *             if the number of new passengers is negative.
      */
     public Integer board(Integer newPassengers) throws TrainException {
-	// TODO - Should a negative number exception be thrown here. It is thrown in
-	// passenger car
-	Integer passengersToBoard = newPassengers;
-	for (RollingStock rollingStock : train) { // Iterate through train
-	    if (rollingStock instanceof PassengerCar) { // Found passenger car
-		if (((PassengerCar) rollingStock).numberOnBoard() < ((PassengerCar) rollingStock).numberOfSeats()) {
-		    // Number on board < Number of seats
-		    passengersToBoard = ((PassengerCar) rollingStock).board(passengersToBoard);
+    	
+    	if (newPassengers < NO_PASSENGERS){ //negative new passengers
+			throw new TrainException("Number of passengers cannot be negative");
+		} else { 	
+			Integer passengersToBoard = newPassengers;
+			for (RollingStock rollingStock : train) { // Iterate through train
+			    if (rollingStock instanceof PassengerCar) { // Found passenger car
+			    	if (((PassengerCar) rollingStock).numberOnBoard() < ((PassengerCar) rollingStock).numberOfSeats()) {
+			    		// Number on board < Number of seats
+			    		passengersToBoard = ((PassengerCar) rollingStock).board(passengersToBoard);
+			    	}
+			    }	
+			    if (passengersToBoard == NO_PASSENGERS) { // No passengers left
+			    	break;
+			    }
+			}
+
+			return passengersToBoard; // returns how many didn't board
 		}
-	    }
-
-	    if (passengersToBoard == NO_PASSENGERS) { // No passengers left
-		break;
-	    }
-	}
-
-	return passengersToBoard; // returns how many didn't board
     }
 
     /**

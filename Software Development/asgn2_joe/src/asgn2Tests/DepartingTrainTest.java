@@ -23,7 +23,7 @@ import asgn2Train.DepartingTrain;
  * <code>{@link DepartingTrain}</code>.
  * 
  * 
- * @author Connor
+ * @author Connor - n8510873
  * @version $Revision: 1.0 $
  */
 public class DepartingTrainTest {
@@ -1435,19 +1435,10 @@ public class DepartingTrainTest {
      * 
      */
     @Test
-    public void testTrainCanMove_1() throws TrainException {
-	DepartingTrain fixture = new DepartingTrain();
-	fixture.addCarriage(new FreightCar(new Integer(1), ""));
+    public void testTrainCanMove_cannotMoveWithoutLoco() throws TrainException {
+	DepartingTrain Train = new DepartingTrain();
 
-	boolean result = fixture.trainCanMove();
-
-	// add additional test code here
-	// An unexpected TrainException was thrown in user code while executing this test:
-	// java.lang.StringIndexOutOfBoundsException: String index out of range: 0
-	// at java.lang.String.charAt(Unknown Source)
-	// at asgn2RollingStock.FreightCar.checkGoodsCode(FreightCar.java:74)
-	// at asgn2RollingStock.FreightCar.<init>(FreightCar.java:32)
-	assertTrue(result);
+	assertFalse(Train.trainCanMove());
     }
 
     /**
@@ -1458,19 +1449,68 @@ public class DepartingTrainTest {
      * 
      */
     @Test
-    public void testTrainCanMove_2() throws TrainException {
-	DepartingTrain fixture = new DepartingTrain();
-	fixture.addCarriage(new FreightCar(new Integer(1), ""));
+    public void testTrainCanMove_invalidLocoNotEnoughPowerSelf() throws TrainException {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "1E");
 
-	boolean result = fixture.trainCanMove();
+	Train.addCarriage(locomotive);
 
-	// add additional test code here
-	// An unexpected TrainException was thrown in user code while executing this test:
-	// java.lang.StringIndexOutOfBoundsException: String index out of range: 0
-	// at java.lang.String.charAt(Unknown Source)
-	// at asgn2RollingStock.FreightCar.checkGoodsCode(FreightCar.java:74)
-	// at asgn2RollingStock.FreightCar.<init>(FreightCar.java:32)
-	assertTrue(result);
+	assertFalse(Train.trainCanMove());
+    }
+
+    /**
+     * Run the boolean trainCanMove() method test.
+     * 
+     * @throws TrainException
+     * 
+     * 
+     */
+    @Test
+    public void testTrainCanMove_invalidLocoNotEnoughPowerForCarriages() throws TrainException {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "2E");
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "D");
+
+	Train.addCarriage(locomotive);
+	Train.addCarriage(freightCar);
+
+	assertFalse(Train.trainCanMove());
+    }
+
+    /**
+     * Run the boolean trainCanMove() method test.
+     * 
+     * @throws TrainException
+     * 
+     * 
+     */
+    @Test
+    public void testTrainCanMove_validLocoPowerSelf() throws TrainException {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "2E");
+
+	Train.addCarriage(locomotive);
+
+	assertTrue(Train.trainCanMove());
+    }
+
+    /**
+     * Run the boolean trainCanMove() method test.
+     * 
+     * @throws TrainException
+     * 
+     * 
+     */
+    @Test
+    public void testTrainCanMove_validPowerToMoveMultiCarriages() throws TrainException {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "D");
+
+	Train.addCarriage(locomotive);
+	Train.addCarriage(freightCar);
+
+	assertTrue(Train.trainCanMove());
     }
 
     /**

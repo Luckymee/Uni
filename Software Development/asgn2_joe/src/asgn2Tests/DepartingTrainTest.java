@@ -919,6 +919,36 @@ public class DepartingTrainTest {
     }
 
     /**
+     * Run the RollingStock nextCarriage() method test.
+     * 
+     * @throws Exception
+     * 
+     * 
+     */
+    @Test
+    public void testNextCarriage_validReturnsToExpectedValueAfterFirstCarriage() throws Exception {
+	DepartingTrain Train = new DepartingTrain();
+	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
+	FreightCar freightCar = new FreightCar(VALID_GROSSWEIGHT, "D");
+	Train.addCarriage(locomotive);
+	Train.addCarriage(freightCar);
+
+	Train.firstCarriage().toString();
+	for (int i = 0; i < 5; ++i) {
+	    RollingStock result = Train.nextCarriage();
+
+	    if (i >= 1) { // Null after first call
+		assertNull(result);
+	    }
+	}
+	Train.firstCarriage().toString();
+	RollingStock result = Train.nextCarriage();
+	assertNotNull(result);
+	assertEquals(result.toString(), freightCar.toString());
+
+    }
+
+    /**
      * Run the Integer numberOfSeats() method test.
      * 
      * @throws Exception
@@ -1423,7 +1453,6 @@ public class DepartingTrainTest {
 	Train.board(VALID_SEATS);
 
 	assertNotNull(Train);
-	println(Train.toString());
 	assertEquals(locomotive.toString() + "-" + passengerCar.toString() + "-" + passengerCarTwo.toString() + "-"
 		+ freightCar.toString() + "-" + freightCarTwo.toString(), Train.toString());
     }

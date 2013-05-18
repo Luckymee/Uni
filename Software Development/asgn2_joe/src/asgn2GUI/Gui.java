@@ -63,7 +63,7 @@ public class Gui extends JFrame {
     };
 
     // Primary JPanels
-    private JPanel infoDisplay;
+    private JPanel trainDrawArea;
     private JPanel informationPanel;
     private JPanel passengerInfo;
 
@@ -75,7 +75,7 @@ public class Gui extends JFrame {
     private int numberOfLogs;
 
     // Train Area
-    private JPanel trainArea;
+    private JPanel trainBuildArea;
     private List<TrainCar> trainGraphicList;
 
     // Locomotive inputs
@@ -122,9 +122,9 @@ public class Gui extends JFrame {
 	informationPanel.setLayout(new GridBagLayout());
 	GridBagConstraints internalConstraints = new GridBagConstraints();
 
-	infoDisplay = new JPanel();
+	trainDrawArea = new JPanel();
 	informationPanel.setPreferredSize(defaultDimensions);
-	infoDisplay.setLayout(new FlowLayout());
+	trainDrawArea.setLayout(new FlowLayout());
 	internalConstraints.fill = GridBagConstraints.BOTH;
 	internalConstraints.weightx = 1.0;
 	internalConstraints.weighty = 1.0;
@@ -132,7 +132,7 @@ public class Gui extends JFrame {
 	internalConstraints.gridwidth = 2;
 	internalConstraints.gridx = 0;
 	internalConstraints.gridy = 0;
-	informationPanel.add(infoDisplay, internalConstraints);
+	informationPanel.add(trainDrawArea, internalConstraints);
 
 	totalPassengers = new JLabel("<html>Passengers<br />" + MIN_PASSENGERS + " | " + INITAL_SEATS + "</html>");
 	internalConstraints.fill = GridBagConstraints.NONE;
@@ -171,10 +171,10 @@ public class Gui extends JFrame {
 	constraints.gridy = 0;
 	getContentPane().add(informationPanel, constraints);
 
-	trainArea = new JPanel();
-	trainArea.setPreferredSize(defaultDimensions);
+	trainBuildArea = new JPanel();
+	trainBuildArea.setPreferredSize(defaultDimensions);
 
-	trainArea.setLayout(new GridBagLayout());
+	trainBuildArea.setLayout(new GridBagLayout());
 
 	// Locomotive Panel
 	JPanel addLocomotive = new JPanel();
@@ -190,7 +190,7 @@ public class Gui extends JFrame {
 	internalConstraints.gridheight = 1;
 	internalConstraints.gridx = 0;
 	internalConstraints.gridy = 0;
-	trainArea.add(addLocomotive, internalConstraints);
+	trainBuildArea.add(addLocomotive, internalConstraints);
 
 	// Passenger Car Panel
 	JPanel addPassengerCar = new JPanel();
@@ -200,7 +200,7 @@ public class Gui extends JFrame {
 	passengerCarSetup(addPassengerCar);
 	internalConstraints.gridx = 0;
 	internalConstraints.gridy = 1;
-	trainArea.add(addPassengerCar, internalConstraints);
+	trainBuildArea.add(addPassengerCar, internalConstraints);
 
 	// Freight Car Panel
 	JPanel addFreightCar = new JPanel();
@@ -210,7 +210,7 @@ public class Gui extends JFrame {
 	freightCarSetup(addFreightCar);
 	internalConstraints.gridx = 0;
 	internalConstraints.gridy = 2;
-	trainArea.add(addFreightCar, internalConstraints);
+	trainBuildArea.add(addFreightCar, internalConstraints);
 
 	JButton removeCar = new JButton("Remove Last Car");
 	removeCar.addActionListener(new ActionListener() {
@@ -223,7 +223,7 @@ public class Gui extends JFrame {
 
 	internalConstraints.gridx = 0;
 	internalConstraints.gridy = 3;
-	trainArea.add(removeCar, internalConstraints);
+	trainBuildArea.add(removeCar, internalConstraints);
 
 	constraints.fill = GridBagConstraints.BOTH;
 	constraints.weightx = 0;
@@ -232,7 +232,7 @@ public class Gui extends JFrame {
 	constraints.gridheight = 2;
 	constraints.gridx = 2;
 	constraints.gridy = 0;
-	getContentPane().add(trainArea, constraints); // Update Panel
+	getContentPane().add(trainBuildArea, constraints); // Update Panel
 
 	// Passenger info
 	passengerInfo = new JPanel();
@@ -411,31 +411,31 @@ public class Gui extends JFrame {
 
     public boolean addLocomotiveCheck(int selectedPower, String item, String selectedWeight) {
 	Integer tempWeight;
-	try {
+	try { // Check if is NaN
 	    tempWeight = Integer.parseInt(selectedWeight);
 	} catch (Exception expected) {
 	    errorLogger("Invalid Weight \n");
 	    return false;
 	}
+
+	// Set classification
 	String classification = "" + selectedPower + item.charAt(0);
 	Locomotive locomotive;
 
-	try {
+	try { // Determine if valid classification
 	    locomotive = new Locomotive(tempWeight, classification);
 	    Train.addCarriage(locomotive);
 	} catch (TrainException expected) {
-	    String errorOutput = expected.getMessage().replaceAll(
-		    "^[asgn2Exceptions.TrainException:*Train Exception:]*", "");
+	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
 	    errorLogger(errorOutput + "\n");
-
 	    return false;
 	}
 
 	trainCanMove();
 	TrainCar newGraphic = new TrainCar(TrainCar.TrainTypes.LOCOMOTIVE, locomotive.toString());
-	infoDisplay.add(newGraphic);
+	trainDrawArea.add(newGraphic);
 	trainGraphicList.add(newGraphic);
-	infoDisplay.revalidate();
+	trainDrawArea.revalidate();
 	return true;
     }
 
@@ -469,8 +469,25 @@ public class Gui extends JFrame {
 
     }
 
-    private void removeLastCar() {
+    private boolean removeLastCar() {
+	try { // Remove from Train
+	    Train.removeCarriage();
+	} catch (TrainException expected) {
+	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
+	    errorLogger(errorOutput + "\n");
+	    return false;
+	}
 
+	int lastCarriage = trainGraphicList.size() - 1;
+	TrainCar removeCarriage = trainGraphicList.get(lastCarriage);
+	trainDrawArea.remove(removeCarriage);
+	trainDrawArea.validate();
+	trainDrawArea.repaint();
+	trainGraphicList.remove(lastCarriage);
+
+	// TODO - Update PassengerInfo
+	trainCanMove();
+	return true;
     }
 
     private void addPassengers(String input) {

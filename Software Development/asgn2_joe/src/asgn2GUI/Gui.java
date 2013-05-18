@@ -424,7 +424,10 @@ public class Gui extends JFrame {
 	    locomotive = new Locomotive(tempWeight, classification);
 	    Train.addCarriage(locomotive);
 	} catch (TrainException expected) {
-	    errorLogger(expected.toString() + "\n");
+	    String errorOutput = expected.getMessage().replaceAll(
+		    "^[asgn2Exceptions.TrainException:*Train Exception:]*", "");
+	    errorLogger(errorOutput + "\n");
+
 	    return false;
 	}
 

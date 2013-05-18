@@ -120,7 +120,7 @@ public class DepartingTrain {
     public Integer board(Integer newPassengers) throws TrainException {
 
 	if (newPassengers < NO_PASSENGERS) { // negative new passengers
-	    throw new TrainException("Number of passengers cannot be negative");
+	    throw new TrainException("Invalid Passengers: Number of passengers cannot be negative.");
 	} else {
 	    Integer passengersToBoard = newPassengers;
 	    for (RollingStock rollingStock : train) { // Iterate through train
@@ -183,7 +183,7 @@ public class DepartingTrain {
 	} else if (newCarriage instanceof Locomotive) { // Locomotive
 
 	    if (locomotive != null) { // Locomotive exists
-		throw new TrainException("Invalid Configuration: Locomotive already exists");
+		throw new TrainException("Invalid Configuration: Locomotive already exists.");
 	    } else { // Add Locomotive
 		locomotive = (Locomotive) newCarriage;
 	    }
@@ -205,7 +205,7 @@ public class DepartingTrain {
 
 		if (train.size() == ONE_CAR && train.get(train.size() - ONE_CAR) instanceof FreightCar) {
 		    // Freight Car found
-		    throw new TrainException("Invalid Configuration: Passenger car placement");
+		    throw new TrainException("Invalid Configuration: Passenger car placement.");
 		} else { // Add Passenger Car
 		    train.add(newCarriage);
 		}
@@ -222,7 +222,7 @@ public class DepartingTrain {
      */
     public void removeCarriage() throws TrainException {
 	if (locomotive == null && train.size() == 0) { // No Rolling stock
-	    throw new TrainException("Invalid Shunt: No rolling stock to remove");
+	    throw new TrainException("Invalid Shunt: No rolling stock to remove.");
 	} else if (passengersOnBoard()) { // Passengers have boarded
 	    throw new TrainException("Invalid Shunt: Passengers on board.");
 	} else if (train.size() == FIRST_CAR && locomotive != null) { // Remove locomotive

@@ -293,6 +293,7 @@ public class Gui extends JFrame {
 
 	logger = new JTextArea(LOGGER_ROWS, LOGGER_COLUMNS);
 	logger.setBorder(BorderFactory.createTitledBorder("Error Log:"));
+	logger.setEditable(false);
 	constraints.anchor = GridBagConstraints.PAGE_END;
 	constraints.gridwidth = 1;
 	constraints.gridheight = 1;
@@ -339,6 +340,7 @@ public class Gui extends JFrame {
 
 	// Draw to Screen
 	setPreferredSize(new Dimension(WINDOW_X, WINDOW_Y));
+	setMinimumSize(new Dimension(WINDOW_X, WINDOW_Y));
 	setLocation(new Point(START_X, START_Y));
 
 	pack();
@@ -473,7 +475,6 @@ public class Gui extends JFrame {
     }
 
     public static void main(String[] args) {
-	JFrame.setDefaultLookAndFeelDecorated(true);
 	try {
 	    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 		if ("Nimbus".equals(info.getName())) {

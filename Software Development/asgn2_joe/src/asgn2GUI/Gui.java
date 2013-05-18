@@ -462,7 +462,7 @@ public class Gui extends JFrame {
     }
 
     private void freightCarSetup(JPanel input) {
-
+    	//testing
     }
 
     private void passengerCarSetup(JPanel input) {

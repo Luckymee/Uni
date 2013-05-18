@@ -10,12 +10,12 @@ import asgn2Exceptions.TrainException;
  * @author Joe Maher - n8571520
  */
 public class FreightCar extends RollingStock {
-	
-	private String goodsType;
-	final int GOODS_TYPE = 0;
-	final int ONE_CHAR = 1;
-	
-	/**
+
+    private String goodsType;
+    final int GOODS_TYPE = 0;
+    final int ONE_CHAR = 1;
+
+    /**
      * Constructs a freight car object.
      * 
      * @param grossWeight
@@ -26,18 +26,19 @@ public class FreightCar extends RollingStock {
      * @throws TrainException
      *             if the gross weight is not positive or if the goods' type is invalid
      */
-	public FreightCar(Integer grossWeight, String goodsType) throws TrainException{
-		
-		super(grossWeight);
-		
-		if (!checkGoodsCode(goodsType)){ //invalid goods
-			throw new TrainException("Invalid goods code");
-		}
-		
-		this.goodsType = goodsType.toUpperCase();
+    public FreightCar(Integer grossWeight, String goodsType) throws TrainException {
+
+	super(grossWeight);
+
+	if (!checkGoodsCode(goodsType)) { // invalid goods
+	    throw new TrainException("Invalid goods code.");
 	}
-	
-	/**
+
+	this.goodsType = Character.toString(goodsType.toUpperCase().charAt(GOODS_TYPE));
+
+    }
+
+    /**
      * Returns a human-readable description of the freight car. This has the form
      * "Freight(x)" where x is a character ("G", "R" or "D") indicating the type of goods
      * the car is designed to carry.
@@ -45,43 +46,49 @@ public class FreightCar extends RollingStock {
      * @see asgn2RollingStock.RollingStock#toString
      * @return String: a human-readable description of the freight car.
      */
-	@Override
-	public String toString(){
-		return "Freight(" + goodsType + ")";		
-	}
-	
-	/**
+    @Override
+    public String toString() {
+	return "Freight(" + goodsType + ")";
+    }
+
+    /**
      * Returns the type of goods this carriage was designed to carry. (Simulates someone
      * checking the label on the freight car to determine what's inside.)
      * 
      * @return String: the goodsType (G", "R" or "D").
      */
-	public String goodsType(){
-		return goodsType;
-	}
-	
-	
-	 /**
+    public String goodsType() {
+	return goodsType;
+    }
+
+    /**
      * Checks inputed goodsType to determine valid input.
      * 
      * @param goodsType
      *            String: The one character goods classification code.
      * @return boolean: True if goodsType is matched.
      */
-	private boolean checkGoodsCode(String goodsType){;
-		
-		boolean validCode = false;
-		
-		if (goodsType.length() == ONE_CHAR){
-			switch(goodsType.toUpperCase().charAt(GOODS_TYPE)){
-				case 'G' : validCode = true; break;
-				case 'R' : validCode = true; break;
-				case 'D' : validCode = true; break;
-			}
-		}
-		
-		return validCode;
-		
+    private boolean checkGoodsCode(String goodsType) {
+
+	boolean validCode = false;
+	String editedGoodsType = Character.toString(goodsType.charAt(GOODS_TYPE));
+
+	if (editedGoodsType.length() == ONE_CHAR) {
+	    switch (goodsType.toUpperCase().charAt(GOODS_TYPE)) {
+	    case 'G':
+		validCode = true;
+		break;
+	    case 'R':
+		validCode = true;
+		break;
+	    case 'D':
+		validCode = true;
+		break;
+	    }
 	}
-	
+
+	return validCode;
+
+    }
+
 }

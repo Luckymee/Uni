@@ -27,6 +27,7 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import asgn2Exceptions.TrainException;
+import asgn2RollingStock.FreightCar;
 import asgn2RollingStock.Locomotive;
 import asgn2Train.DepartingTrain;
 
@@ -40,7 +41,7 @@ public class Gui extends JFrame {
 
     // Primary Window
     private static final int WINDOW_X = 1200;
-    private static final int WINDOW_Y = 600;
+    private static final int WINDOW_Y = 800;
     private static final int START_X = 200;
     private static final int START_Y = 200;
 
@@ -87,7 +88,7 @@ public class Gui extends JFrame {
     // FreightCar inputs
     private JButton addFreightCar;
     private JTextField freightCarWeight;
-    private JComboBox<String> FreightCarTypes;
+    private JComboBox<String> freightCarTypes;
 
     // PassengerCar inputs
     private JButton addPassenger;
@@ -375,20 +376,22 @@ public class Gui extends JFrame {
 	locomotiveConstraints.gridy = 0;
 	panel.add(locomtiveTypeLabel, locomotiveConstraints);
 
-	// Type Combo Box TODO: Will this work
+	// Combo Box
 	locomotiveTypes = new JComboBox<String>(LOCOMOTIVE_TYPES);
 	locomotiveConstraints.gridx = 1;
 	locomotiveConstraints.gridy = 1;
 	panel.add(locomotiveTypes, locomotiveConstraints);
 
 	// Weight Label
-	JLabel weightlabel = new JLabel("Weight");
+	JLabel weightlabel = new JLabel("Gross Weight");
 	locomotiveConstraints.gridx = 2;
 	locomotiveConstraints.gridy = 0;
 	panel.add(weightlabel, locomotiveConstraints);
 
 	// Weight Input
 	locomotiveWeight = new JTextField(DEFAULT_COLUMNS);
+	locomotiveWeight.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 50));
+	locomotiveConstraints.fill = GridBagConstraints.HORIZONTAL;
 	locomotiveConstraints.gridx = 2;
 	locomotiveConstraints.gridy = 1;
 	panel.add(locomotiveWeight, locomotiveConstraints);
@@ -403,23 +406,25 @@ public class Gui extends JFrame {
 	    }
 	});
 
-	locomotiveConstraints.gridx = 1;
+	locomotiveConstraints.fill = GridBagConstraints.BOTH;
+	locomotiveConstraints.gridx = 2;
 	locomotiveConstraints.gridy = 2;
+
 	panel.add(addLocomotive, locomotiveConstraints);
 
     }
 
-    public boolean addLocomotiveCheck(int selectedPower, String item, String selectedWeight) {
+    public boolean addLocomotiveCheck(int selectedPower, String selectedEngine, String inputedWeight) {
 	Integer tempWeight;
 	try { // Check if is NaN
-	    tempWeight = Integer.parseInt(selectedWeight);
+	    tempWeight = Integer.parseInt(inputedWeight);
 	} catch (Exception expected) {
 	    errorLogger("Invalid Weight \n");
 	    return false;
 	}
 
 	// Set classification
-	String classification = "" + selectedPower + item.charAt(0);
+	String classification = "" + selectedPower + selectedEngine.charAt(0);
 	Locomotive locomotive;
 
 	try { // Determine if valid classification
@@ -432,9 +437,9 @@ public class Gui extends JFrame {
 	}
 
 	trainCanMove();
-	TrainCar newGraphic = new TrainCar(TrainCar.TrainTypes.LOCOMOTIVE, locomotive.toString());
-	trainDrawArea.add(newGraphic);
-	trainGraphicList.add(newGraphic);
+	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.LOCOMOTIVE, locomotive.toString());
+	trainDrawArea.add(newTrainGraphics);
+	trainGraphicList.add(newTrainGraphics);
 	trainDrawArea.revalidate();
 	return true;
     }
@@ -461,8 +466,78 @@ public class Gui extends JFrame {
 	numberOfLogs++;
     }
 
-    private void freightCarSetup(JPanel input) {
+    private void freightCarSetup(JPanel panel) {
+	panel.setLayout(new GridBagLayout());
+	GridBagConstraints freightCarConstraints = new GridBagConstraints();
 
+	// Type Label
+	JLabel freightCarTypeLabel = new JLabel("Type");
+	freightCarConstraints.fill = GridBagConstraints.NONE;
+	freightCarConstraints.gridx = 0;
+	freightCarConstraints.gridy = 0;
+	panel.add(freightCarTypeLabel, freightCarConstraints);
+
+	// Combo box
+	freightCarTypes = new JComboBox<String>(FREIGHTCAR_TYPES);
+	freightCarConstraints.gridx = 0;
+	freightCarConstraints.gridy = 1;
+	panel.add(freightCarTypes, freightCarConstraints);
+
+	// Weight Label
+	JLabel weightLabel = new JLabel("Gross Weight");
+	freightCarConstraints.fill = GridBagConstraints.NONE;
+	freightCarConstraints.gridx = 1;
+	freightCarConstraints.gridy = 0;
+	panel.add(weightLabel, freightCarConstraints);
+
+	// Gross Weight Text Field
+	freightCarWeight = new JTextField(DEFAULT_COLUMNS);
+	freightCarWeight.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 50));
+	freightCarConstraints.fill = GridBagConstraints.HORIZONTAL;
+	freightCarConstraints.gridx = 1;
+	freightCarConstraints.gridy = 1;
+	panel.add(freightCarWeight, freightCarConstraints);
+
+	addFreightCar = new JButton("Add");
+	addFreightCar.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent event) {
+		addFreightCarCheck((String) freightCarTypes.getSelectedItem(), freightCarWeight.getText());
+	    }
+	});
+
+	freightCarConstraints.gridx = 1;
+	freightCarConstraints.gridy = 2;
+	panel.add(addFreightCar, freightCarConstraints);
+    }
+
+    private boolean addFreightCarCheck(String selectedType, String inputedWeight) {
+	int tempWeight;
+	try {
+	    tempWeight = Integer.parseInt(inputedWeight);
+	} catch (Exception expected) {
+	    errorLogger("Invalid Weight. \n");
+	    return false;
+	}
+
+	FreightCar freightCar;
+
+	try {
+	    freightCar = new FreightCar(tempWeight, selectedType);
+	    Train.addCarriage(freightCar);
+	} catch (TrainException expected) {
+	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
+	    errorLogger(errorOutput + "\n");
+	    return false;
+	}
+
+	trainCanMove();
+	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.FREIGHTCAR, freightCar.toString());
+	trainDrawArea.add(newTrainGraphics);
+	trainGraphicList.add(newTrainGraphics);
+	trainDrawArea.revalidate();
+
+	return true;
     }
 
     private void passengerCarSetup(JPanel input) {

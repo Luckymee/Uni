@@ -27,7 +27,10 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import asgn2Exceptions.TrainException;
+import asgn2RollingStock.FreightCar;
 import asgn2RollingStock.Locomotive;
+import asgn2RollingStock.PassengerCar;
+import asgn2RollingStock.RollingStock;
 import asgn2Train.DepartingTrain;
 
 public class Gui extends JFrame {
@@ -40,7 +43,7 @@ public class Gui extends JFrame {
 
     // Primary Window
     private static final int WINDOW_X = 1200;
-    private static final int WINDOW_Y = 600;
+    private static final int WINDOW_Y = 650;
     private static final int START_X = 200;
     private static final int START_Y = 200;
 
@@ -87,10 +90,10 @@ public class Gui extends JFrame {
     // FreightCar inputs
     private JButton addFreightCar;
     private JTextField freightCarWeight;
-    private JComboBox<String> FreightCarTypes;
+    private JComboBox<String> freightCarTypes;
 
     // PassengerCar inputs
-    private JButton addPassenger;
+    private JButton addPassengerCar;
     private JTextField passengerCarWeight;
     private JTextField numberOfPassengers;
 
@@ -403,13 +406,13 @@ public class Gui extends JFrame {
 	    }
 	});
 
-	locomotiveConstraints.gridx = 1;
-	locomotiveConstraints.gridy = 2;
+	locomotiveConstraints.gridx = 3;
+	locomotiveConstraints.gridy = 1;
 	panel.add(addLocomotive, locomotiveConstraints);
 
     }
 
-    public boolean addLocomotiveCheck(int selectedPower, String item, String selectedWeight) {
+    private boolean addLocomotiveCheck(int selectedPower, String item, String selectedWeight) {
 	Integer tempWeight;
 	try {
 	    tempWeight = Integer.parseInt(selectedWeight);
@@ -461,12 +464,162 @@ public class Gui extends JFrame {
 	numberOfLogs++;
     }
 
-    private void freightCarSetup(JPanel input) {
+    private void freightCarSetup(JPanel panel) {
+    	panel.setLayout(new GridBagLayout());
+    	GridBagConstraints freightConstraints = new GridBagConstraints();
+
+    	// Type Combo Box Label
+    	JLabel freightTypeLabel = new JLabel("Type");
+    	freightConstraints.fill = GridBagConstraints.NONE;
+    	freightConstraints.gridx = 1;
+    	freightConstraints.gridy = 0;
+    	panel.add(freightTypeLabel, freightConstraints);
+
+    	// Type Combo Box TODO: Will this work
+    	freightCarTypes = new JComboBox<String>(FREIGHTCAR_TYPES);
+    	freightConstraints.gridx = 1;
+    	freightConstraints.gridy = 1;
+    	panel.add(freightCarTypes, freightConstraints);
+    	
+    	// Weight Label
+    	JLabel weightlabel = new JLabel("Weight");
+    	freightConstraints.gridx = 2;
+    	freightConstraints.gridy = 0;
+    	panel.add(weightlabel, freightConstraints);
+
+    	// Weight Input
+    	freightCarWeight = new JTextField(DEFAULT_COLUMNS);
+    	freightConstraints.gridx = 2;
+    	freightConstraints.gridy = 1;
+    	panel.add(freightCarWeight, freightConstraints);
+    	
+    	// Add Button
+    	addFreightCar = new JButton("Add");
+    	addFreightCar.addActionListener(new ActionListener() {
+    	    @Override
+    	    public void actionPerformed(ActionEvent event) {
+    	    	addFreightCarCheck((String) freightCarTypes.getSelectedItem(),freightCarWeight.getText());
+    	    }
+    	});
+    	
+    	freightConstraints.gridx = 3;
+    	freightConstraints.gridy = 1;
+    	panel.add(addFreightCar, freightConstraints);
+    	
     	
     }
+    
+    private boolean addFreightCarCheck(String item, String selectedWeight) {
+    	Integer tempWeight;
+    	try {
+    	    tempWeight = Integer.parseInt(selectedWeight);
+    	} catch (Exception expected) {
+    	    errorLogger("Invalid Weight \n");
+    	    return false;
+    	}
+    	FreightCar freightCar;
+    	
+    	String goodsType = "" + item.charAt(0);
 
-    private void passengerCarSetup(JPanel input) {
+    	try {
+    		freightCar = new FreightCar(tempWeight, goodsType);
+    	    Train.addCarriage(freightCar);
+    	} catch (TrainException expected) {
+    	    String errorOutput = expected.getMessage().replaceAll(
+    		    "^[asgn2Exceptions.TrainException:*Train Exception:]*", "");
+    	    errorLogger(errorOutput + "\n");
 
+    	    return false;
+    	}
+
+    	trainCanMove();
+    	TrainCar newGraphic = new TrainCar(TrainCar.TrainTypes.FREIGHTCAR, freightCar.toString());
+    	infoDisplay.add(newGraphic);
+    	trainGraphicList.add(newGraphic);
+    	infoDisplay.revalidate();
+    	return true;
+    }
+
+    private void passengerCarSetup(JPanel panel) {
+    	panel.setLayout(new GridBagLayout());
+    	GridBagConstraints passengerConstraints = new GridBagConstraints();
+    	
+    	// Capacity Label
+    	JLabel capacitylabel = new JLabel("Capacity");
+    	passengerConstraints.gridx = 1;
+    	passengerConstraints.gridy = 0;
+    	panel.add(capacitylabel, passengerConstraints);
+
+    	// Capacity Input
+    	numberOfPassengers = new JTextField(DEFAULT_COLUMNS);
+    	passengerConstraints.gridx = 1;
+    	passengerConstraints.gridy = 1;
+    	panel.add(numberOfPassengers, passengerConstraints);  	
+    	
+    	// Weight Label
+    	JLabel weightlabel = new JLabel("Weight");
+    	passengerConstraints.gridx = 2;
+    	passengerConstraints.gridy = 0;
+    	panel.add(weightlabel, passengerConstraints);
+
+    	// Weight Input
+    	passengerCarWeight = new JTextField(DEFAULT_COLUMNS);
+    	passengerConstraints.gridx = 2;
+    	passengerConstraints.gridy = 1;
+    	panel.add(passengerCarWeight, passengerConstraints);
+    	
+    	// Add Button
+    	addPassengerCar = new JButton("Add");
+    	addPassengerCar.addActionListener(new ActionListener() {
+    	    @Override
+    	    public void actionPerformed(ActionEvent event) {
+    	    	addPassengerCarCheck(numberOfPassengers.getText(),passengerCarWeight.getText());
+    	    }
+    	});
+    	
+    	passengerConstraints.gridx = 3;
+    	passengerConstraints.gridy = 1;
+    	panel.add(addPassengerCar, passengerConstraints);
+    }
+    
+    private boolean addPassengerCarCheck(String selectedCapacity, String selectedWeight) {
+    	Integer tempWeight;
+    	Integer tempCapacity;
+    	PassengerCar passengerCar;
+    	
+    	try {
+    	    tempWeight = Integer.parseInt(selectedWeight);
+    	} catch (Exception expected) {
+    	    errorLogger("Invalid Weight \n");
+    	    return false;
+    	}
+    	
+    	try {
+    	    tempCapacity = Integer.parseInt(selectedCapacity);
+    	} catch (Exception expected) {
+    	    errorLogger("Invalid Capacity \n");
+    	    return false;
+    	}
+    	
+
+    	try {
+    		passengerCar = new PassengerCar(tempWeight, tempCapacity);
+    	    Train.addCarriage(passengerCar);
+    	} catch (TrainException expected) {
+    	    String errorOutput = expected.getMessage().replaceAll(
+    		    "^[asgn2Exceptions.TrainException:*Train Exception:]*", "");
+    	    errorLogger(errorOutput + "\n");
+
+    	    return false;
+    	}
+    	
+    	totalPassengers.setText("<html>Passengers<br />" + MIN_PASSENGERS + " | " + Train.numberOfSeats().toString() + "</html>");
+    	trainCanMove();
+    	TrainCar newGraphic = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, passengerCar.toString());
+    	infoDisplay.add(newGraphic);
+    	trainGraphicList.add(newGraphic);
+    	infoDisplay.revalidate();
+    	return true;
     }
 
     private void removeLastCar() {
@@ -474,7 +627,38 @@ public class Gui extends JFrame {
     }
 
     private void addPassengers(String input) {
-
+    	Integer didntBoard = 0;
+    	
+    	try {
+    	    Integer.parseInt(input);
+    	} catch (Exception expected) {
+    	    errorLogger("Invalid passenger number \n");
+    	}
+    	
+    	try {
+			didntBoard = Train.board(Integer.parseInt(input));
+		} catch (TrainException expected) {
+			String errorOutput = expected.getMessage().replaceAll(
+	    		    "^[asgn2Exceptions.TrainException:*Train Exception:]*", "");
+	    	    errorLogger(errorOutput + "\n");
+		}
+    	errorLogger(didntBoard.toString() + " passengers could not board" + "\n");
+    	totalPassengers.setText("<html>Passengers<br />" + Train.numberOnBoard() + " | " + Train.numberOfSeats().toString() + "</html>");
+    	
+    	RollingStock currentCar = Train.firstCarriage();
+    	
+    	for (int i = 0; i < trainGraphicList.size(); i ++){
+    		if (currentCar instanceof PassengerCar){
+    			trainGraphicList.remove(i);
+    			infoDisplay.remove(i);
+    			TrainCar newGraphic = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, currentCar.toString());
+    			infoDisplay.add(newGraphic,i);
+    			trainGraphicList.add(i,newGraphic);
+    		}
+    		currentCar = Train.nextCarriage();
+    	}
+    	infoDisplay.revalidate();
+    	
     }
 
     public static void main(String[] args) {

@@ -46,15 +46,21 @@ public class TrainCar extends JPanel {
 	    infoLabel.setForeground(Color.WHITE);
 	    break;
 	case FREIGHTCAR:
-	    if (locoType == LocomotiveTypes.DANGEROUS_GOODS) {
-		setBackground(SAFETY_ORANGE);
-		infoLabel.setForeground(Color.WHITE);
-	    } else if (locoType == LocomotiveTypes.GENERAL_GOODS) {
+	    switch (locoType) {
+	    case GENERAL_GOODS:
 		setBackground(FORREST_GREEN);
 		infoLabel.setForeground(Color.WHITE);
-	    } else {
+		break;
+	    case REFRIGERATED_GOODS:
 		setBackground(ICE_BLUE);
 		infoLabel.setForeground(Color.WHITE);
+		break;
+	    case DANGEROUS_GOODS:
+		setBackground(SAFETY_ORANGE);
+		infoLabel.setForeground(Color.WHITE);
+		break;
+	    default:
+		break;
 	    }
 	    break;
 	case PASSENGERCAR:

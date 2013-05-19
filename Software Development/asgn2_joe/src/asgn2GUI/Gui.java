@@ -603,7 +603,6 @@ public class Gui extends JFrame {
 
 	try {
 	    passengerCar = new PassengerCar(tempWeight, tempCapacity);
-	    System.out.println(passengerCar);
 	    Train.addCarriage(passengerCar);
 	} catch (TrainException expected) {
 	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");

@@ -34,7 +34,8 @@ public class FreightCar extends RollingStock {
 	    throw new TrainException("Invalid goods code.");
 	}
 
-	this.goodsType = Character.toString(goodsType.toUpperCase().charAt(GOODS_TYPE));
+	String test = Character.toString(goodsType.toUpperCase().charAt(GOODS_TYPE));
+	this.goodsType = test;
 
     }
 
@@ -58,7 +59,7 @@ public class FreightCar extends RollingStock {
      * @return String: the goodsType (G", "R" or "D").
      */
     public String goodsType() {
-	return goodsType;
+	return goodsType.toString();
     }
 
     /**

@@ -203,7 +203,7 @@ public class DepartingTrain {
 
 	    } else {
 
-		if (train.size() == ONE_CAR && train.get(train.size() - ONE_CAR) instanceof FreightCar) {
+		if (train.size() >= ONE_CAR && train.get(train.size() - ONE_CAR) instanceof FreightCar) {
 		    // Freight Car found
 		    throw new TrainException("Invalid Configuration: Passenger car placement.");
 		} else { // Add Passenger Car

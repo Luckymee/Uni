@@ -23,12 +23,16 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.border.BevelBorder;
 
 import asgn2Exceptions.TrainException;
 import asgn2RollingStock.FreightCar;
 import asgn2RollingStock.Locomotive;
+import asgn2RollingStock.PassengerCar;
+import asgn2RollingStock.RollingStock;
 import asgn2Train.DepartingTrain;
 
 public class Gui extends JFrame {
@@ -38,6 +42,8 @@ public class Gui extends JFrame {
 
     private static final Color TRAFFIC_GREEN = new Color(0, 128, 0);
     private static final Color TRAFFIC_RED = new Color(191, 0, 0);
+
+    private boolean addingPassengers = false;
 
     // Primary Window
     private static final int WINDOW_X = 1200;
@@ -56,12 +62,10 @@ public class Gui extends JFrame {
 
     // Text Box Rows | Columns
     private static final int DEFAULT_COLUMNS = 3;
-    private static final int LOGGER_ROWS = 10;
-    private static final int LOGGER_COLUMNS = 10;
+    private static final int LOGGER_ROWS = 5;
+    private static final int LOGGER_COLUMNS = 5;
 
-    public enum TrainTypes {
-	LOCOMOTIVE, FREIGHTCAR, PASSENGERCAR
-    };
+    private static final TrainCar.LocomotiveTypes DEFAULT_TYPE = TrainCar.LocomotiveTypes.NONE;
 
     // Primary JPanels
     private JPanel trainDrawArea;
@@ -99,9 +103,8 @@ public class Gui extends JFrame {
     private JLabel canMoveLabel;
     private JLabel totalPassengers;
 
-    // Quit Panel
-    private JPanel quitPanel;
-    private JButton quitButton;
+    // Train can move
+    private JPanel trainCanMovePanel;
 
     public Gui() {
 	super("Train Simulation");
@@ -145,22 +148,8 @@ public class Gui extends JFrame {
 	internalConstraints.gridwidth = 1;
 	internalConstraints.gridx = 1;
 	internalConstraints.gridy = 2;
-
 	informationPanel.add(totalPassengers, internalConstraints);
 
-	// canMoveLabel = new JLabel("Train Can Move");
-	// canMoveLabel.setForeground(Color.WHITE);
-	// canMoveLabel.setOpaque(true);
-	// canMoveLabel.setBackground(TRAFFIC_GREEN);
-	// internalConstraints.fill = GridBagConstraints.NONE;
-	// internalConstraints.anchor = GridBagConstraints.CENTER;
-	// internalConstraints.weightx = 0.0;
-	// internalConstraints.weighty = 0.0;
-	// internalConstraints.gridheight = 1;
-	// internalConstraints.gridwidth = 1;
-	// internalConstraints.gridx = 1;
-	// internalConstraints.gridy = 2;
-	// informationPanel.add(canMoveLabel, internalConstraints);
 	// TODO - Main Display End.
 
 	constraints.fill = GridBagConstraints.BOTH;
@@ -283,7 +272,7 @@ public class Gui extends JFrame {
 	});
 	passengerInfo.add(addPassengers, internalConstraints);
 
-	// Logger Panel
+	// Logger Panel TODO - This isnt right
 	constraints.fill = GridBagConstraints.BOTH;
 	constraints.anchor = GridBagConstraints.LAST_LINE_START;
 	constraints.gridwidth = 1;
@@ -295,6 +284,7 @@ public class Gui extends JFrame {
 	logger = new JTextArea(LOGGER_ROWS, LOGGER_COLUMNS);
 	logger.setBorder(BorderFactory.createTitledBorder("Error Log:"));
 	logger.setEditable(false);
+	logger.setPreferredSize(new Dimension(100, 40));
 	constraints.anchor = GridBagConstraints.PAGE_END;
 	constraints.gridwidth = 1;
 	constraints.gridheight = 1;
@@ -303,39 +293,26 @@ public class Gui extends JFrame {
 	getContentPane().add(logger, constraints);
 
 	// Quit Panel
-	quitPanel = new JPanel();
-	// quitButton = new JButton("Quit");
-	// quitButton.addActionListener(new ActionListener() {
-	// @Override
-	// public void actionPerformed(ActionEvent event) {
-	// System.exit(0);
-	// }
-	// });
-	//
-	// quitPanel.add(quitButton);
-	// informationPanel.setPreferredSize(defaultDimensions);
-	// constraints.fill = GridBagConstraints.NONE;
-	// constraints.anchor = GridBagConstraints.CENTER;
-	// constraints.insets = new Insets(0, 0, 10, 10);
-	// constraints.gridwidth = 1;
-	// constraints.gridheight = 1;
-	// constraints.gridx = 2;
-	// constraints.gridy = 2;
+	trainCanMovePanel = new JPanel();
 
 	canMoveLabel = new JLabel("Train Can Move");
 	canMoveLabel.setForeground(Color.WHITE);
 	canMoveLabel.setOpaque(true);
 	canMoveLabel.setBackground(TRAFFIC_GREEN);
+	// TODO Magic Numbers
+	canMoveLabel.setPreferredSize(new Dimension(200, 100));
+	canMoveLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	canMoveLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 	constraints.fill = GridBagConstraints.NONE;
 	constraints.anchor = GridBagConstraints.CENTER;
-	constraints.insets = new Insets(0, 0, 10, 10);
+	constraints.insets = new Insets(0, 0, 0, 0);
 	constraints.gridwidth = 1;
 	constraints.gridheight = 1;
 	constraints.gridx = 2;
 	constraints.gridy = 2;
-	quitPanel.add(canMoveLabel, constraints);
+	trainCanMovePanel.add(canMoveLabel, constraints);
 
-	getContentPane().add(quitPanel, constraints);
+	getContentPane().add(trainCanMovePanel, constraints);
 
 	// End layout
 
@@ -437,7 +414,8 @@ public class Gui extends JFrame {
 	}
 
 	trainCanMove();
-	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.LOCOMOTIVE, locomotive.toString());
+	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.LOCOMOTIVE, locomotive.toString(),
+		TrainCar.LocomotiveTypes.NONE);
 	trainDrawArea.add(newTrainGraphics);
 	trainGraphicList.add(newTrainGraphics);
 	trainDrawArea.revalidate();
@@ -449,8 +427,10 @@ public class Gui extends JFrame {
 
 	if (canMove) {
 	    canMoveLabel.setBackground(TRAFFIC_GREEN);
+	    canMoveLabel.setText("Train Can Move");
 	} else {
 	    canMoveLabel.setBackground(TRAFFIC_RED);
+	    canMoveLabel.setText("Train Can't Move");
 	}
 
     }
@@ -531,8 +511,10 @@ public class Gui extends JFrame {
 	    return false;
 	}
 
+	TrainCar.LocomotiveTypes goodsType = setFreightType(freightCar);
+
 	trainCanMove();
-	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.FREIGHTCAR, freightCar.toString());
+	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.FREIGHTCAR, freightCar.toString(), goodsType);
 	trainDrawArea.add(newTrainGraphics);
 	trainGraphicList.add(newTrainGraphics);
 	trainDrawArea.revalidate();
@@ -540,8 +522,102 @@ public class Gui extends JFrame {
 	return true;
     }
 
-    private void passengerCarSetup(JPanel input) {
+    private TrainCar.LocomotiveTypes setFreightType(FreightCar freightCar) {
+	TrainCar.LocomotiveTypes goodsType = DEFAULT_TYPE;
 
+	switch (freightCar.goodsType()) {
+	case "G":
+	    return goodsType = TrainCar.LocomotiveTypes.GENERAL_GOODS;
+	case "D":
+	    return goodsType = TrainCar.LocomotiveTypes.DANGEROUS_GOODS;
+	case "R":
+	    return goodsType = TrainCar.LocomotiveTypes.REFRIGERATED_GOODS;
+	}
+
+	return goodsType;
+    }
+
+    private void passengerCarSetup(JPanel panel) {
+
+	panel.setLayout(new GridBagLayout());
+	GridBagConstraints passengerConstraints = new GridBagConstraints();
+
+	// Capacity Label
+	JLabel capacityLabel = new JLabel("Capacity");
+	passengerConstraints.fill = GridBagConstraints.NONE;
+	passengerConstraints.gridx = 0;
+	passengerConstraints.gridy = 0;
+	panel.add(capacityLabel, passengerConstraints);
+
+	// Capacity input
+	numberOfPassengers = new JTextField(DEFAULT_COLUMNS);
+	// numberOfPassengers.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 50));
+	passengerConstraints.fill = GridBagConstraints.HORIZONTAL;
+	passengerConstraints.gridx = 0;
+	passengerConstraints.gridy = 1;
+	panel.add(numberOfPassengers, passengerConstraints);
+
+	// GrossWeight Label
+	JLabel weightLabel = new JLabel("Gross Weight");
+	passengerConstraints.fill = GridBagConstraints.NONE;
+	passengerConstraints.insets = new Insets(0, 60, 0, 0);
+	passengerConstraints.gridx = 2;
+	passengerConstraints.gridy = 0;
+	panel.add(weightLabel, passengerConstraints);
+
+	// Gross Weight Input
+	passengerCarWeight = new JTextField(DEFAULT_COLUMNS);
+	passengerCarWeight.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 100));
+	passengerConstraints.fill = GridBagConstraints.HORIZONTAL;
+	passengerConstraints.insets = new Insets(0, 65, 0, 0);
+	passengerConstraints.gridx = 2;
+	passengerConstraints.gridy = 1;
+	panel.add(passengerCarWeight, passengerConstraints);
+
+	// Add Gross Weight
+	addPassenger = new JButton("Add");
+	addPassenger.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent event) {
+		addPassengerCar(numberOfPassengers.getText(), passengerCarWeight.getText());
+	    }
+	});
+
+	passengerConstraints.gridx = 2;
+	passengerConstraints.gridy = 2;
+	panel.add(addPassenger, passengerConstraints);
+    }
+
+    private boolean addPassengerCar(String numberOfPassengers, String inputedWeight) {
+	int tempCapacity, tempWeight;
+	try {
+	    tempCapacity = Integer.parseInt(numberOfPassengers);
+	    tempWeight = Integer.parseInt(inputedWeight);
+	} catch (Exception expected) {
+	    errorLogger("Invalid Input.");
+	    // TODO test for type
+	    return false;
+	}
+
+	PassengerCar passengerCar;
+
+	try {
+	    passengerCar = new PassengerCar(tempWeight, tempCapacity);
+	    System.out.println(passengerCar);
+	    Train.addCarriage(passengerCar);
+	} catch (TrainException expected) {
+	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
+	    errorLogger(errorOutput + "\n");
+	    return false;
+	}
+	updatePassengerInfo();
+	trainCanMove();
+	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, passengerCar.toString(),
+		DEFAULT_TYPE);
+	trainDrawArea.add(newTrainGraphics);
+	trainGraphicList.add(newTrainGraphics);
+	trainDrawArea.revalidate();
+	return true;
     }
 
     private boolean removeLastCar() {
@@ -559,13 +635,62 @@ public class Gui extends JFrame {
 	trainDrawArea.validate();
 	trainDrawArea.repaint();
 	trainGraphicList.remove(lastCarriage);
-
-	// TODO - Update PassengerInfo
+	updatePassengerInfo();
 	trainCanMove();
 	return true;
     }
 
-    private void addPassengers(String input) {
+    private Integer addPassengers(String inputedAmount) {
+	int tempAmount;
+	addingPassengers = false;
+
+	try {
+	    tempAmount = Integer.parseInt(inputedAmount);
+	} catch (Exception e) {
+	    errorLogger("Invalid Amount. \n");
+	    return -1;
+	}
+
+	try {
+	    tempAmount = Train.board(tempAmount);
+	} catch (TrainException expected) {
+	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
+	    errorLogger(errorOutput + "\n");
+	    return -1;
+	}
+
+	if (tempAmount > 0) { // Number of passengers unable to board
+	    errorLogger("Passengers unable to board: " + tempAmount + "\n");
+	}
+
+	addingPassengers = true;
+	updatePassengerInfo();
+
+	return tempAmount;
+    }
+
+    private void updatePassengerInfo() {
+	totalPassengers.setText("<html>Passengers<br />" + Train.numberOnBoard() + " | " + Train.numberOfSeats()
+		+ "</html>");
+	totalPassengers.revalidate();
+	totalPassengers.repaint();
+
+	if (addingPassengers) {
+	    RollingStock currentCar = Train.firstCarriage();
+
+	    for (int i = 0; i < trainGraphicList.size(); ++i) {
+		if (currentCar instanceof PassengerCar) {
+		    trainGraphicList.remove(i);
+		    trainDrawArea.remove(i);
+		    TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, currentCar.toString(),
+			    DEFAULT_TYPE);
+		    trainDrawArea.add(newTrainGraphics, i);
+		    trainGraphicList.add(i, newTrainGraphics);
+		}
+		currentCar = Train.nextCarriage();
+	    }
+	    trainDrawArea.revalidate();
+	}
 
     }
 

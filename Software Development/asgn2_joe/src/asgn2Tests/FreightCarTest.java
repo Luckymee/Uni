@@ -157,7 +157,7 @@ public class FreightCarTest {
 
 	assertNotNull(result);
 	assertEquals("Freight(D)", result);
-	assertTrue(fixture.goodsType() == "D");
+	assertTrue(fixture.goodsType().equals("D"));
     }
 
     /**
@@ -173,7 +173,7 @@ public class FreightCarTest {
 
 	assertNotNull(result);
 	assertEquals("Freight(R)", result);
-	assertTrue(fixture.goodsType() == "R");
+	assertTrue(fixture.goodsType().equals("R"));
     }
 
     /**
@@ -189,7 +189,7 @@ public class FreightCarTest {
 
 	assertNotNull(result);
 	assertEquals("Freight(G)", result);
-	assertTrue(fixture.goodsType() == "G");
+	assertTrue(fixture.goodsType().equals("G"));
     }
 
     /**

@@ -87,6 +87,7 @@ public class Gui extends JFrame {
     private JButton addLocomotive;
     private JTextField locomotiveWeight;
     private SpinnerModel powerSpinnerVariables;
+    private JSpinner locomotivePower;
     private JComboBox<String> locomotiveTypes;
 
     // FreightCar inputs
@@ -330,64 +331,42 @@ public class Gui extends JFrame {
     }
 
     private void locomotivePanelSetup(JPanel panel) {
-	panel.setLayout(new GridBagLayout());
-	GridBagConstraints locomotiveConstraints = new GridBagConstraints();
-
-	JLabel powerLabel = new JLabel("Power");
-	locomotiveConstraints.fill = GridBagConstraints.NONE;
-	locomotiveConstraints.gridx = 0;
-	locomotiveConstraints.gridy = 0;
-	panel.add(powerLabel, locomotiveConstraints);
-
-	// Power Spinner TODO - Better Variables
-	powerSpinnerVariables = new SpinnerNumberModel(1, MIN_POWER, MAX_POWER, 1);
-	JSpinner locomotivePower = new JSpinner(powerSpinnerVariables);
-	locomotiveConstraints.gridx = 0;
-	locomotiveConstraints.gridy = 1;
-	panel.add(locomotivePower, locomotiveConstraints);
-
-	// Type Combo Box Label
-	JLabel locomtiveTypeLabel = new JLabel("Type");
-	locomotiveConstraints.fill = GridBagConstraints.NONE;
-	locomotiveConstraints.gridx = 1;
-	locomotiveConstraints.gridy = 0;
-	panel.add(locomtiveTypeLabel, locomotiveConstraints);
-
-	// Combo Box
-	locomotiveTypes = new JComboBox<String>(LOCOMOTIVE_TYPES);
-	locomotiveConstraints.gridx = 1;
-	locomotiveConstraints.gridy = 1;
-	panel.add(locomotiveTypes, locomotiveConstraints);
-
-	// Weight Label
-	JLabel weightlabel = new JLabel("Gross Weight");
-	locomotiveConstraints.gridx = 2;
-	locomotiveConstraints.gridy = 0;
-	panel.add(weightlabel, locomotiveConstraints);
-
-	// Weight Input
-	locomotiveWeight = new JTextField(DEFAULT_COLUMNS);
-	locomotiveWeight.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 50));
-	locomotiveConstraints.fill = GridBagConstraints.HORIZONTAL;
-	locomotiveConstraints.gridx = 2;
-	locomotiveConstraints.gridy = 1;
-	panel.add(locomotiveWeight, locomotiveConstraints);
-
-	// Add Button
-	addLocomotive = new JButton("Add");
-	addLocomotive.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent event) {
-		addLocomotiveCheck((Integer) (((SpinnerNumberModel) powerSpinnerVariables).getNumber()),
-			(String) locomotiveTypes.getSelectedItem(), locomotiveWeight.getText());
-	    }
-	});
-
-	locomotiveConstraints.fill = GridBagConstraints.BOTH;
-	locomotiveConstraints.gridx = 2;
-	locomotiveConstraints.gridy = 2;
-
-	panel.add(addLocomotive, locomotiveConstraints);
+    	
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints locomotiveConstraints = new GridBagConstraints();
+		powerSpinnerVariables = new SpinnerNumberModel(1, MIN_POWER, MAX_POWER, 1);
+		
+		//Initialize variables
+		JLabel powerLabel = null;
+		JLabel locomtiveTypeLabel = null;
+		JLabel weightlabel = null;
+		
+		locomotiveTypes = new JComboBox<String>(LOCOMOTIVE_TYPES);
+		locomotiveWeight = new JTextField(DEFAULT_COLUMNS);
+		locomotivePower = new JSpinner(powerSpinnerVariables);
+				
+		//create panel
+		createLabel(powerLabel, "Power", locomotiveConstraints, panel, 0, 0, false);
+		createPowerSpinner(locomotivePower, locomotiveConstraints, panel, 0, 1);
+		createLabel(locomtiveTypeLabel, "Type", locomotiveConstraints, panel, 1, 0, false);
+		createComboBox(locomotiveTypes, locomotiveConstraints, panel, 1, 1);
+		createLabel(weightlabel, "Gross Weight", locomotiveConstraints, panel, 2, 0, false);
+		createInput(locomotiveWeight, locomotiveConstraints, panel, 2, 1, false);
+	
+	
+		// Add Button
+		addLocomotive = new JButton("Add");
+		addLocomotive.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent event) {
+			addLocomotiveCheck((Integer) (((SpinnerNumberModel) powerSpinnerVariables).getNumber()),
+				(String) locomotiveTypes.getSelectedItem(), locomotiveWeight.getText());
+		    }
+		});
+		locomotiveConstraints.fill = GridBagConstraints.BOTH;
+		locomotiveConstraints.gridx = 2;
+		locomotiveConstraints.gridy = 2;
+		panel.add(addLocomotive, locomotiveConstraints);
 
     }
 
@@ -447,48 +426,33 @@ public class Gui extends JFrame {
     }
 
     private void freightCarSetup(JPanel panel) {
-	panel.setLayout(new GridBagLayout());
-	GridBagConstraints freightCarConstraints = new GridBagConstraints();
-
-	// Type Label
-	JLabel freightCarTypeLabel = new JLabel("Type");
-	freightCarConstraints.fill = GridBagConstraints.NONE;
-	freightCarConstraints.gridx = 0;
-	freightCarConstraints.gridy = 0;
-	panel.add(freightCarTypeLabel, freightCarConstraints);
-
-	// Combo box
-	freightCarTypes = new JComboBox<String>(FREIGHTCAR_TYPES);
-	freightCarConstraints.gridx = 0;
-	freightCarConstraints.gridy = 1;
-	panel.add(freightCarTypes, freightCarConstraints);
-
-	// Weight Label
-	JLabel weightLabel = new JLabel("Gross Weight");
-	freightCarConstraints.fill = GridBagConstraints.NONE;
-	freightCarConstraints.gridx = 1;
-	freightCarConstraints.gridy = 0;
-	panel.add(weightLabel, freightCarConstraints);
-
-	// Gross Weight Text Field
-	freightCarWeight = new JTextField(DEFAULT_COLUMNS);
-	freightCarWeight.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 50));
-	freightCarConstraints.fill = GridBagConstraints.HORIZONTAL;
-	freightCarConstraints.gridx = 1;
-	freightCarConstraints.gridy = 1;
-	panel.add(freightCarWeight, freightCarConstraints);
-
-	addFreightCar = new JButton("Add");
-	addFreightCar.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent event) {
-		addFreightCarCheck((String) freightCarTypes.getSelectedItem(), freightCarWeight.getText());
-	    }
-	});
-
-	freightCarConstraints.gridx = 1;
-	freightCarConstraints.gridy = 2;
-	panel.add(addFreightCar, freightCarConstraints);
+    	
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints freightCarConstraints = new GridBagConstraints();
+		
+		//Initialize variables
+		JLabel freightCarTypeLabel = null;
+		JLabel weightLabel = null;
+		
+		freightCarTypes = new JComboBox<String>(FREIGHTCAR_TYPES);
+		freightCarWeight = new JTextField(DEFAULT_COLUMNS);
+		
+		//Create panel
+		createLabel(freightCarTypeLabel, "Type", freightCarConstraints, panel, 0, 0, false);
+		createComboBox(freightCarTypes, freightCarConstraints, panel, 0, 1);
+		createLabel(weightLabel, "Gross Weight", freightCarConstraints, panel, 1, 0, false);
+		createInput(freightCarWeight, freightCarConstraints, panel, 1, 1, false);
+	
+		addFreightCar = new JButton("Add");
+		addFreightCar.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent event) {
+			addFreightCarCheck((String) freightCarTypes.getSelectedItem(), freightCarWeight.getText());
+		    }
+		});
+		freightCarConstraints.gridx = 1;
+		freightCarConstraints.gridy = 2;
+		panel.add(addFreightCar, freightCarConstraints);
     }
 
     private boolean addFreightCarCheck(String selectedType, String inputedWeight) {
@@ -539,53 +503,34 @@ public class Gui extends JFrame {
 
     private void passengerCarSetup(JPanel panel) {
 
-	panel.setLayout(new GridBagLayout());
-	GridBagConstraints passengerConstraints = new GridBagConstraints();
-
-	// Capacity Label
-	JLabel capacityLabel = new JLabel("Capacity");
-	passengerConstraints.fill = GridBagConstraints.NONE;
-	passengerConstraints.gridx = 0;
-	passengerConstraints.gridy = 0;
-	panel.add(capacityLabel, passengerConstraints);
-
-	// Capacity input
-	numberOfPassengers = new JTextField(DEFAULT_COLUMNS);
-	// numberOfPassengers.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 50));
-	passengerConstraints.fill = GridBagConstraints.HORIZONTAL;
-	passengerConstraints.gridx = 0;
-	passengerConstraints.gridy = 1;
-	panel.add(numberOfPassengers, passengerConstraints);
-
-	// GrossWeight Label
-	JLabel weightLabel = new JLabel("Gross Weight");
-	passengerConstraints.fill = GridBagConstraints.NONE;
-	passengerConstraints.insets = new Insets(0, 60, 0, 0);
-	passengerConstraints.gridx = 2;
-	passengerConstraints.gridy = 0;
-	panel.add(weightLabel, passengerConstraints);
-
-	// Gross Weight Input
-	passengerCarWeight = new JTextField(DEFAULT_COLUMNS);
-	passengerCarWeight.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 100));
-	passengerConstraints.fill = GridBagConstraints.HORIZONTAL;
-	passengerConstraints.insets = new Insets(0, 65, 0, 0);
-	passengerConstraints.gridx = 2;
-	passengerConstraints.gridy = 1;
-	panel.add(passengerCarWeight, passengerConstraints);
-
-	// Add Gross Weight
-	addPassenger = new JButton("Add");
-	addPassenger.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent event) {
-		addPassengerCar(numberOfPassengers.getText(), passengerCarWeight.getText());
-	    }
-	});
-
-	passengerConstraints.gridx = 2;
-	passengerConstraints.gridy = 2;
-	panel.add(addPassenger, passengerConstraints);
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints passengerConstraints = new GridBagConstraints();
+		
+		//Initialize variable
+		JLabel capacityLabel = null;
+		JLabel weightLabel = null;
+		
+		numberOfPassengers = new JTextField(DEFAULT_COLUMNS);
+		passengerCarWeight = new JTextField(DEFAULT_COLUMNS);
+		
+		//Create panel
+		createLabel(capacityLabel, "Capacity", passengerConstraints, panel, 0, 0, false);
+		createInput(numberOfPassengers, passengerConstraints, panel, 0, 1, false);
+		createLabel(weightLabel, "Gross Weight", passengerConstraints, panel, 2, 0, true);
+		createInput(passengerCarWeight, passengerConstraints, panel, 2, 1, true);
+		
+	
+		// Add Gross Weight
+		addPassenger = new JButton("Add");
+		addPassenger.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent event) {
+			addPassengerCar(numberOfPassengers.getText(), passengerCarWeight.getText());
+		    }
+		});
+		passengerConstraints.gridx = 2;
+		passengerConstraints.gridy = 2;
+		panel.add(addPassenger, passengerConstraints);
     }
 
     private boolean addPassengerCar(String numberOfPassengers, String inputedWeight) {
@@ -603,13 +548,13 @@ public class Gui extends JFrame {
 
 	try {
 	    passengerCar = new PassengerCar(tempWeight, tempCapacity);
-	    System.out.println(passengerCar);
 	    Train.addCarriage(passengerCar);
 	} catch (TrainException expected) {
 	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
 	    errorLogger(errorOutput + "\n");
 	    return false;
 	}
+	
 	updatePassengerInfo();
 	trainCanMove();
 	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, passengerCar.toString(),
@@ -692,6 +637,40 @@ public class Gui extends JFrame {
 	    trainDrawArea.revalidate();
 	}
 
+    }
+    
+    private void createLabel(JLabel labelName, String labelText, GridBagConstraints constraints, JPanel panel, int xCo, int yCo, boolean insets){
+    	labelName = new JLabel(labelText);
+    	constraints.fill = GridBagConstraints.NONE;
+    	if (insets){
+    		constraints.insets = new Insets(0, 60, 0, 0);
+    	}
+    	constraints.gridx = xCo;
+    	constraints.gridy = yCo;
+    	panel.add(labelName, constraints);
+    }
+    
+    private void createInput(JTextField inputName, GridBagConstraints constraints, JPanel panel, int xCo, int yCo, boolean insets){
+    	inputName.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 100));
+    	constraints.fill = GridBagConstraints.HORIZONTAL;
+    	if (insets){
+    		constraints.insets = new Insets(0, 65, 0, 0);
+    	}
+    	constraints.gridx = xCo;
+    	constraints.gridy = yCo;
+    	panel.add(inputName, constraints);
+    }
+    
+    private void createPowerSpinner(JSpinner spinnerName, GridBagConstraints constraints, JPanel panel, int xCo, int yCo){
+    	constraints.gridx = xCo;
+    	constraints.gridy = yCo;
+    	panel.add(spinnerName, constraints);
+    }
+    
+    private void createComboBox(JComboBox<String> boxName, GridBagConstraints constraints, JPanel panel, int xCo, int yCo){
+    	constraints.gridx = xCo;
+    	constraints.gridy = yCo;
+    	panel.add(boxName, constraints);
     }
 
     public static void main(String[] args) {

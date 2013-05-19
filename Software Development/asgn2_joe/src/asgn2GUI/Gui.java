@@ -482,6 +482,8 @@ public class Gui extends JFrame {
 	trainDrawArea.add(newTrainGraphics);
 	trainGraphicList.add(newTrainGraphics);
 	trainDrawArea.revalidate();
+	
+	
 
 	return true;
     }
@@ -539,7 +541,7 @@ public class Gui extends JFrame {
 	    tempCapacity = Integer.parseInt(numberOfPassengers);
 	    tempWeight = Integer.parseInt(inputedWeight);
 	} catch (Exception expected) {
-	    errorLogger("Invalid Input.");
+	    errorLogger("Invalid Input" + "\n");
 	    // TODO test for type
 	    return false;
 	}

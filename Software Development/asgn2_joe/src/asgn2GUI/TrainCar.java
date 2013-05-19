@@ -5,6 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class TrainCar extends JPanel {
 
@@ -15,20 +16,26 @@ public class TrainCar extends JPanel {
 	LOCOMOTIVE, PASSENGERCAR, FREIGHTCAR
     };
 
+    protected static enum LocomotiveTypes {
+	NONE, GENERAL_GOODS, DANGEROUS_GOODS, REFRIGERATED_GOODS
+    }
+
     // Custom Colours
     private static final Color TUNGSTEN = new Color(51, 51, 51);
     private static final Color CANDYAPPLERED = new Color(153, 10, 1);
     private static final Color SAFETY_ORANGE = new Color(232, 118, 0);
+    private static final Color FORREST_GREEN = new Color(38, 131, 64);
+    private static final Color ICE_BLUE = new Color(0, 204, 211);
 
     // Dimensions
-    private static final int TRAIN_LENGTH = 100;
+    private static final int TRAIN_LENGTH = 120;
     private static final int TRAIN_WIDTH = 27;
 
     // Swing Objects
     private static Dimension trainSize;
     private static JLabel infoLabel;
 
-    public TrainCar(TrainTypes type, String label) {
+    public TrainCar(TrainTypes type, String label, LocomotiveTypes locoType) {
 	super();
 	trainSize = new Dimension(TRAIN_LENGTH, TRAIN_WIDTH);
 	infoLabel = new JLabel(label);
@@ -39,8 +46,16 @@ public class TrainCar extends JPanel {
 	    infoLabel.setForeground(Color.WHITE);
 	    break;
 	case FREIGHTCAR:
-	    setBackground(SAFETY_ORANGE);
-	    infoLabel.setForeground(Color.WHITE);
+	    if (locoType == LocomotiveTypes.DANGEROUS_GOODS) {
+		setBackground(SAFETY_ORANGE);
+		infoLabel.setForeground(Color.WHITE);
+	    } else if (locoType == LocomotiveTypes.GENERAL_GOODS) {
+		setBackground(FORREST_GREEN);
+		infoLabel.setForeground(Color.WHITE);
+	    } else {
+		setBackground(ICE_BLUE);
+		infoLabel.setForeground(Color.WHITE);
+	    }
 	    break;
 	case PASSENGERCAR:
 	    setBackground(CANDYAPPLERED);
@@ -49,6 +64,8 @@ public class TrainCar extends JPanel {
 
 	}
 
+	infoLabel.setVerticalAlignment(SwingConstants.CENTER);
+	infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	setPreferredSize(trainSize);
 	add(infoLabel);
 

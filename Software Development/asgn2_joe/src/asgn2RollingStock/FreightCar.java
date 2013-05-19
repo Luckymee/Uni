@@ -68,20 +68,27 @@ public class FreightCar extends RollingStock {
      *            String: The one character goods classification code.
      * @return boolean: True if goodsType is matched.
      */
-	private boolean checkGoodsCode(String goodsType){;
-		
+	private boolean checkGoodsCode(String goodsType) {
+
 		boolean validCode = false;
-		
-		if (goodsType.length() == ONE_CHAR){
-			switch(goodsType.toUpperCase().charAt(GOODS_TYPE)){
-				case 'G' : validCode = true; break;
-				case 'R' : validCode = true; break;
-				case 'D' : validCode = true; break;
-			}
+		String editedGoodsType = Character.toString(goodsType.charAt(GOODS_TYPE));
+
+		if (editedGoodsType.length() == ONE_CHAR) {
+		    switch (goodsType.toUpperCase().charAt(GOODS_TYPE)) {
+		    case 'G':
+			validCode = true;
+			break;
+		    case 'R':
+			validCode = true;
+			break;
+		    case 'D':
+			validCode = true;
+			break;
+		    }
 		}
-		
+
 		return validCode;
-		
-	}
+
+	    }
 	
 }

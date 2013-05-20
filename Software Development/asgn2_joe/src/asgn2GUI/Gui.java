@@ -106,6 +106,7 @@ public class Gui extends JFrame {
     // Adaptive Text Fields -- Change from input
     private JLabel canMoveLabel;
     private JLabel totalPassengers;
+    private JLabel seatsAvalailableLabel;
 
     // Train can move
     private JPanel trainCanMovePanel;
@@ -249,30 +250,6 @@ public class Gui extends JFrame {
 	return true;
     }
 
-    private void trainCanMove() {
-	boolean canMove = Train.trainCanMove();
-
-	if (canMove) {
-	    canMoveLabel.setBackground(TRAFFIC_GREEN);
-	    canMoveLabel.setText("Train Can Move");
-	} else {
-	    canMoveLabel.setBackground(TRAFFIC_RED);
-	    canMoveLabel.setText("Train Can't Move");
-	}
-
-    }
-
-    private void errorLogger(String newLog) {
-	// TODO Magic numbers
-	if (numberOfLogs >= 10) {
-	    logger.setText("");
-	    numberOfLogs = 0;
-	}
-
-	logger.append(newLog);
-	numberOfLogs++;
-    }
-
     private void freightCarSetup(JPanel panel) {
     	
 		panel.setLayout(new GridBagLayout());
@@ -384,109 +361,108 @@ public class Gui extends JFrame {
     }
 
     private boolean addPassengerCar(String numberOfPassengers, String inputedWeight) {
-	int tempCapacity, tempWeight;
-	try {
-	    tempCapacity = Integer.parseInt(numberOfPassengers);
-	    tempWeight = Integer.parseInt(inputedWeight);
-	} catch (Exception expected) {
-	    errorLogger("Invalid Input" + "\n");
-	    // TODO test for type
-	    return false;
-	}
-
-	PassengerCar passengerCar;
-
-	try {
-	    passengerCar = new PassengerCar(tempWeight, tempCapacity);
-	    Train.addCarriage(passengerCar);
-	} catch (TrainException expected) {
-	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
-	    errorLogger(errorOutput + "\n");
-	    return false;
-	}
+		int tempCapacity, tempWeight;
+		try {
+		    tempCapacity = Integer.parseInt(numberOfPassengers);
+		    tempWeight = Integer.parseInt(inputedWeight);
+		} catch (Exception expected) {
+		    errorLogger("Invalid Input" + "\n");
+		    // TODO test for type
+		    return false;
+		}
 	
-	updatePassengerInfo();
-	trainCanMove();
-	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, passengerCar.toString(),
-		DEFAULT_TYPE);
-	trainDrawArea.add(newTrainGraphics);
-	trainGraphicList.add(newTrainGraphics);
-	trainDrawArea.revalidate();
-	return true;
+		PassengerCar passengerCar;
+	
+		try {
+		    passengerCar = new PassengerCar(tempWeight, tempCapacity);
+		    Train.addCarriage(passengerCar);
+		} catch (TrainException expected) {
+		    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
+		    errorLogger(errorOutput + "\n");
+		    return false;
+		}
+		
+		updatePassengerInfo();
+		trainCanMove();
+		TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, passengerCar.toString(), DEFAULT_TYPE);
+		trainDrawArea.add(newTrainGraphics);
+		trainGraphicList.add(newTrainGraphics);
+		trainDrawArea.revalidate();
+		return true;
     }
 
     private boolean removeLastCar() {
-	try { // Remove from Train
-	    Train.removeCarriage();
-	} catch (TrainException expected) {
-	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
-	    errorLogger(errorOutput + "\n");
-	    return false;
-	}
-
-	int lastCarriage = trainGraphicList.size() - 1;
-	TrainCar removeCarriage = trainGraphicList.get(lastCarriage);
-	trainDrawArea.remove(removeCarriage);
-	trainDrawArea.validate();
-	trainDrawArea.repaint();
-	trainGraphicList.remove(lastCarriage);
-	updatePassengerInfo();
-	trainCanMove();
-	return true;
+    	
+		try { // Remove from Train
+		    Train.removeCarriage();
+		} catch (TrainException expected) {
+		    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
+		    errorLogger(errorOutput + "\n");
+		    return false;
+		}
+	
+		int lastCarriage = trainGraphicList.size() - 1;
+		TrainCar removeCarriage = trainGraphicList.get(lastCarriage);
+		trainDrawArea.remove(removeCarriage);
+		trainDrawArea.validate();
+		trainDrawArea.repaint();
+		trainGraphicList.remove(lastCarriage);
+		updatePassengerInfo();
+		trainCanMove();
+		return true;
     }
 
     private Integer addPassengers(String inputedAmount) {
-	int tempAmount;
-	addingPassengers = false;
-
-	try {
-	    tempAmount = Integer.parseInt(inputedAmount);
-	} catch (Exception e) {
-	    errorLogger("Invalid Amount. \n");
-	    return -1;
-	}
-
-	try {
-	    tempAmount = Train.board(tempAmount);
-	} catch (TrainException expected) {
-	    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
-	    errorLogger(errorOutput + "\n");
-	    return -1;
-	}
-
-	if (tempAmount > 0) { // Number of passengers unable to board
-	    errorLogger("Passengers unable to board: " + tempAmount + "\n");
-	}
-
-	addingPassengers = true;
-	updatePassengerInfo();
-
-	return tempAmount;
+		int tempAmount;
+		addingPassengers = false;
+	
+		try {
+		    tempAmount = Integer.parseInt(inputedAmount);
+		} catch (Exception e) {
+		    errorLogger("Invalid Amount. \n");
+		    return -1;
+		}
+	
+		try {
+		    tempAmount = Train.board(tempAmount);
+		} catch (TrainException expected) {
+		    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
+		    errorLogger(errorOutput + "\n");
+		    return -1;
+		}
+	
+		if (tempAmount > 0) { // Number of passengers unable to board
+		    errorLogger("Passengers unable to board: " + tempAmount + "\n");
+		}
+	
+		addingPassengers = true;
+		updatePassengerInfo();
+	
+		return tempAmount;
     }
 
     private void updatePassengerInfo() {
-	totalPassengers.setText("<html>Passengers<br />" + Train.numberOnBoard() + " | " + Train.numberOfSeats()
-		+ "</html>");
-	totalPassengers.revalidate();
-	totalPassengers.repaint();
-
-	if (addingPassengers) {
-	    RollingStock currentCar = Train.firstCarriage();
-
-	    for (int i = 0; i < trainGraphicList.size(); ++i) {
-		if (currentCar instanceof PassengerCar) {
-		    trainGraphicList.remove(i);
-		    trainDrawArea.remove(i);
-		    TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, currentCar.toString(),
-			    DEFAULT_TYPE);
-		    trainDrawArea.add(newTrainGraphics, i);
-		    trainGraphicList.add(i, newTrainGraphics);
+    	
+		totalPassengers.setText("<html>Passengers<br />" + Train.numberOnBoard() + " | " + Train.numberOfSeats() + "</html>");
+		totalPassengers.revalidate();
+		totalPassengers.repaint();
+	
+		if (addingPassengers) {
+		    RollingStock currentCar = Train.firstCarriage();
+	
+		    for (int i = 0; i < trainGraphicList.size(); ++i) {
+				if (currentCar instanceof PassengerCar) {
+				    trainGraphicList.remove(i);
+				    trainDrawArea.remove(i);
+				    TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, currentCar.toString(), DEFAULT_TYPE);
+				    trainDrawArea.add(newTrainGraphics, i);
+				    trainGraphicList.add(i, newTrainGraphics);
+				}
+				currentCar = Train.nextCarriage();
+		    }
+		    trainDrawArea.revalidate();
 		}
-		currentCar = Train.nextCarriage();
-	    }
-	    trainDrawArea.revalidate();
-	}
-
+		trainCapacity();
     }
     
     private void createLabel(JLabel labelName, String labelText, GridBagConstraints constraints, JPanel panel, int xCo, int yCo, boolean insets){
@@ -600,6 +576,7 @@ public class Gui extends JFrame {
     }
     
     private void createInformationArea(GridBagConstraints constraints){
+    	
     	constraints.fill = GridBagConstraints.BOTH;
     	constraints.weightx = 1.0;
     	constraints.weighty = 1.0;
@@ -611,8 +588,8 @@ public class Gui extends JFrame {
     }
     
     private void createPassengerInfoArea(GridBagConstraints constraints){
+    	
     	JLabel passengerAddLabel = new JLabel("No. Passengers to add:");
-
     	constraints.fill = GridBagConstraints.NONE;
     	constraints.insets = new Insets(5, 5, 5, 5);
     	constraints.ipady = 10;
@@ -694,8 +671,62 @@ public class Gui extends JFrame {
     	constraints.gridx = 2;
     	constraints.gridy = 2;
     	trainCanMovePanel.add(canMoveLabel, constraints);
-
+    	
+    	seatsAvalailableLabel = new JLabel("Train is Full");
+    	seatsAvalailableLabel.setForeground(Color.WHITE);
+    	seatsAvalailableLabel.setOpaque(true);
+    	seatsAvalailableLabel.setBackground(TRAFFIC_RED);
+    	// TODO Magic Numbers
+    	seatsAvalailableLabel.setPreferredSize(new Dimension(200, 100));
+    	seatsAvalailableLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    	seatsAvalailableLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+    	constraints.fill = GridBagConstraints.NONE;
+    	constraints.anchor = GridBagConstraints.CENTER;
+    	constraints.insets = new Insets(0, 0, 0, 0);
+    	constraints.gridwidth = 1;
+    	constraints.gridheight = 1;
+    	constraints.gridx = 2;
+    	constraints.gridy = 2;
+    	trainCanMovePanel.add(seatsAvalailableLabel, constraints);
+    	
     	getContentPane().add(trainCanMovePanel, constraints);
+    }
+    
+    private void trainCanMove() {
+    	boolean canMove = Train.trainCanMove();
+
+    	if (canMove) {
+    	    canMoveLabel.setBackground(TRAFFIC_GREEN);
+    	    canMoveLabel.setText("Train Can Move");
+    	} else {
+    	    canMoveLabel.setBackground(TRAFFIC_RED);
+    	    canMoveLabel.setText("Train Can't Move");
+    	}
+
+    }
+    
+    private void trainCapacity() {
+    	boolean seatsAvailable = Train.numberOfSeats() > Train.numberOnBoard();
+
+    	if (seatsAvailable) {
+    		seatsAvalailableLabel.setBackground(TRAFFIC_GREEN);
+    		seatsAvalailableLabel.setText("Seats Available");
+    	} else {
+    		seatsAvalailableLabel.setBackground(TRAFFIC_RED);
+    		seatsAvalailableLabel.setText("Train is Full");
+    	}
+
+    }
+
+    private void errorLogger(String newLog) {
+		// TODO Magic numbers
+		if (numberOfLogs >= 10) {
+		    logger.setText("");
+		    numberOfLogs = 0;
+		}
+	
+		logger.append(newLog);
+		numberOfLogs++;
     }
 
     public static void main(String[] args) {

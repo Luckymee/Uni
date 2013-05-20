@@ -871,10 +871,7 @@ public class DepartingTrainTest {
     @Test
     public void testNextCarriage_nullBeforeAddCarriage() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
-	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
-	Train.addCarriage(locomotive);
 
-	assertNotNull(Train.firstCarriage());
 	assertNull(Train.nextCarriage());
     }
 
@@ -893,6 +890,7 @@ public class DepartingTrainTest {
 	Train.addCarriage(locomotive);
 	Train.addCarriage(freightCar);
 
+	Train.firstCarriage();
 	RollingStock result = Train.nextCarriage();
 
 	assertNotNull(Train.firstCarriage());
@@ -908,13 +906,15 @@ public class DepartingTrainTest {
      * 
      */
     @Test
-    public void testNextCarriage_nullBeforeFirstCarriage() throws TrainException {
+    public void testNextCarriage_validLocomotiveBeforeFirstCarriageCalled() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
 	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "9E");
 	Train.addCarriage(locomotive);
 
-	Train.nextCarriage();
-	assertNull(Train.nextCarriage());
+	RollingStock result = Train.nextCarriage();
+
+	assertNotNull(result);
+	assertEquals(Train.toString(), result.toString());
 
     }
 

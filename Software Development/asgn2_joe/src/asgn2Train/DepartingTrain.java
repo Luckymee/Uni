@@ -21,6 +21,7 @@ public class DepartingTrain {
     private final int FIRST_CAR = 0;
     private final int ONE_CAR = 1;
     private final int NO_PASSENGERS = 0;
+    private final int NO_ROLLINGSTOCK = -1;
 
     private List<RollingStock> train;
     private Locomotive locomotive;
@@ -29,7 +30,7 @@ public class DepartingTrain {
 
     public DepartingTrain() {
 	this.train = new ArrayList<RollingStock>();
-	this.currentCarNum = FIRST_CAR;
+	this.currentCarNum = NO_ROLLINGSTOCK;
     }
 
     /**
@@ -64,7 +65,7 @@ public class DepartingTrain {
      *         if there is no such carriage
      */
     public RollingStock nextCarriage() {
-	if (++currentCarNum == 0) {
+	if (currentCarNum++ == NO_ROLLINGSTOCK) {
 	    return locomotive;
 	} else {
 	    return currentCarNum > train.size() ? null : train.get(currentCarNum - 1);

@@ -128,43 +128,22 @@ public class Gui extends JFrame {
 	GridBagConstraints internalConstraints = new GridBagConstraints();
 
 	trainDrawArea = new JPanel();
-	informationPanel.setPreferredSize(defaultDimensions);
 	trainDrawArea.setLayout(new FlowLayout());
-	internalConstraints.fill = GridBagConstraints.BOTH;
-	internalConstraints.weightx = 1.0;
-	internalConstraints.weighty = 1.0;
-	internalConstraints.gridheight = 2;
-	internalConstraints.gridwidth = 2;
-	internalConstraints.gridx = 0;
-	internalConstraints.gridy = 0;
+	
+	//draws drain assembly area
+	setConstraints(internalConstraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 1, 1, 2, 2, 0, 0);
 	informationPanel.add(trainDrawArea, internalConstraints);
-
+	
+	//draws passenger info bottom left corner of assembly area
 	totalPassengers = new JLabel("<html>Passengers<br />" + MIN_PASSENGERS + " | " + INITAL_SEATS + "</html>");
-	internalConstraints.fill = GridBagConstraints.NONE;
-	internalConstraints.insets = new Insets(0, 6, 0, 0);
-	internalConstraints.anchor = GridBagConstraints.LAST_LINE_START;
-	internalConstraints.weightx = 0.0;
-	internalConstraints.weighty = 0.0;
-	internalConstraints.gridheight = 1;
-	internalConstraints.gridwidth = 1;
-	internalConstraints.gridx = 1;
-	internalConstraints.gridy = 2;
+	setConstraints(internalConstraints, GridBagConstraints.NONE, new Insets(0, 6, 0, 0), 0, GridBagConstraints.LAST_LINE_START, 0, 0, 1, 1, 1, 2);	
 	informationPanel.add(totalPassengers, internalConstraints);
 
 	// TODO - Main Display End.
-
-	constraints.fill = GridBagConstraints.BOTH;
-	constraints.weightx = 1.0;
-	constraints.weighty = 1.0;
-	constraints.gridwidth = 2;
-	constraints.gridheight = 2;
-	constraints.gridx = 0;
-	constraints.gridy = 0;
+	setConstraints(constraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 1, 1, 2, 2, 0, 0);
 	getContentPane().add(informationPanel, constraints);
 
 	trainBuildArea = new JPanel();
-	trainBuildArea.setPreferredSize(defaultDimensions);
-
 	trainBuildArea.setLayout(new GridBagLayout());
 
 	// Locomotive Panel
@@ -173,14 +152,7 @@ public class Gui extends JFrame {
 	addLocomotive.setBorder(BorderFactory.createTitledBorder("Add Locomotive"));
 
 	locomotivePanelSetup(addLocomotive);
-
-	internalConstraints.fill = GridBagConstraints.BOTH;
-	internalConstraints.weightx = 0.5;
-	internalConstraints.weighty = 0.5;
-	internalConstraints.gridwidth = 1;
-	internalConstraints.gridheight = 1;
-	internalConstraints.gridx = 0;
-	internalConstraints.gridy = 0;
+	setConstraints(internalConstraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 0.5, 0.5, 1, 1, 0, 0);
 	trainBuildArea.add(addLocomotive, internalConstraints);
 
 	// Passenger Car Panel
@@ -189,8 +161,7 @@ public class Gui extends JFrame {
 	addPassengerCar.setBorder(BorderFactory.createTitledBorder("Add PassengerCar"));
 
 	passengerCarSetup(addPassengerCar);
-	internalConstraints.gridx = 0;
-	internalConstraints.gridy = 1;
+	setConstraints(internalConstraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 0.5, 0.5, 1, 1, 0, 1);
 	trainBuildArea.add(addPassengerCar, internalConstraints);
 
 	// Freight Car Panel
@@ -199,8 +170,7 @@ public class Gui extends JFrame {
 	addFreightCar.setBorder(BorderFactory.createTitledBorder("Add FreightCar"));
 
 	freightCarSetup(addFreightCar);
-	internalConstraints.gridx = 0;
-	internalConstraints.gridy = 2;
+	setConstraints(internalConstraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 0.5, 0.5, 1, 1, 0, 2);
 	trainBuildArea.add(addFreightCar, internalConstraints);
 
 	JButton removeCar = new JButton("Remove Last Car");
@@ -211,7 +181,6 @@ public class Gui extends JFrame {
 		removeLastCar();
 	    }
 	});
-
 	internalConstraints.gridx = 0;
 	internalConstraints.gridy = 3;
 	trainBuildArea.add(removeCar, internalConstraints);
@@ -673,6 +642,19 @@ public class Gui extends JFrame {
     	constraints.gridx = xCo;
     	constraints.gridy = yCo;
     	panel.add(boxName, constraints);
+    }
+    
+    private void setConstraints( GridBagConstraints constraints,int fill, Insets insets,int ipady, int anchor, double weightx, double weighty, int gridheight, int gridwidth, int gridx, int gridy){
+    	constraints.fill = fill;
+    	constraints.insets = insets;
+    	constraints.ipady = ipady;
+    	constraints.anchor = anchor;
+    	constraints.weightx = weightx;
+    	constraints.weighty = weighty;
+    	constraints.gridheight = gridheight;
+    	constraints.gridwidth = gridwidth;
+    	constraints.gridx = gridx;
+    	constraints.gridy = gridy;
     }
 
     public static void main(String[] args) {

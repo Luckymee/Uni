@@ -81,6 +81,9 @@ public class Gui extends JFrame {
 
     // Train Area
     private JPanel trainBuildArea;
+    private JPanel locomotiveArea;
+    private JPanel passengerCarArea;
+    private JPanel freightCarArea;
     private List<TrainCar> trainGraphicList;
 
     // Locomotive inputs
@@ -113,190 +116,66 @@ public class Gui extends JFrame {
     }
 
     private void defaultGUI() {
-
-	// Clear Logger
-	numberOfLogs = 0;
-
-	// Default Layout - Fluid Grid Type
-	getContentPane().setLayout(new GridBagLayout());
-	GridBagConstraints constraints = new GridBagConstraints();
-	Dimension defaultDimensions = new Dimension(300, 200);
-
-	informationPanel = new JPanel();
-	informationPanel.setPreferredSize(defaultDimensions);
-	informationPanel.setLayout(new GridBagLayout());
-	GridBagConstraints internalConstraints = new GridBagConstraints();
-
-	trainDrawArea = new JPanel();
-	trainDrawArea.setLayout(new FlowLayout());
 	
-	//draws drain assembly area
-	setConstraints(internalConstraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 1, 1, 2, 2, 0, 0);
-	informationPanel.add(trainDrawArea, internalConstraints);
+		// Clear Logger
+		numberOfLogs = 0;
 	
-	//draws passenger info bottom left corner of assembly area
-	totalPassengers = new JLabel("<html>Passengers<br />" + MIN_PASSENGERS + " | " + INITAL_SEATS + "</html>");
-	setConstraints(internalConstraints, GridBagConstraints.NONE, new Insets(0, 6, 0, 0), 0, GridBagConstraints.LAST_LINE_START, 0, 0, 1, 1, 1, 2);	
-	informationPanel.add(totalPassengers, internalConstraints);
+		// Default Layout - Fluid Grid Type
+		getContentPane().setLayout(new GridBagLayout());
+		GridBagConstraints constraints = new GridBagConstraints();
+		GridBagConstraints internalConstraints = new GridBagConstraints();
+		Dimension defaultDimensions = new Dimension(300, 200);
+	
+		//Initializing panels
+		informationPanel = new JPanel();
+		trainDrawArea = new JPanel();
+		trainBuildArea = new JPanel();
+		locomotiveArea = new JPanel();
+		passengerCarArea = new JPanel();
+		freightCarArea = new JPanel();
+		passengerInfo = new JPanel();
+		trainCanMovePanel = new JPanel();
+		
+		//setting sizes
+		informationPanel.setPreferredSize(defaultDimensions);
+		locomotiveArea.setPreferredSize(new Dimension(300, 100));
+		passengerCarArea.setPreferredSize(new Dimension(300, 100));
+		freightCarArea.setPreferredSize(new Dimension(300, 100));
+		passengerInfo.setPreferredSize(defaultDimensions);
+		
+		//setting layouts
+		informationPanel.setLayout(new GridBagLayout());	
+		trainDrawArea.setLayout(new FlowLayout());	
+		trainBuildArea.setLayout(new GridBagLayout());
+		passengerInfo.setLayout(new GridBagLayout());
+		
+		//setting borders
+		locomotiveArea.setBorder(BorderFactory.createTitledBorder("Add Locomotive"));
+		passengerCarArea.setBorder(BorderFactory.createTitledBorder("Add PassengerCar"));
+		freightCarArea.setBorder(BorderFactory.createTitledBorder("Add FreightCar"));
+		passengerInfo.setBorder(BorderFactory.createTitledBorder("Add Passengers"));
+		
+		//create panels
+		createTrainAssemblyArea(internalConstraints);	
+		createInformationArea(constraints);
+		createTrainBuildArea(internalConstraints, constraints);
+		createPassengerInfoArea(internalConstraints);
+		createLoggerArea(constraints);
+		createCanMoveArea(constraints);
 
-	// TODO - Main Display End.
-	setConstraints(constraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 1, 1, 2, 2, 0, 0);
-	getContentPane().add(informationPanel, constraints);
+		// End layout
 
-	trainBuildArea = new JPanel();
-	trainBuildArea.setLayout(new GridBagLayout());
+		// Draw to Screen
+		setPreferredSize(new Dimension(WINDOW_X, WINDOW_Y));
+		setMinimumSize(new Dimension(WINDOW_X, WINDOW_Y));
+		setLocation(new Point(START_X, START_Y));
 
-	// Locomotive Panel
-	JPanel addLocomotive = new JPanel();
-	addLocomotive.setPreferredSize(new Dimension(300, 100));
-	addLocomotive.setBorder(BorderFactory.createTitledBorder("Add Locomotive"));
+		pack();
+		setVisible(true);
 
-	locomotivePanelSetup(addLocomotive);
-	setConstraints(internalConstraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 0.5, 0.5, 1, 1, 0, 0);
-	trainBuildArea.add(addLocomotive, internalConstraints);
-
-	// Passenger Car Panel
-	JPanel addPassengerCar = new JPanel();
-	addPassengerCar.setPreferredSize(new Dimension(300, 100));
-	addPassengerCar.setBorder(BorderFactory.createTitledBorder("Add PassengerCar"));
-
-	passengerCarSetup(addPassengerCar);
-	setConstraints(internalConstraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 0.5, 0.5, 1, 1, 0, 1);
-	trainBuildArea.add(addPassengerCar, internalConstraints);
-
-	// Freight Car Panel
-	JPanel addFreightCar = new JPanel();
-	addFreightCar.setPreferredSize(new Dimension(300, 100));
-	addFreightCar.setBorder(BorderFactory.createTitledBorder("Add FreightCar"));
-
-	freightCarSetup(addFreightCar);
-	setConstraints(internalConstraints, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, GridBagConstraints.CENTER, 0.5, 0.5, 1, 1, 0, 2);
-	trainBuildArea.add(addFreightCar, internalConstraints);
-
-	JButton removeCar = new JButton("Remove Last Car");
-	removeCar.addActionListener(new ActionListener() {
-	    @Override
-	    // Must be public
-	    public void actionPerformed(ActionEvent event) {
-		removeLastCar();
-	    }
-	});
-	internalConstraints.gridx = 0;
-	internalConstraints.gridy = 3;
-	trainBuildArea.add(removeCar, internalConstraints);
-
-	constraints.fill = GridBagConstraints.BOTH;
-	constraints.weightx = 0;
-	constraints.weighty = 1;
-	constraints.gridwidth = 1;
-	constraints.gridheight = 2;
-	constraints.gridx = 2;
-	constraints.gridy = 0;
-	getContentPane().add(trainBuildArea, constraints); // Update Panel
-
-	// Passenger info
-	passengerInfo = new JPanel();
-	passengerInfo.setPreferredSize(defaultDimensions);
-	passengerInfo.setBorder(BorderFactory.createTitledBorder("Add Passengers"));
-	passengerInfo.setLayout(new GridBagLayout());
-
-	JLabel passengerAddLabel = new JLabel("No. Passengers to add:");
-
-	internalConstraints.fill = GridBagConstraints.NONE;
-	internalConstraints.insets = new Insets(5, 5, 5, 5);
-	internalConstraints.ipady = 10;
-	internalConstraints.weightx = 0.3;
-	internalConstraints.weighty = 0.3;
-	internalConstraints.gridx = 0;
-	internalConstraints.gridy = 0;
-	internalConstraints.gridwidth = 1;
-	internalConstraints.gridheight = 1;
-	passengerInfo.add(passengerAddLabel, internalConstraints);
-
-	// This must be final for addActionListener
-	final JTextField numberOfPassengerInput = new JTextField(DEFAULT_COLUMNS);
-	numberOfPassengerInput.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 20));
-	internalConstraints.fill = GridBagConstraints.HORIZONTAL;
-	internalConstraints.weightx = 0.3;
-	internalConstraints.weighty = 0.3;
-	internalConstraints.gridwidth = 1;
-	internalConstraints.gridheight = 1;
-	internalConstraints.gridx = 1;
-	internalConstraints.gridy = 0;
-
-	passengerInfo.add(numberOfPassengerInput, internalConstraints);
-
-	// Add Passengers Button
-	JButton addPassengers = new JButton("Add Passengers");
-	internalConstraints.fill = GridBagConstraints.BOTH;
-	internalConstraints.weightx = 0.5;
-	internalConstraints.weighty = 0.1;
-	internalConstraints.gridwidth = 2;
-	internalConstraints.gridx = 0;
-	internalConstraints.gridy = 1;
-	addPassengers.addActionListener(new ActionListener() {
-	    @Override
-	    public void actionPerformed(ActionEvent event) {
-		addPassengers(numberOfPassengerInput.getText());
-	    }
-	});
-	passengerInfo.add(addPassengers, internalConstraints);
-
-	// Logger Panel TODO - This isnt right
-	constraints.fill = GridBagConstraints.BOTH;
-	constraints.anchor = GridBagConstraints.LAST_LINE_START;
-	constraints.gridwidth = 1;
-	constraints.gridheight = 1;
-	constraints.gridx = 0;
-	constraints.gridy = 2;
-	getContentPane().add(passengerInfo, constraints);
-
-	logger = new JTextArea(LOGGER_ROWS, LOGGER_COLUMNS);
-	logger.setBorder(BorderFactory.createTitledBorder("Error Log:"));
-	logger.setEditable(false);
-	logger.setPreferredSize(new Dimension(100, 40));
-	constraints.anchor = GridBagConstraints.PAGE_END;
-	constraints.gridwidth = 1;
-	constraints.gridheight = 1;
-	constraints.gridx = 1;
-	constraints.gridy = 2;
-	getContentPane().add(logger, constraints);
-
-	// Quit Panel
-	trainCanMovePanel = new JPanel();
-
-	canMoveLabel = new JLabel("Train Can Move");
-	canMoveLabel.setForeground(Color.WHITE);
-	canMoveLabel.setOpaque(true);
-	canMoveLabel.setBackground(TRAFFIC_GREEN);
-	// TODO Magic Numbers
-	canMoveLabel.setPreferredSize(new Dimension(200, 100));
-	canMoveLabel.setHorizontalAlignment(SwingConstants.CENTER);
-	canMoveLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-	constraints.fill = GridBagConstraints.NONE;
-	constraints.anchor = GridBagConstraints.CENTER;
-	constraints.insets = new Insets(0, 0, 0, 0);
-	constraints.gridwidth = 1;
-	constraints.gridheight = 1;
-	constraints.gridx = 2;
-	constraints.gridy = 2;
-	trainCanMovePanel.add(canMoveLabel, constraints);
-
-	getContentPane().add(trainCanMovePanel, constraints);
-
-	// End layout
-
-	// Draw to Screen
-	setPreferredSize(new Dimension(WINDOW_X, WINDOW_Y));
-	setMinimumSize(new Dimension(WINDOW_X, WINDOW_Y));
-	setLocation(new Point(START_X, START_Y));
-
-	pack();
-	setVisible(true);
-
-	// Set variables
-	Train = new DepartingTrain();
-	trainGraphicList = new ArrayList<TrainCar>();
+		// Set variables
+		Train = new DepartingTrain();
+		trainGraphicList = new ArrayList<TrainCar>();
     }
 
     private void locomotivePanelSetup(JPanel panel) {
@@ -644,17 +523,179 @@ public class Gui extends JFrame {
     	panel.add(boxName, constraints);
     }
     
-    private void setConstraints( GridBagConstraints constraints,int fill, Insets insets,int ipady, int anchor, double weightx, double weighty, int gridheight, int gridwidth, int gridx, int gridy){
-    	constraints.fill = fill;
-    	constraints.insets = insets;
-    	constraints.ipady = ipady;
-    	constraints.anchor = anchor;
-    	constraints.weightx = weightx;
-    	constraints.weighty = weighty;
-    	constraints.gridheight = gridheight;
-    	constraints.gridwidth = gridwidth;
-    	constraints.gridx = gridx;
-    	constraints.gridy = gridy;
+    private void createTrainAssemblyArea(GridBagConstraints constraints){
+    	constraints.fill = GridBagConstraints.BOTH;
+    	constraints.weightx = 1.0;
+    	constraints.weighty = 1.0;
+    	constraints.gridheight = 2;
+    	constraints.gridwidth = 2;
+    	constraints.gridx = 0;
+    	constraints.gridy = 0;
+    	informationPanel.add(trainDrawArea, constraints);
+    	
+    	totalPassengers = new JLabel("<html>Passengers<br />" + MIN_PASSENGERS + " | " + INITAL_SEATS + "</html>");
+    	constraints.fill = GridBagConstraints.NONE;
+    	constraints.insets = new Insets(0, 6, 0, 0);
+    	constraints.anchor = GridBagConstraints.LAST_LINE_START;
+    	constraints.weightx = 0.0;
+    	constraints.weighty = 0.0;
+    	constraints.gridheight = 1;
+    	constraints.gridwidth = 1;
+    	constraints.gridx = 1;
+    	constraints.gridy = 2;	
+    	informationPanel.add(totalPassengers, constraints);
+    }
+    
+    private void createTrainBuildArea(GridBagConstraints internalConstraints, GridBagConstraints constraints){
+    	createLocomotiveArea(internalConstraints);
+    	createPassengerCarArea(internalConstraints);
+    	createFreightCarArea(internalConstraints);
+    	
+    	JButton removeCar = new JButton("Remove Last Car");
+    	removeCar.addActionListener(new ActionListener() {
+    	    @Override
+    	    // Must be public
+    	    public void actionPerformed(ActionEvent event) {
+    		removeLastCar();
+    	    }
+    	});
+    	internalConstraints.gridx = 0;
+    	internalConstraints.gridy = 3;
+    	trainBuildArea.add(removeCar, internalConstraints);
+    	
+    	constraints.fill = GridBagConstraints.BOTH;
+    	constraints.weightx = 0;
+    	constraints.weighty = 1;
+    	constraints.gridwidth = 1;
+    	constraints.gridheight = 2;
+    	constraints.gridx = 2;
+    	constraints.gridy = 0;
+    	getContentPane().add(trainBuildArea, constraints); // Update Panel
+    }
+    
+    private void createLocomotiveArea(GridBagConstraints constraints){
+    	locomotivePanelSetup(locomotiveArea);
+    	constraints.fill = GridBagConstraints.BOTH;
+    	constraints.weightx = 0.5;
+    	constraints.weighty = 0.5;
+    	constraints.gridwidth = 1;
+    	constraints.gridheight = 1;
+    	constraints.gridx = 0;
+    	constraints.gridy = 0;
+    	trainBuildArea.add(locomotiveArea, constraints);
+    }
+    
+    private void createPassengerCarArea(GridBagConstraints constraints){
+    	passengerCarSetup(passengerCarArea);
+    	constraints.gridx = 0;
+    	constraints.gridy = 1;
+    	trainBuildArea.add(passengerCarArea, constraints);
+    }
+    
+    private void createFreightCarArea(GridBagConstraints constraints){
+    	freightCarSetup(freightCarArea);
+    	constraints.gridx = 0;
+    	constraints.gridy = 2;
+    	trainBuildArea.add(freightCarArea, constraints);
+    }
+    
+    private void createInformationArea(GridBagConstraints constraints){
+    	constraints.fill = GridBagConstraints.BOTH;
+    	constraints.weightx = 1.0;
+    	constraints.weighty = 1.0;
+    	constraints.gridwidth = 2;
+    	constraints.gridheight = 2;
+    	constraints.gridx = 0;
+    	constraints.gridy = 0;
+    	getContentPane().add(informationPanel, constraints);
+    }
+    
+    private void createPassengerInfoArea(GridBagConstraints constraints){
+    	JLabel passengerAddLabel = new JLabel("No. Passengers to add:");
+
+    	constraints.fill = GridBagConstraints.NONE;
+    	constraints.insets = new Insets(5, 5, 5, 5);
+    	constraints.ipady = 10;
+    	constraints.weightx = 0.3;
+    	constraints.weighty = 0.3;
+    	constraints.gridx = 0;
+    	constraints.gridy = 0;
+    	constraints.gridwidth = 1;
+    	constraints.gridheight = 1;
+    	passengerInfo.add(passengerAddLabel, constraints);
+
+    	// This must be final for addActionListener
+    	final JTextField numberOfPassengerInput = new JTextField(DEFAULT_COLUMNS);
+    	numberOfPassengerInput.setPreferredSize(new Dimension(DEFAULT_COLUMNS, 20));
+    	constraints.fill = GridBagConstraints.HORIZONTAL;
+    	constraints.weightx = 0.3;
+    	constraints.weighty = 0.3;
+    	constraints.gridwidth = 1;
+    	constraints.gridheight = 1;
+    	constraints.gridx = 1;
+    	constraints.gridy = 0;
+
+    	passengerInfo.add(numberOfPassengerInput, constraints);
+
+    	// Add Passengers Button
+    	JButton addPassengers = new JButton("Add Passengers");
+    	constraints.fill = GridBagConstraints.BOTH;
+    	constraints.weightx = 0.5;
+    	constraints.weighty = 0.1;
+    	constraints.gridwidth = 2;
+    	constraints.gridx = 0;
+    	constraints.gridy = 1;
+    	addPassengers.addActionListener(new ActionListener() {
+    	    @Override
+    	    public void actionPerformed(ActionEvent event) {
+    		addPassengers(numberOfPassengerInput.getText());
+    	    }
+    	});
+    	passengerInfo.add(addPassengers, constraints);
+    }
+    
+    // Logger Panel TODO - This isn't right
+    private void createLoggerArea(GridBagConstraints constraints){
+    	
+    	constraints.fill = GridBagConstraints.BOTH;
+    	constraints.anchor = GridBagConstraints.LAST_LINE_START;
+    	constraints.gridwidth = 1;
+    	constraints.gridheight = 1;
+    	constraints.gridx = 0;
+    	constraints.gridy = 2;
+    	getContentPane().add(passengerInfo, constraints);
+
+    	logger = new JTextArea(LOGGER_ROWS, LOGGER_COLUMNS);
+    	logger.setBorder(BorderFactory.createTitledBorder("Error Log:"));
+    	logger.setEditable(false);
+    	logger.setPreferredSize(new Dimension(100, 40));
+    	constraints.anchor = GridBagConstraints.PAGE_END;
+    	constraints.gridwidth = 1;
+    	constraints.gridheight = 1;
+    	constraints.gridx = 1;
+    	constraints.gridy = 2;
+    	getContentPane().add(logger, constraints);
+    }
+    
+    private void createCanMoveArea(GridBagConstraints constraints){
+    	canMoveLabel = new JLabel("Train Can Move");
+    	canMoveLabel.setForeground(Color.WHITE);
+    	canMoveLabel.setOpaque(true);
+    	canMoveLabel.setBackground(TRAFFIC_GREEN);
+    	// TODO Magic Numbers
+    	canMoveLabel.setPreferredSize(new Dimension(200, 100));
+    	canMoveLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    	canMoveLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+    	constraints.fill = GridBagConstraints.NONE;
+    	constraints.anchor = GridBagConstraints.CENTER;
+    	constraints.insets = new Insets(0, 0, 0, 0);
+    	constraints.gridwidth = 1;
+    	constraints.gridheight = 1;
+    	constraints.gridx = 2;
+    	constraints.gridy = 2;
+    	trainCanMovePanel.add(canMoveLabel, constraints);
+
+    	getContentPane().add(trainCanMovePanel, constraints);
     }
 
     public static void main(String[] args) {

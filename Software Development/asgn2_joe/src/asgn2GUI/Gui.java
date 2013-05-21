@@ -108,8 +108,9 @@ public class Gui extends JFrame {
     private JLabel totalPassengers;
     private JLabel seatsAvalailableLabel;
 
-    // Train can move
+    // Train status
     private JPanel trainCanMovePanel;
+    private JPanel seatsAvailablePanel;
 
     public Gui() {
 		super("Train Simulation");
@@ -136,6 +137,7 @@ public class Gui extends JFrame {
 		freightCarArea = new JPanel();
 		passengerInfo = new JPanel();
 		trainCanMovePanel = new JPanel();
+		seatsAvailablePanel = new JPanel();//Available
 		
 		//setting sizes
 		informationPanel.setPreferredSize(defaultDimensions);
@@ -675,13 +677,14 @@ public class Gui extends JFrame {
     	canMoveLabel.setHorizontalAlignment(SwingConstants.CENTER);
     	canMoveLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     	constraints.fill = GridBagConstraints.NONE;
-    	constraints.anchor = GridBagConstraints.CENTER;
-    	constraints.insets = new Insets(0, 0, 0, 0);
+    	constraints.anchor = GridBagConstraints.NORTH;
     	constraints.gridwidth = 1;
-    	constraints.gridheight = 1;
+    	constraints.gridheight = 1;  	
     	constraints.gridx = 2;
     	constraints.gridy = 2;
     	trainCanMovePanel.add(canMoveLabel, constraints);
+    	
+    	getContentPane().add(trainCanMovePanel, constraints);
     	
     	//Seats available label
     	seatsAvalailableLabel = new JLabel("No Seats Available");
@@ -693,15 +696,15 @@ public class Gui extends JFrame {
     	seatsAvalailableLabel.setHorizontalAlignment(SwingConstants.CENTER);
     	seatsAvalailableLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     	constraints.fill = GridBagConstraints.NONE;
-    	constraints.anchor = GridBagConstraints.CENTER;
-    	constraints.insets = new Insets(0, 0, 0, 0);
+    	constraints.anchor = GridBagConstraints.SOUTH;
     	constraints.gridwidth = 1;
     	constraints.gridheight = 1;
     	constraints.gridx = 2;
     	constraints.gridy = 2;
-    	trainCanMovePanel.add(seatsAvalailableLabel, constraints);
+    	seatsAvailablePanel.add(seatsAvalailableLabel, constraints);
     	
-    	getContentPane().add(trainCanMovePanel, constraints);
+    	getContentPane().add(seatsAvailablePanel, constraints);
+    	
     }
     
     private void trainCanMove() {

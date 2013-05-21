@@ -658,6 +658,8 @@ public class Gui extends JFrame {
     	logger.setBorder(BorderFactory.createTitledBorder("Error Log:"));
     	logger.setEditable(false);
     	logger.setPreferredSize(new Dimension(100, 40));
+    	logger.setLineWrap(true);
+    	logger.setWrapStyleWord(true);
     	constraints.anchor = GridBagConstraints.PAGE_END;
     	constraints.gridwidth = 1;
     	constraints.gridheight = 1;

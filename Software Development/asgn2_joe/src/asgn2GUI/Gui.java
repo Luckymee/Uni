@@ -677,7 +677,8 @@ public class Gui extends JFrame {
     	canMoveLabel.setHorizontalAlignment(SwingConstants.CENTER);
     	canMoveLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     	constraints.fill = GridBagConstraints.NONE;
-    	constraints.anchor = GridBagConstraints.NORTH;
+    	constraints.anchor = GridBagConstraints.CENTER;
+    	constraints.insets = new Insets(-100, 0, 0, 0);
     	constraints.gridwidth = 1;
     	constraints.gridheight = 1;  	
     	constraints.gridx = 2;
@@ -696,7 +697,8 @@ public class Gui extends JFrame {
     	seatsAvalailableLabel.setHorizontalAlignment(SwingConstants.CENTER);
     	seatsAvalailableLabel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     	constraints.fill = GridBagConstraints.NONE;
-    	constraints.anchor = GridBagConstraints.SOUTH;
+    	constraints.anchor = GridBagConstraints.CENTER;
+    	constraints.insets = new Insets(100, 0, 0, 0);
     	constraints.gridwidth = 1;
     	constraints.gridheight = 1;
     	constraints.gridx = 2;

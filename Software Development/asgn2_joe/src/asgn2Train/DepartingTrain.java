@@ -61,20 +61,21 @@ public class DepartingTrain {
      * preceding call to either this method or method firstCarriage
      * 
      * @return RollingStock: the train's next carriage after the one returned by the
-     *         immediately preceding call to either firstCarriage or nextCarriage, or null
-     *         if there is no such carriage
+     *         immediately preceding call to either firstCarriage or nextCarriage, or null if
+     *         there is no such carriage
      */
     public RollingStock nextCarriage() {
-	if (currentCarNum++ == NO_ROLLINGSTOCK) {
+	if (currentCarNum++ == NO_ROLLINGSTOCK) { // Return locomotive if no other carriage
 	    return locomotive;
-	} else {
+	} else { // Conditional operation, returning null no new carriage exists, or the
+		 // nextCarriage if one does.
 	    return currentCarNum > train.size() ? null : train.get(currentCarNum - 1);
 	}
     }
 
     /**
-     * Returns the total number of passengers currently on the train, counting all
-     * passenger cars.
+     * Returns the total number of passengers currently on the train, counting all passenger
+     * cars.
      * 
      * @return Integer: the number of passengers on the train
      */
@@ -91,8 +92,8 @@ public class DepartingTrain {
     }
 
     /**
-     * Returns the total number of seats on the train (whether occupied or not), counting
-     * all passenger cars.
+     * Returns the total number of seats on the train (whether occupied or not), counting all
+     * passenger cars.
      * 
      * @return Integer: the number of seats on the train
      */
@@ -112,8 +113,8 @@ public class DepartingTrain {
      * @param newPassengers
      *            Integer: the number of people wish to board the train.
      * 
-     * @return Integer: the number of people who were unable to board the train because
-     *         they couldn't get a seat
+     * @return Integer: the number of people who were unable to board the train because they
+     *         couldn't get a seat
      * 
      * @throws TrainException
      *             if the number of new passengers is negative.
@@ -143,8 +144,7 @@ public class DepartingTrain {
     /**
      * Returns whether or not the train is capable of moving
      * 
-     * @return Boolean: true if the train can move (or contains no carriages), false
-     *         otherwise
+     * @return Boolean: true if the train can move (or contains no carriages), false otherwise
      */
     public boolean trainCanMove() {
 	if (locomotive == null) { // No locomotive
@@ -167,8 +167,8 @@ public class DepartingTrain {
      *            RollingStock: the new carriage to be added.
      * 
      * @throws TrainException
-     *             if adding the new carriage would produce an invalid train
-     *             configuration, or if there are passengers on the train
+     *             if adding the new carriage would produce an invalid train configuration, or
+     *             if there are passengers on the train
      */
     public void addCarriage(RollingStock newCarriage) throws TrainException {
 	// Special case for determining if a train instance already exits -- particularly
@@ -218,8 +218,8 @@ public class DepartingTrain {
      * Removes the last carriage from the train.
      * 
      * @throws TrainException
-     *             if there is no rolling stock on the "train", or if there are passengers
-     *             on the train.
+     *             if there is no rolling stock on the "train", or if there are passengers on
+     *             the train.
      */
     public void removeCarriage() throws TrainException {
 	if (locomotive == null && train.size() == 0) { // No Rolling stock
@@ -256,7 +256,7 @@ public class DepartingTrain {
     }
 
     /**
-     * TODO
+     * Boolean check for passengers on train.
      * 
      * @return boolean: True if passengers on board
      */
@@ -273,7 +273,7 @@ public class DepartingTrain {
     }
 
     /**
-     * TODO
+     * Iterates through the train, determining total gross weight.
      * 
      * @return Integer: totalWeight
      */

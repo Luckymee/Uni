@@ -41,13 +41,6 @@ public class DepartingTrainTest {
 	System.out.println(line);
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_vaildlocoPassengerFreightNotNull() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -62,13 +55,6 @@ public class DepartingTrainTest {
 	assertNotNull(Train);
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_validLocomotive() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -82,13 +68,6 @@ public class DepartingTrainTest {
 	assertTrue(Train.trainCanMove());
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_validFreightCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -104,13 +83,6 @@ public class DepartingTrainTest {
 	assertTrue(Train.trainCanMove());
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_validPassengerCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -126,13 +98,6 @@ public class DepartingTrainTest {
 	assertTrue(Train.trainCanMove());
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_invalidLocomotiveNotEnoughPowerSelf() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -146,13 +111,6 @@ public class DepartingTrainTest {
 	assertFalse(Train.trainCanMove());
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_invalidFreightCarNotEnoughPowerLoco() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -168,13 +126,6 @@ public class DepartingTrainTest {
 	assertFalse(Train.trainCanMove());
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_invalidPassengerCarNotEnoughPowerLoco() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -190,13 +141,6 @@ public class DepartingTrainTest {
 	assertFalse(Train.trainCanMove());
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_validLocoPassengerFreightCanMove() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -217,13 +161,6 @@ public class DepartingTrainTest {
 	assertTrue(Train.trainCanMove());
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_validLocoPassengerFreightCantMove() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -244,13 +181,6 @@ public class DepartingTrainTest {
 	assertFalse(Train.trainCanMove());
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_testTwoFreightCarsDiffer() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -265,13 +195,6 @@ public class DepartingTrainTest {
 	assertFalse(freightCar == freightCarTwo);
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_testTwoPassengerCarsDiffer() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -287,13 +210,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the DepartingTrain() constructor test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testDepartingTrain_testTwoLocomotivesDiffer() throws TrainException {
 	Locomotive locomotive = new Locomotive(VALID_GROSSWEIGHT, "4E");
@@ -303,13 +219,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addFreightBeforeLocomotive() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -324,13 +233,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addPassengerBeforeLocomotive() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -345,13 +247,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addValidPassengerCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -370,13 +265,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addValidFreightCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -395,13 +283,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + freightCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addLocoAfterFreight() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -418,13 +299,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addLocoAfterPassengerCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -441,13 +315,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addLocoAfterLoco() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -463,13 +330,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addSameLoco() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -485,13 +345,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addPassengerAfterFreight() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -511,13 +364,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the void addCarriage(RollingStock) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testAddCarriage_addFreightAfterBoarded() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -562,13 +408,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNumberOnBoard_validSeatsMaxPassengers() throws Exception {
 
@@ -586,13 +425,6 @@ public class DepartingTrainTest {
 	assertEquals(new Integer(VALID_SEATS), result);
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNumberOnBoard_validSeatsNoPassengers() throws Exception {
 
@@ -609,13 +441,6 @@ public class DepartingTrainTest {
 	assertEquals(new Integer(0), result);
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testBoard_invalidPassengersNegative() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -634,13 +459,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testBoard_zeroPassengersOneCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -659,13 +477,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + passengerCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testBoard_maxPassengersToSeatsMultiPassengerCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -688,13 +499,6 @@ public class DepartingTrainTest {
 		Train.toString());
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testBoard_morePassengersThanSeats() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -716,13 +520,6 @@ public class DepartingTrainTest {
 	assertEquals(new Integer(10), result);
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testBoard_maxPassengersOneCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -741,13 +538,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + passengerCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testBoard_zeroPassengersMultiPassengerCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -770,13 +560,6 @@ public class DepartingTrainTest {
 		Train.toString());
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testBoard_morePassengersThanOneCarLessThanTwo() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -799,13 +582,6 @@ public class DepartingTrainTest {
 		Train.toString());
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testBoard_morePasengersThanSeatsMultiPassengerCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -830,13 +606,6 @@ public class DepartingTrainTest {
 	assertEquals(new Integer(10), result);
     }
 
-    /**
-     * Run the RollingStock firstCarriage() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testFirstCarriage_nullBeforeLocomotive() throws Exception {
 	DepartingTrain fixture = new DepartingTrain();
@@ -844,13 +613,6 @@ public class DepartingTrainTest {
 	assertNull(fixture.firstCarriage());
     }
 
-    /**
-     * Run the RollingStock firstCarriage() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testFirstCarriage_notNullAfterLocomotive() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -861,13 +623,6 @@ public class DepartingTrainTest {
 	assertNotNull(Train.firstCarriage());
     }
 
-    /**
-     * Run the RollingStock nextCarriage() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNextCarriage_nullBeforeAddCarriage() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -875,13 +630,6 @@ public class DepartingTrainTest {
 	assertNull(Train.nextCarriage());
     }
 
-    /**
-     * Run the RollingStock nextCarriage() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNextCarriage_validNextCarriage() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -898,13 +646,6 @@ public class DepartingTrainTest {
 	assertEquals(result.toString(), freightCar.toString());
     }
 
-    /**
-     * Run the RollingStock nextCarriage() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNextCarriage_validLocomotiveBeforeFirstCarriageCalled() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -918,13 +659,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the RollingStock nextCarriage() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNextCarriage_validReturnsToExpectedValueAfterFirstCarriage() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -948,13 +682,6 @@ public class DepartingTrainTest {
 
     }
 
-    /**
-     * Run the Integer numberOfSeats() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNumberOfSeats_beforeAddPassengerCar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -965,13 +692,6 @@ public class DepartingTrainTest {
 	assertTrue(result == 0);
     }
 
-    /**
-     * Run the Integer numberOfSeats() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNumberOfSeats_validNumOfSeatsAfterAddPassengerCar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -985,13 +705,6 @@ public class DepartingTrainTest {
 	assertEquals(result, VALID_SEATS);
     }
 
-    /**
-     * Run the Integer numberOfSeats() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNumberOfSeats_multiCarriageNumOfSeatsLoop() throws Exception {
 	int numOfPassengerCar = 10;
@@ -1010,13 +723,6 @@ public class DepartingTrainTest {
 	assertEquals(result, numOfSeats);
     }
 
-    /**
-     * Run the Integer numberOfSeats() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testNumberOfSeats_validNumOfSeatsAfterMultiPassengercar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1033,13 +739,6 @@ public class DepartingTrainTest {
 	assertEquals(result, numOfSeats);
     }
 
-    /**
-     * Run the void removeCarriage() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testRemoveCarriage_invalidRemoveWithNoRollingStock() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1052,13 +751,6 @@ public class DepartingTrainTest {
 	}
     }
 
-    /**
-     * Run the void removeCarriage() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testRemoveCarriage_vaildRemoveLocomotive() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1073,13 +765,6 @@ public class DepartingTrainTest {
 	}
     }
 
-    /**
-     * Run the void removeCarriage() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testRemoveCarriage_validRemovePassengerCarNoPassengers() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1098,13 +783,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString(), Train.toString());
     }
 
-    /**
-     * Run the void removeCarriage() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testRemoveCarriage_validRemoveFreightCar() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1123,13 +801,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString(), Train.toString());
     }
 
-    /**
-     * Run the void removeCarriage() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testRemoveCarriage_validRemoveThirdCarNoPassengers() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1150,13 +821,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + passengerCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the void removeCarriage() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testRemoveCarriage_invalidRemovePassengerCarWithPassengers() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1178,13 +842,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + passengerCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the void removeCarriage() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testRemoveCarriage_invalidRemoveThirdCarWithPassengers() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1209,13 +866,6 @@ public class DepartingTrainTest {
 		Train.toString());
     }
 
-    /**
-     * Run the void removeCarriage() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testRemoveCarriage_validRemoveAll() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1236,13 +886,6 @@ public class DepartingTrainTest {
 	}
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_vaildLocomotive() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1253,13 +896,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString(), Train.toString());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_validEmptyPassengerCar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1273,13 +909,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + passengerCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_validFullPassengerCar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1294,13 +923,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + passengerCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_validMultiPassengerCar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1318,13 +940,6 @@ public class DepartingTrainTest {
 		Train.toString());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_validDangerousFreightCar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1338,13 +953,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + freightCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_validGeneralFreightCar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1358,13 +966,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + freightCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_validRefrigerateFreightCar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1378,13 +979,6 @@ public class DepartingTrainTest {
 	assertEquals(locomotive.toString() + "-" + freightCar.toString(), Train.toString());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_validMultiFreightCarConfig() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1401,13 +995,6 @@ public class DepartingTrainTest {
 		Train.toString());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_fullConfigurationEmptyPassengerCar() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1428,13 +1015,6 @@ public class DepartingTrainTest {
 		+ freightCar.toString() + "-" + freightCarTwo.toString(), Train.toString());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testToString_fullConfigurationWithPassengers() throws Exception {
 	DepartingTrain Train = new DepartingTrain();
@@ -1457,13 +1037,6 @@ public class DepartingTrainTest {
 		+ freightCar.toString() + "-" + freightCarTwo.toString(), Train.toString());
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_canMoveWithoutLoco() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1471,13 +1044,6 @@ public class DepartingTrainTest {
 	assertTrue(Train.trainCanMove());
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_invalidLocoNotEnoughPowerSelf() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1488,13 +1054,6 @@ public class DepartingTrainTest {
 	assertFalse(Train.trainCanMove());
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_invalidLocoNotEnoughPowerForCarriages() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1507,13 +1066,6 @@ public class DepartingTrainTest {
 	assertFalse(Train.trainCanMove());
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_validLocoPowerSelf() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1524,13 +1076,6 @@ public class DepartingTrainTest {
 	assertTrue(Train.trainCanMove());
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws TrainException
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_validPowerToMoveMultiCarriages() throws TrainException {
 	DepartingTrain Train = new DepartingTrain();
@@ -1543,13 +1088,6 @@ public class DepartingTrainTest {
 	assertTrue(Train.trainCanMove());
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_enoughPowerFullConfiguration() throws Exception {
 	DepartingTrain fixture = new DepartingTrain();
@@ -1568,13 +1106,6 @@ public class DepartingTrainTest {
 	assertTrue(result);
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_equalPowerFullConfiguration() throws Exception {
 	DepartingTrain fixture = new DepartingTrain();
@@ -1595,13 +1126,6 @@ public class DepartingTrainTest {
 	assertTrue(result);
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_notEnoughPowerFullConfiguration() throws Exception {
 	DepartingTrain fixture = new DepartingTrain();
@@ -1622,13 +1146,6 @@ public class DepartingTrainTest {
 	assertFalse(result);
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_EqualPower() throws Exception {
 	DepartingTrain fixture = new DepartingTrain();
@@ -1640,13 +1157,6 @@ public class DepartingTrainTest {
 	assertTrue(result);
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_NotEnoughPower() throws Exception {
 	DepartingTrain fixture = new DepartingTrain();
@@ -1658,13 +1168,6 @@ public class DepartingTrainTest {
 	assertFalse(result);
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_noRollingStock() throws Exception {
 	DepartingTrain fixture = new DepartingTrain();
@@ -1674,13 +1177,6 @@ public class DepartingTrainTest {
 	assertTrue(result);
     }
 
-    /**
-     * Run the boolean trainCanMove() method test.
-     * 
-     * @throws Exception
-     * 
-     * 
-     */
     @Test
     public void testTrainCanMove_EnoughPower() throws Exception {
 	DepartingTrain fixture = new DepartingTrain();

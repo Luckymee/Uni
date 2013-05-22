@@ -36,11 +36,6 @@ public class RollingStockTest {
 	System.out.println(line);
     }
 
-    /**
-     * Run the Integer getGrossWeight() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGetGrossWeight_FreightCarNotNull() throws TrainException {
 	RollingStock fixture = new FreightCar(new Integer(100), "G");
@@ -50,11 +45,6 @@ public class RollingStockTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Run the Integer getGrossWeight() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGetGrossWeight_FreightCarValid() throws TrainException {
 	String goodsCode = "G";
@@ -66,11 +56,6 @@ public class RollingStockTest {
 	assertTrue(result == 100);
     }
 
-    /**
-     * Run the Integer getGrossWeight() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGetGrossWeight_LocomotiveNotNull() throws TrainException {
 	RollingStock fixture = new Locomotive(new Integer(100), "1E");
@@ -80,11 +65,6 @@ public class RollingStockTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Run the Integer getGrossWeight() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGetGrossWeight_LocomotiveValid() throws TrainException {
 	RollingStock fixture = new FreightCar(new Integer(100), "G");
@@ -95,11 +75,6 @@ public class RollingStockTest {
 	assertTrue(result == 100);
     }
 
-    /**
-     * Run the Integer getGrossWeight() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGetGrossWeight_PassengerCarNotNull() throws TrainException {
 	Integer numOfSeats = 10;
@@ -110,11 +85,6 @@ public class RollingStockTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Run the Integer getGrossWeight() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGetGrossWeight_PassengerCarValid() throws TrainException {
 	Integer numOfSeats = 10;
@@ -126,12 +96,6 @@ public class RollingStockTest {
 	assertTrue(result == 100);
     }
 
-    /**
-     * Run the Integer getGrossWeight() method test.
-     * 
-     * @throws TrainException
-     * @throws NullPointerException
-     */
     @Test
     public void testGetGrossWeight_nullGrossWeight() throws TrainException {
 	String goodsCode = "G";
@@ -147,11 +111,6 @@ public class RollingStockTest {
 	}
     }
 
-    /**
-     * Method testToString_LocomotiveNotNull.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_LocomotiveNotNull() throws TrainException {
 	RollingStock fixture = new Locomotive(new Integer(100), "1E");
@@ -161,11 +120,6 @@ public class RollingStockTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Method testToString_FreightCarNotNull.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_FreightCarNotNull() throws TrainException {
 	RollingStock fixture = new FreightCar(new Integer(100), "G");
@@ -175,26 +129,15 @@ public class RollingStockTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Method testToString_PassengerCarNotNull.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_PassengerCarNotNull() throws TrainException {
-	RollingStock fixture = new PassengerCar(new Integer(100),
-		VALID_TEST_SEATS);
+	RollingStock fixture = new PassengerCar(new Integer(100), VALID_TEST_SEATS);
 
 	String result = fixture.toString();
 
 	assertNotNull(result);
     }
 
-    /**
-     * Method testToString_LocomotiveValid.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_LocomotiveValid() throws TrainException {
 	RollingStock fixture = new Locomotive(new Integer(100), "1E");
@@ -205,11 +148,6 @@ public class RollingStockTest {
 	assertEquals("Locomotive(1E)", result);
     }
 
-    /**
-     * Method testToString_FreightCarValid.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_FreightCarValid() throws TrainException {
 	String goodsCode = "G";
@@ -221,15 +159,9 @@ public class RollingStockTest {
 	assertEquals("Freight(" + goodsCode + ")", result);
     }
 
-    /**
-     * Method testToString_PassengerCarValid.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_PassengerCarValid() throws TrainException {
-	RollingStock fixture = new PassengerCar(new Integer(100),
-		VALID_TEST_SEATS);
+	RollingStock fixture = new PassengerCar(new Integer(100), VALID_TEST_SEATS);
 
 	String result = fixture.toString();
 
@@ -237,11 +169,6 @@ public class RollingStockTest {
 	assertEquals("Passenger(0|10)", result);
     }
 
-    /**
-     * Method testToString_PassengerCarValid.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_PassengerLowerBound() throws TrainException {
 	RollingStock fixture = new PassengerCar(new Integer(100), 1);
@@ -252,11 +179,6 @@ public class RollingStockTest {
 	assertEquals("Passenger(0|1)", result);
     }
 
-    /**
-     * Method testToString_PassengerCarValid.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_noPassengers() throws TrainException {
 	RollingStock fixture = new PassengerCar(new Integer(100), 0);
@@ -267,41 +189,22 @@ public class RollingStockTest {
 	assertEquals("Passenger(0|0)", result);
     }
 
-    /**
-     * Method testRollingStock_LocomotiveConstructorNotNull.
-     * 
-     * @throws TrainException
-     */
     @Test
-    public void testRollingStock_LocomotiveConstructorNotNull()
-	    throws TrainException {
+    public void testRollingStock_LocomotiveConstructorNotNull() throws TrainException {
 	RollingStock rollingStock = new Locomotive(new Integer(100), "1E");
 
 	assertNotNull(rollingStock);
     }
 
-    /**
-     * Method testRollingStock_PassengerConstructorNotNull.
-     * 
-     * @throws TrainException
-     */
     @Test
-    public void testRollingStock_PassengerCarConstructorNotNull()
-	    throws TrainException {
-	RollingStock rollingStock = new PassengerCar(new Integer(100),
-		VALID_TEST_SEATS);
+    public void testRollingStock_PassengerCarConstructorNotNull() throws TrainException {
+	RollingStock rollingStock = new PassengerCar(new Integer(100), VALID_TEST_SEATS);
 
 	assertNotNull(rollingStock);
     }
 
-    /**
-     * Method testRollingStock_FreightCarConstructorNotNull.
-     * 
-     * @throws TrainException
-     */
     @Test
-    public void testRollingStock_FreightCarConstructorNotNull()
-	    throws TrainException {
+    public void testRollingStock_FreightCarConstructorNotNull() throws TrainException {
 	RollingStock rollingStock = new FreightCar(new Integer(100), "G");
 
 	assertNotNull(rollingStock);

@@ -32,11 +32,6 @@ public class PassengerCarTest {
 	System.out.println(line);
     }
 
-    /**
-     * Run the PassengerCar(Integer,Integer) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testPassengerCar_notNull() throws TrainException {
 	Integer grossWeight = new Integer(1);
@@ -49,11 +44,6 @@ public class PassengerCarTest {
 
     }
 
-    /**
-     * Run the PassengerCar(Integer,Integer) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testPassengerCar_validConfiguration() throws TrainException {
 	Integer grossWeight = new Integer(1);
@@ -66,11 +56,6 @@ public class PassengerCarTest {
 	assertEquals("Passenger(5|10)", result.toString());
     }
 
-    /**
-     * Run the void alight(Integer) method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testAlight_validAlightingPassengers() throws TrainException {
 	Integer newPassengers = 5;
@@ -85,14 +70,8 @@ public class PassengerCarTest {
 	assertEquals("Passenger(4|5)", fixture.toString());
     }
 
-    /**
-     * Run the void alight(Integer) method test.
-     * 
-     * @throws TrainException
-     */
     @Test
-    public void testAlight_invalidAlightingPassengerNegative()
-	    throws TrainException {
+    public void testAlight_invalidAlightingPassengerNegative() throws TrainException {
 	Integer newPassengers = 5;
 	Integer departingPassengers = new Integer(-1);
 	PassengerCar fixture = new PassengerCar(new Integer(1), newPassengers);
@@ -107,15 +86,8 @@ public class PassengerCarTest {
 
     }
 
-    /**
-     * Run the void alight(Integer) method test.
-     * 
-     * @throws TrainException
-     * @throws NullPointerException
-     */
     @Test
-    public void testAlight_invalidAlightingPassengerNull()
-	    throws TrainException {
+    public void testAlight_invalidAlightingPassengerNull() throws TrainException {
 	Integer newPassengers = 5;
 	Integer departingPassengers = null;
 	PassengerCar fixture = new PassengerCar(new Integer(1), newPassengers);
@@ -130,14 +102,8 @@ public class PassengerCarTest {
 
     }
 
-    /**
-     * Run the void alight(Integer) method test.
-     * 
-     * @throws TrainException
-     */
     @Test
-    public void testAlight_validAlightingPassengerGroups()
-	    throws TrainException {
+    public void testAlight_validAlightingPassengerGroups() throws TrainException {
 	Integer numberOfSeats = 20;
 	Integer newPassengers = 20;
 	Integer departingPassengersFirst = new Integer(5);
@@ -162,11 +128,6 @@ public class PassengerCarTest {
 	assertEquals("Passenger(7|20)", fixture.toString());
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testBoard_notNull() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(1));
@@ -179,11 +140,6 @@ public class PassengerCarTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testBoard_validPassengersMin() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(1));
@@ -197,11 +153,6 @@ public class PassengerCarTest {
 	assertEquals("1", result.toString());
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testBoard_zeroPassengersBoarding() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(1));
@@ -215,11 +166,6 @@ public class PassengerCarTest {
 	assertEquals("0", result.toString());
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testBoard_negativePassengers() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(1));
@@ -235,11 +181,6 @@ public class PassengerCarTest {
 	// add additional test code here
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testBoard_halfPassengerToSeats() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(10));
@@ -254,11 +195,6 @@ public class PassengerCarTest {
 	assertEquals("Passenger(5|10)", fixture.toString());
     }
 
-    /**
-     * Run the Integer board(Integer) method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testBoard_groupsOfPassengers() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(20));
@@ -284,11 +220,6 @@ public class PassengerCarTest {
 	assertEquals("Passenger(13|20)", fixture.toString());
     }
 
-    /**
-     * Run the Integer numberOfSeats() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testNumberOfSeats_notNull() throws TrainException {
 	Integer numberOfSeats = 10;
@@ -301,11 +232,6 @@ public class PassengerCarTest {
 	assertEquals("10", result.toString());
     }
 
-    /**
-     * Run the Integer numberOfSeats() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testNumberOfSeats_validNumberOfSeats() throws TrainException {
 	Integer numberOfSeats = 10;
@@ -319,19 +245,13 @@ public class PassengerCarTest {
 	assertEquals("Passenger(0|10)", fixture.toString());
     }
 
-    /**
-     * Run the Integer numberOfSeats() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testNumberOfSeats_invalidSeats() throws TrainException {
 	Integer numberOfSeats = -5;
 
 	try {
 	    @SuppressWarnings("unused")
-	    PassengerCar fixture = new PassengerCar(new Integer(1),
-		    numberOfSeats);
+	    PassengerCar fixture = new PassengerCar(new Integer(1), numberOfSeats);
 	    fail("Didn't catch exception");
 	} catch (TrainException expected) {
 	    println(expected + " Found: " + numberOfSeats);
@@ -339,11 +259,6 @@ public class PassengerCarTest {
 	// add additional test code here
     }
 
-    /**
-     * Run the PassengerCar(Integer,Integer) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testPassengerCar_tooManyPassenger() throws TrainException {
 	Integer grossWeight = new Integer(1);
@@ -359,11 +274,6 @@ public class PassengerCarTest {
 	assertEquals("5", leftOver.toString());
     }
 
-    /**
-     * Run the Integer numberOnBoard() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testNumberOnBoard_1() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(1));
@@ -381,11 +291,6 @@ public class PassengerCarTest {
 	assertEquals((byte) 0, result.byteValue());
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_noPassengersNoSeats() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(0));
@@ -396,11 +301,6 @@ public class PassengerCarTest {
 	assertEquals("Passenger(0|0)", result);
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_noPassengersValidSeats() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(10));
@@ -411,11 +311,6 @@ public class PassengerCarTest {
 	assertEquals("Passenger(0|10)", result);
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_validPassengersValidSeats() throws TrainException {
 	PassengerCar fixture = new PassengerCar(new Integer(1), new Integer(10));

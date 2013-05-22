@@ -48,11 +48,6 @@ public class LocomotiveTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_lowerPower() throws TrainException {
 	Integer grossWeight = new Integer(1);
@@ -65,11 +60,6 @@ public class LocomotiveTest {
 	assertTrue(result.power() == 100);
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_upperPower() throws TrainException {
 	Integer grossWeight = new Integer(9);
@@ -82,11 +72,6 @@ public class LocomotiveTest {
 	assertTrue(result.power() == 900);
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_lowerOutOfBounds() throws TrainException {
 	Integer grossWeight = new Integer(0);
@@ -100,11 +85,6 @@ public class LocomotiveTest {
 	}
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_upperOutOfBounds() throws TrainException {
 	Integer grossWeight = new Integer(10);
@@ -118,11 +98,6 @@ public class LocomotiveTest {
 	}
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_electricLocomotive() throws TrainException {
 	Integer grossWeight = new Integer(9);
@@ -152,11 +127,6 @@ public class LocomotiveTest {
 	assertEquals("Locomotive(9D)", result.toString());
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_steamLocomotive() throws TrainException {
 	Integer grossWeight = new Integer(9);
@@ -169,11 +139,6 @@ public class LocomotiveTest {
 	assertEquals("Locomotive(9S)", result.toString());
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_invalidLocomotive() throws TrainException {
 	Integer grossWeight = new Integer(1);
@@ -187,11 +152,6 @@ public class LocomotiveTest {
 	}
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_invalidGrossWeight() throws TrainException {
 	Integer grossWeight = new Integer(-1);
@@ -205,11 +165,6 @@ public class LocomotiveTest {
 	}
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_nullClassification() throws TrainException {
 	Integer grossWeight = new Integer(1);
@@ -225,11 +180,6 @@ public class LocomotiveTest {
 	}
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_nullGrossWeight() throws TrainException {
 	Integer grossWeight = null;
@@ -245,11 +195,6 @@ public class LocomotiveTest {
 	}
     }
 
-    /**
-     * Run the Locomotive(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testLocomotive_lowerCase() throws TrainException {
 	Integer grossWeight = new Integer(9);
@@ -262,11 +207,6 @@ public class LocomotiveTest {
 	assertEquals("Locomotive(9S)", result.toString());
     }
 
-    /**
-     * Run the Integer power() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testPower_getPower() throws TrainException {
 	Locomotive fixture = new Locomotive(new Integer(1), "1E");
@@ -277,11 +217,6 @@ public class LocomotiveTest {
 	assertTrue(result == 100);
     }
 
-    /**
-     * Run the Integer power() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testPower() throws TrainException {
 	Integer grossWeight = new Integer(1);
@@ -296,13 +231,8 @@ public class LocomotiveTest {
 	}
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
-    public void testToString_1() throws TrainException {
+    public void testToString_validToString() throws TrainException {
 	Locomotive fixture = new Locomotive(new Integer(1), "1E");
 
 	String result = fixture.toString();

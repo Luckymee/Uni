@@ -33,11 +33,6 @@ public class FreightCarTest {
 	System.out.println(line);
     }
 
-    /**
-     * Run the FreightCar(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testFreightCar_notNull() throws TrainException {
 	Integer grossWeight = new Integer(1);
@@ -48,12 +43,6 @@ public class FreightCarTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Run the FreightCar(Integer,String) constructor test.
-     * 
-     * @throws TrainException
-     * @throws NullPointerException
-     */
     @Test
     public void testFreightCar_nullGoodsType() throws TrainException {
 	Integer grossWeight = new Integer(1);
@@ -68,11 +57,6 @@ public class FreightCarTest {
 	}
     }
 
-    /**
-     * Run the String goodsType() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGoodsType_ValidGoods() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "D");
@@ -82,11 +66,6 @@ public class FreightCarTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Run the String goodsType() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGoodsType_validLowerCase() throws TrainException {
 	String goodsType = "d";
@@ -96,11 +75,6 @@ public class FreightCarTest {
 
     }
 
-    /**
-     * Run the String goodsType() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGoodsType_InvalidGoodsChar() throws TrainException {
 	String goodsType = "X";
@@ -113,11 +87,6 @@ public class FreightCarTest {
 	}
     }
 
-    /**
-     * Run the String goodsType() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testGoodsType_InvalidGoodsInt() throws TrainException {
 	String goodsType = "1";
@@ -130,11 +99,6 @@ public class FreightCarTest {
 	}
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_notNull() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "D");
@@ -144,11 +108,6 @@ public class FreightCarTest {
 	assertNotNull(result);
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_validDangerous() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "D");
@@ -160,11 +119,6 @@ public class FreightCarTest {
 	assertTrue(fixture.goodsType().equals("D"));
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_validRefrigerated() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "R");
@@ -176,11 +130,6 @@ public class FreightCarTest {
 	assertTrue(fixture.goodsType().equals("R"));
     }
 
-    /**
-     * Run the String toString() method test.
-     * 
-     * @throws TrainException
-     */
     @Test
     public void testToString_validGeneral() throws TrainException {
 	FreightCar fixture = new FreightCar(new Integer(1), "G");

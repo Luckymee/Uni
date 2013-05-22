@@ -779,21 +779,29 @@ public class Gui extends JFrame {
 	        	addPassenger.setEnabled(false);
 	        }
     		
-    		//get last car
-    		RollingStock currentCar = null;    		
+    		//see if train contains freight cars
+    		RollingStock currentCar = null;
+    		boolean hasFreghtCar = false;
+    		
     		for (int i = 0; i < trainGraphicList.size(); i++){
+    			
     			currentCar = Train.nextCarriage();
+    			
+    			if (currentCar instanceof FreightCar){
+    				hasFreghtCar = true;
+    			}
     		}
     		
     		//is last car freight car
-    		if (currentCar instanceof FreightCar){
+    		if (hasFreghtCar){
     			addPassenger.setEnabled(false);
-    		}
+    		} 
     		
     		//does train have carriages
     		if (Train.firstCarriage() != null){
     			removeCar.setEnabled(true);
     		}
+    		
     				
 	    }
     }

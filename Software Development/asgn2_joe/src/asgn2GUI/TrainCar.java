@@ -7,15 +7,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+/**
+ * Graphical representation of Train cars.
+ */
 public class TrainCar extends JPanel {
 
     // Black Magic UUID
     private static final long serialVersionUID = -7265743984197911846L;
 
+    /**
+     * Rolling stock type.
+     */
     protected static enum TrainTypes {
 	LOCOMOTIVE, PASSENGERCAR, FREIGHTCAR
     };
 
+    /**
+     * Freight Cargo type.
+     */
     protected static enum FreightTypes {
 	NONE, GENERAL_GOODS, DANGEROUS_GOODS, REFRIGERATED_GOODS
     }
@@ -35,18 +44,28 @@ public class TrainCar extends JPanel {
     private static Dimension trainSize;
     private static JLabel infoLabel;
 
-    public TrainCar(TrainTypes type, String label, FreightTypes locoType) {
+    /**
+     * Constructor for TrainCar.
+     * 
+     * @param type
+     *            TrainTypes: Enum of potential Rolling Stock.
+     * @param label
+     *            String: Textual representation of Rolling Stock.
+     * @param locoType
+     *            FreightTypes: Enum of potential freight cargo.
+     */
+    public TrainCar(TrainTypes type, String label, FreightTypes freightType) {
 	super();
 	trainSize = new Dimension(TRAIN_LENGTH, TRAIN_WIDTH);
 	infoLabel = new JLabel(label);
 
-	switch (type) {
+	switch (type) { // Select Rolling stock.
 	case LOCOMOTIVE:
 	    setBackground(TUNGSTEN);
 	    infoLabel.setForeground(Color.WHITE);
 	    break;
 	case FREIGHTCAR:
-	    switch (locoType) {
+	    switch (freightType) { // Select Freight type.
 	    case GENERAL_GOODS:
 		setBackground(FORREST_GREEN);
 		infoLabel.setForeground(Color.WHITE);
@@ -74,6 +93,5 @@ public class TrainCar extends JPanel {
 	infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	setPreferredSize(trainSize);
 	add(infoLabel);
-
     }
 }

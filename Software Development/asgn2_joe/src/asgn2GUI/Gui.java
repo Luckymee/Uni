@@ -65,7 +65,7 @@ public class Gui extends JFrame {
     private static final int LOGGER_ROWS = 5;
     private static final int LOGGER_COLUMNS = 5;
 
-    private static final TrainCar.LocomotiveTypes DEFAULT_TYPE = TrainCar.LocomotiveTypes.NONE;
+    private static final TrainCar.FreightTypes DEFAULT_TYPE = TrainCar.FreightTypes.NONE;
 
     // Primary JPanels
     private JPanel trainDrawArea;
@@ -91,7 +91,7 @@ public class Gui extends JFrame {
     private JTextField locomotiveWeight;
     private SpinnerModel powerSpinnerVariables;
     private JSpinner locomotivePower;
-    private JComboBox<String> locomotiveTypes;
+    private JComboBox<String> FreightTypes;
 
     // FreightCar inputs
     private JButton addFreightCar;
@@ -197,7 +197,7 @@ public class Gui extends JFrame {
 	JLabel locomtiveTypeLabel = null;
 	JLabel weightlabel = null;
 
-	locomotiveTypes = new JComboBox<String>(LOCOMOTIVE_TYPES);
+	FreightTypes = new JComboBox<String>(LOCOMOTIVE_TYPES);
 	locomotiveWeight = new JTextField(DEFAULT_COLUMNS);
 	locomotivePower = new JSpinner(powerSpinnerVariables);
 
@@ -205,7 +205,7 @@ public class Gui extends JFrame {
 	createLabel(powerLabel, "Power", locomotiveConstraints, panel, 0, 0, false);
 	createPowerSpinner(locomotivePower, locomotiveConstraints, panel, 0, 1);
 	createLabel(locomtiveTypeLabel, "Type", locomotiveConstraints, panel, 1, 0, false);
-	createComboBox(locomotiveTypes, locomotiveConstraints, panel, 1, 1);
+	createComboBox(FreightTypes, locomotiveConstraints, panel, 1, 1);
 	createLabel(weightlabel, "Gross Weight", locomotiveConstraints, panel, 2, 0, false);
 	createInput(locomotiveWeight, locomotiveConstraints, panel, 2, 1, false);
 
@@ -215,7 +215,7 @@ public class Gui extends JFrame {
 	    @Override
 	    public void actionPerformed(ActionEvent event) {
 		addLocomotive((Integer) (((SpinnerNumberModel) powerSpinnerVariables).getNumber()),
-			(String) locomotiveTypes.getSelectedItem(), locomotiveWeight.getText());
+			(String) FreightTypes.getSelectedItem(), locomotiveWeight.getText());
 	    }
 	});
 	locomotiveConstraints.fill = GridBagConstraints.BOTH;
@@ -250,7 +250,7 @@ public class Gui extends JFrame {
 	updateButtons();
 	trainCanMove();
 	TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.LOCOMOTIVE, locomotive.toString(),
-		TrainCar.LocomotiveTypes.NONE);
+		TrainCar.FreightTypes.NONE);
 	trainDrawArea.add(newTrainGraphics);
 	trainGraphicList.add(newTrainGraphics);
 	trainDrawArea.revalidate();
@@ -309,7 +309,7 @@ public class Gui extends JFrame {
 	    return false;
 	}
 
-	TrainCar.LocomotiveTypes goodsType = setFreightType(freightCar);
+	TrainCar.FreightTypes goodsType = setFreightType(freightCar);
 
 	updateButtons();
 	trainCanMove();
@@ -320,17 +320,17 @@ public class Gui extends JFrame {
 	return true;
     }
 
-    private TrainCar.LocomotiveTypes setFreightType(FreightCar freightCar) {
+    private TrainCar.FreightTypes setFreightType(FreightCar freightCar) {
 
-	TrainCar.LocomotiveTypes goodsType = DEFAULT_TYPE;
+	TrainCar.FreightTypes goodsType = DEFAULT_TYPE;
 
 	switch (freightCar.goodsType()) {
 	case "G":
-	    return goodsType = TrainCar.LocomotiveTypes.GENERAL_GOODS;
+	    return goodsType = TrainCar.FreightTypes.GENERAL_GOODS;
 	case "D":
-	    return goodsType = TrainCar.LocomotiveTypes.DANGEROUS_GOODS;
+	    return goodsType = TrainCar.FreightTypes.DANGEROUS_GOODS;
 	case "R":
-	    return goodsType = TrainCar.LocomotiveTypes.REFRIGERATED_GOODS;
+	    return goodsType = TrainCar.FreightTypes.REFRIGERATED_GOODS;
 	}
 
 	return goodsType;

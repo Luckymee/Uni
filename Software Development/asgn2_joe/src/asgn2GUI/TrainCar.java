@@ -16,7 +16,7 @@ public class TrainCar extends JPanel {
 	LOCOMOTIVE, PASSENGERCAR, FREIGHTCAR
     };
 
-    protected static enum LocomotiveTypes {
+    protected static enum FreightTypes {
 	NONE, GENERAL_GOODS, DANGEROUS_GOODS, REFRIGERATED_GOODS
     }
 
@@ -35,7 +35,7 @@ public class TrainCar extends JPanel {
     private static Dimension trainSize;
     private static JLabel infoLabel;
 
-    public TrainCar(TrainTypes type, String label, LocomotiveTypes locoType) {
+    public TrainCar(TrainTypes type, String label, FreightTypes locoType) {
 	super();
 	trainSize = new Dimension(TRAIN_LENGTH, TRAIN_WIDTH);
 	infoLabel = new JLabel(label);

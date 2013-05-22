@@ -102,6 +102,9 @@ public class Gui extends JFrame {
     private JButton addPassenger;
     private JTextField passengerCarWeight;
     private JTextField numberOfPassengers;
+    
+    //removeCar inputs
+    private JButton removeCar;
 
     // Adaptive Text Fields -- Change from input
     private JLabel canMoveLabel;
@@ -179,6 +182,8 @@ public class Gui extends JFrame {
 		// Set variables
 		Train = new DepartingTrain();
 		trainGraphicList = new ArrayList<TrainCar>();
+		updateButtons();
+		
     }
 
     private void locomotivePanelSetup(JPanel panel) {
@@ -242,7 +247,8 @@ public class Gui extends JFrame {
 		    errorLogger(errorOutput + "\n");
 		    return false;
 		}
-	
+		
+		updateButtons();
 		trainCanMove();
 		TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.LOCOMOTIVE, locomotive.toString(), TrainCar.LocomotiveTypes.NONE);
 		trainDrawArea.add(newTrainGraphics);
@@ -304,7 +310,8 @@ public class Gui extends JFrame {
 		}
 	
 		TrainCar.LocomotiveTypes goodsType = setFreightType(freightCar);
-	
+		
+		updateButtons();
 		trainCanMove();
 		TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.FREIGHTCAR, freightCar.toString(), goodsType);
 		trainDrawArea.add(newTrainGraphics);
@@ -383,6 +390,7 @@ public class Gui extends JFrame {
 		    return false;
 		}
 		
+		updateButtons();
 		updatePassengerInfo();
 		trainCanMove();
 		TrainCar newTrainGraphics = new TrainCar(TrainCar.TrainTypes.PASSENGERCAR, passengerCar.toString(), DEFAULT_TYPE);
@@ -401,7 +409,8 @@ public class Gui extends JFrame {
 		    errorLogger(errorOutput + "\n");
 		    return false;
 		}
-	
+		
+		updateButtons();
 		int lastCarriage = trainGraphicList.size() - 1;
 		TrainCar removeCarriage = trainGraphicList.get(lastCarriage);
 		trainDrawArea.remove(removeCarriage);
@@ -436,7 +445,8 @@ public class Gui extends JFrame {
 		if (tempAmount > 0) { // Number of passengers unable to board
 		    errorLogger("Passengers unable to board: " + tempAmount + "\n");
 		}
-	
+		
+		updateButtons();
 		addingPassengers = true;
 		updatePassengerInfo();
 	
@@ -534,7 +544,7 @@ public class Gui extends JFrame {
     	createFreightCarArea(internalConstraints);
     	
     	//Create button
-    	JButton removeCar = new JButton("Remove Last Car");
+    	removeCar = new JButton("Remove Last Car");
     	removeCar.addActionListener(new ActionListener() {
     	    @Override
     	    // Must be public
@@ -744,6 +754,48 @@ public class Gui extends JFrame {
 	
 		logger.append(newLog);
 		numberOfLogs++;
+    }
+    
+    private void updateButtons(){
+    	
+    	if (Train.numberOnBoard() > 0){
+    		addLocomotive.setEnabled(false);
+    		addPassenger.setEnabled(false);
+    		addFreightCar.setEnabled(false);
+    		removeCar.setEnabled(false);
+    	} else { 
+    		
+    		//no cars
+    		removeCar.setEnabled(false);
+    		
+    		//is first carriage locomotive
+    		if (Train.firstCarriage() instanceof Locomotive){
+    			addLocomotive.setEnabled(false);
+    			addFreightCar.setEnabled(true);
+    			addPassenger.setEnabled(true);
+	        } else {
+	        	addLocomotive.setEnabled(true);
+	        	addFreightCar.setEnabled(false);
+	        	addPassenger.setEnabled(false);
+	        }
+    		
+    		//get last car
+    		RollingStock currentCar = null;    		
+    		for (int i = 0; i < trainGraphicList.size(); i++){
+    			currentCar = Train.nextCarriage();
+    		}
+    		
+    		//is last car freight car
+    		if (currentCar instanceof FreightCar){
+    			addPassenger.setEnabled(false);
+    		}
+    		
+    		//does train have carriages
+    		if (Train.firstCarriage() != null){
+    			removeCar.setEnabled(true);
+    		}
+    				
+	    }
     }
     
 

@@ -14,7 +14,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ FreightCarTest.class, PassengerCarTest.class, LocomotiveTest.class, RollingStockTest.class,
 	DepartingTrainTest.class })
-public class TestAll {
+public class AllTest {
 
     /**
      * Launch the test.
@@ -24,6 +24,6 @@ public class TestAll {
      * 
      */
     public static void main(String[] args) {
-	JUnitCore.runClasses(new Class[] { TestAll.class });
+	JUnitCore.runClasses(new Class[] { AllTest.class });
     }
 }

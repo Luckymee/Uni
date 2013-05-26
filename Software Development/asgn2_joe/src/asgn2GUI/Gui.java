@@ -73,6 +73,7 @@ public class Gui extends JFrame {
 	private static final int DEFAULT_COLUMNS = 3;
 	private static final int LOGGER_ROWS = 5;
 	private static final int LOGGER_COLUMNS = 5;
+	private static final int MAX_LOGS = 10;
 
 	private static final TrainCar.FreightTypes DEFAULT_TYPE = TrainCar.FreightTypes.NONE;
 
@@ -143,6 +144,7 @@ public class Gui extends JFrame {
 		GridBagConstraints constraints = new GridBagConstraints();
 		GridBagConstraints internalConstraints = new GridBagConstraints();
 		Dimension defaultDimensions = new Dimension(300, 200);
+		Dimension buildAreaDimensions = new Dimension(300, 100);
 
 		// Initializing panels
 		informationPanel = new JPanel();
@@ -157,9 +159,9 @@ public class Gui extends JFrame {
 
 		// setting sizes
 		informationPanel.setPreferredSize(defaultDimensions);
-		locomotiveArea.setPreferredSize(new Dimension(300, 100));
-		passengerCarArea.setPreferredSize(new Dimension(300, 100));
-		freightCarArea.setPreferredSize(new Dimension(300, 100));
+		locomotiveArea.setPreferredSize(buildAreaDimensions);
+		passengerCarArea.setPreferredSize(buildAreaDimensions);
+		freightCarArea.setPreferredSize(buildAreaDimensions);
 		passengerInfo.setPreferredSize(defaultDimensions);
 
 		// setting layouts
@@ -477,7 +479,6 @@ public class Gui extends JFrame {
 			tempWeight = Integer.parseInt(inputedWeight);
 		} catch (Exception expected) {
 			errorLogger("Invalid Input" + "\n");
-			// TODO test for type
 			return false;
 		}
 
@@ -900,7 +901,6 @@ public class Gui extends JFrame {
 		passengerInfo.add(addPassengers, constraints);
 	}
 
-	// Logger Panel TODO - This isn't right
 	/**
 	 * Creates the logger area
 	 * 
@@ -941,13 +941,14 @@ public class Gui extends JFrame {
 	 */
 	private void createCanMoveArea(GridBagConstraints constraints) {
 
+		Dimension statusDimensions = new Dimension(200, 100);
+
 		// Can move label
 		canMoveLabel = new JLabel("Train Can Move");
 		canMoveLabel.setForeground(Color.WHITE);
 		canMoveLabel.setOpaque(true);
 		canMoveLabel.setBackground(TRAFFIC_GREEN);
-		// TODO Magic Numbers
-		canMoveLabel.setPreferredSize(new Dimension(200, 100));
+		canMoveLabel.setPreferredSize(statusDimensions);
 		canMoveLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		canMoveLabel.setBorder(BorderFactory
 				.createBevelBorder(BevelBorder.RAISED));
@@ -967,8 +968,7 @@ public class Gui extends JFrame {
 		seatsAvalailableLabel.setForeground(Color.WHITE);
 		seatsAvalailableLabel.setOpaque(true);
 		seatsAvalailableLabel.setBackground(TRAFFIC_RED);
-		// TODO Magic Numbers
-		seatsAvalailableLabel.setPreferredSize(new Dimension(200, 100));
+		seatsAvalailableLabel.setPreferredSize(statusDimensions);
 		seatsAvalailableLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		seatsAvalailableLabel.setBorder(BorderFactory
 				.createBevelBorder(BevelBorder.RAISED));
@@ -1025,8 +1025,7 @@ public class Gui extends JFrame {
 	 */
 	private void errorLogger(String newLog) {
 
-		// TODO Magic numbers
-		if (numberOfLogs >= 10) {
+		if (numberOfLogs >= MAX_LOGS) {
 			logger.setText("");
 			numberOfLogs = 0;
 		}
@@ -1041,7 +1040,7 @@ public class Gui extends JFrame {
 	 */
 	private void updateButtons() {
 
-		if (Train.numberOnBoard() > 0) {
+		if (Train.numberOnBoard() > MIN_PASSENGERS) {
 			addLocomotive.setEnabled(false);
 			addPassenger.setEnabled(false);
 			addFreightCar.setEnabled(false);

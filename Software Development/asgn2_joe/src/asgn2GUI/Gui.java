@@ -600,10 +600,8 @@ public class Gui extends JFrame {
 							TrainCar.TrainTypes.PASSENGERCAR,
 							currentCar.toString(),
 							DEFAULT_TYPE);
-					trainDrawArea.add(newTrainGraphics, i);// replace removed
-															// graphic
-					trainGraphicList.add(i, newTrainGraphics);// replace removed
-																// car
+					trainDrawArea.add(newTrainGraphics, i);// replace removed graphic
+					trainGraphicList.add(i, newTrainGraphics);// replace removed car
 				}
 				currentCar = Train.nextCarriage();
 			}

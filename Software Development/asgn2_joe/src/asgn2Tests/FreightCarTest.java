@@ -23,153 +23,167 @@ import asgn2RollingStock.FreightCar;
  */
 public class FreightCarTest {
 
-    /**
-     * Simplify Java println();
-     * 
-     * @param line
-     *            A valid String for printing.
-     */
-    private static void println(String line) {
-	System.out.println(line);
-    }
+	/**
+	 * Simplify Java println();
+	 * 
+	 * @param line
+	 *            A valid String for printing.
+	 */
+	private static void println(String line) {
 
-    @Test
-    public void testFreightCar_notNull() throws TrainException {
-	Integer grossWeight = new Integer(1);
-	String goodsType = "D";
-
-	FreightCar result = new FreightCar(grossWeight, goodsType);
-
-	assertNotNull(result);
-    }
-
-    @Test
-    public void testFreightCar_nullGoodsType() throws TrainException {
-	Integer grossWeight = new Integer(1);
-	String goodsType = null;
-
-	try {
-	    @SuppressWarnings("unused")
-	    FreightCar result = new FreightCar(grossWeight, goodsType);
-	} catch (NullPointerException expected) {
-	    assertNull(goodsType);
-	    println(expected.toString() + " Goods Type: " + goodsType);
+		System.out.println(line);
 	}
-    }
 
-    @Test
-    public void testGoodsType_ValidGoods() throws TrainException {
-	FreightCar fixture = new FreightCar(new Integer(1), "D");
+	@Test
+	public void testFreightCar_notNull() throws TrainException {
 
-	String result = fixture.goodsType();
+		Integer grossWeight = new Integer(1);
+		String goodsType = "D";
 
-	assertNotNull(result);
-    }
+		FreightCar result = new FreightCar(grossWeight, goodsType);
 
-    @Test
-    public void testGoodsType_validLowerCase() throws TrainException {
-	String goodsType = "d";
-	FreightCar fixture = new FreightCar(new Integer(1), goodsType);
-
-	assertEquals("Freight(D)", fixture.toString());
-
-    }
-
-    @Test
-    public void testGoodsType_InvalidGoodsChar() throws TrainException {
-	String goodsType = "X";
-	try {
-	    @SuppressWarnings("unused")
-	    FreightCar fixture = new FreightCar(new Integer(1), goodsType);
-	    fail("Didn't catch exception");
-	} catch (TrainException expected) {
-	    println(expected.toString() + " Found: " + goodsType);
+		assertNotNull(result);
 	}
-    }
 
-    @Test
-    public void testGoodsType_InvalidGoodsInt() throws TrainException {
-	String goodsType = "1";
-	try {
-	    @SuppressWarnings("unused")
-	    FreightCar fixture = new FreightCar(new Integer(1), goodsType);
-	    fail("Didn't catch exception");
-	} catch (TrainException expected) {
-	    println(expected.toString() + " Found: " + goodsType);
+	@Test
+	public void testFreightCar_nullGoodsType() throws TrainException {
+
+		Integer grossWeight = new Integer(1);
+		String goodsType = null;
+
+		try {
+			@SuppressWarnings("unused")
+			FreightCar result = new FreightCar(grossWeight, goodsType);
+		} catch (NullPointerException expected) {
+			assertNull(goodsType);
+			println(expected.toString() + " Goods Type: " + goodsType);
+		}
 	}
-    }
 
-    @Test
-    public void testToString_notNull() throws TrainException {
-	FreightCar fixture = new FreightCar(new Integer(1), "D");
+	@Test
+	public void testGoodsType_ValidGoods() throws TrainException {
 
-	String result = fixture.toString();
+		FreightCar fixture = new FreightCar(new Integer(1), "D");
 
-	assertNotNull(result);
-    }
+		String result = fixture.goodsType();
 
-    @Test
-    public void testToString_validDangerous() throws TrainException {
-	FreightCar fixture = new FreightCar(new Integer(1), "D");
+		assertNotNull(result);
+	}
 
-	String result = fixture.toString();
+	@Test
+	public void testGoodsType_validLowerCase() throws TrainException {
 
-	assertNotNull(result);
-	assertEquals("Freight(D)", result);
-	assertTrue(fixture.goodsType().equals("D"));
-    }
+		String goodsType = "d";
+		FreightCar fixture = new FreightCar(new Integer(1), goodsType);
 
-    @Test
-    public void testToString_validRefrigerated() throws TrainException {
-	FreightCar fixture = new FreightCar(new Integer(1), "R");
+		assertEquals("Freight(D)", fixture.toString());
 
-	String result = fixture.toString();
+	}
 
-	assertNotNull(result);
-	assertEquals("Freight(R)", result);
-	assertTrue(fixture.goodsType().equals("R"));
-    }
+	@Test
+	public void testGoodsType_InvalidGoodsChar() throws TrainException {
 
-    @Test
-    public void testToString_validGeneral() throws TrainException {
-	FreightCar fixture = new FreightCar(new Integer(1), "G");
+		String goodsType = "X";
+		try {
+			@SuppressWarnings("unused")
+			FreightCar fixture = new FreightCar(new Integer(1), goodsType);
+			fail("Didn't catch exception");
+		} catch (TrainException expected) {
+			println(expected.toString() + " Found: " + goodsType);
+		}
+	}
 
-	String result = fixture.toString();
+	@Test
+	public void testGoodsType_InvalidGoodsInt() throws TrainException {
 
-	assertNotNull(result);
-	assertEquals("Freight(G)", result);
-	assertTrue(fixture.goodsType().equals("G"));
-    }
+		String goodsType = "1";
+		try {
+			@SuppressWarnings("unused")
+			FreightCar fixture = new FreightCar(new Integer(1), goodsType);
+			fail("Didn't catch exception");
+		} catch (TrainException expected) {
+			println(expected.toString() + " Found: " + goodsType);
+		}
+	}
 
-    /**
-     * Perform pre-test initialization.
-     * 
-     * @throws TrainException
-     *             if the initialization fails for some reason
-     */
-    @Before
-    public void setUp() throws TrainException {
-	// add additional set up code here
-    }
+	@Test
+	public void testToString_notNull() throws TrainException {
 
-    /**
-     * Perform post-test clean-up.
-     * 
-     * @throws TrainException
-     *             if the clean-up fails for some reason
-     */
-    @After
-    public void tearDown() throws TrainException {
-	// Add additional tear down code here
-    }
+		FreightCar fixture = new FreightCar(new Integer(1), "D");
 
-    /**
-     * Launch the test.
-     * 
-     * @param args
-     *            the command line arguments
-     */
-    public static void main(String[] args) {
-	new org.junit.runner.JUnitCore().run(FreightCarTest.class);
-    }
+		String result = fixture.toString();
+
+		assertNotNull(result);
+	}
+
+	@Test
+	public void testToString_validDangerous() throws TrainException {
+
+		FreightCar fixture = new FreightCar(new Integer(1), "D");
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+		assertEquals("Freight(D)", result);
+		assertTrue(fixture.goodsType().equals("D"));
+	}
+
+	@Test
+	public void testToString_validRefrigerated() throws TrainException {
+
+		FreightCar fixture = new FreightCar(new Integer(1), "R");
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+		assertEquals("Freight(R)", result);
+		assertTrue(fixture.goodsType().equals("R"));
+	}
+
+	@Test
+	public void testToString_validGeneral() throws TrainException {
+
+		FreightCar fixture = new FreightCar(new Integer(1), "G");
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+		assertEquals("Freight(G)", result);
+		assertTrue(fixture.goodsType().equals("G"));
+	}
+
+	/**
+	 * Perform pre-test initialization.
+	 * 
+	 * @throws TrainException
+	 *             if the initialization fails for some reason
+	 */
+	@Before
+	public void setUp() throws TrainException {
+
+		// add additional set up code here
+	}
+
+	/**
+	 * Perform post-test clean-up.
+	 * 
+	 * @throws TrainException
+	 *             if the clean-up fails for some reason
+	 */
+	@After
+	public void tearDown() throws TrainException {
+
+		// Add additional tear down code here
+	}
+
+	/**
+	 * Launch the test.
+	 * 
+	 * @param args
+	 *            the command line arguments
+	 */
+	public static void main(String[] args) {
+
+		new org.junit.runner.JUnitCore().run(FreightCarTest.class);
+	}
 }

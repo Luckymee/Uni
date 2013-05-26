@@ -24,222 +24,250 @@ import asgn2RollingStock.RollingStock;
  * @version $Revision: 1.0 $
  */
 public class RollingStockTest {
-    private static final int VALID_TEST_SEATS = 10;
+	private static final int VALID_TEST_SEATS = 10;
 
-    /**
-     * Simplify Java println();
-     * 
-     * @param line
-     *            A valid String for printing.
-     */
-    private static void println(String line) {
-	System.out.println(line);
-    }
+	/**
+	 * Simplify Java println();
+	 * 
+	 * @param line
+	 *            A valid String for printing.
+	 */
+	private static void println(String line) {
 
-    @Test
-    public void testGetGrossWeight_FreightCarNotNull() throws TrainException {
-	RollingStock fixture = new FreightCar(new Integer(100), "G");
-
-	Integer result = fixture.getGrossWeight();
-
-	assertNotNull(result);
-    }
-
-    @Test
-    public void testGetGrossWeight_FreightCarValid() throws TrainException {
-	String goodsCode = "G";
-	RollingStock fixture = new FreightCar(new Integer(100), goodsCode);
-
-	Integer result = fixture.getGrossWeight();
-
-	assertNotNull(result);
-	assertTrue(result == 100);
-    }
-
-    @Test
-    public void testGetGrossWeight_LocomotiveNotNull() throws TrainException {
-	RollingStock fixture = new Locomotive(new Integer(100), "1E");
-
-	Integer result = fixture.getGrossWeight();
-
-	assertNotNull(result);
-    }
-
-    @Test
-    public void testGetGrossWeight_LocomotiveValid() throws TrainException {
-	RollingStock fixture = new FreightCar(new Integer(100), "G");
-
-	Integer result = fixture.getGrossWeight();
-
-	assertNotNull(result);
-	assertTrue(result == 100);
-    }
-
-    @Test
-    public void testGetGrossWeight_PassengerCarNotNull() throws TrainException {
-	Integer numOfSeats = 10;
-	RollingStock fixture = new PassengerCar(new Integer(100), numOfSeats);
-
-	Integer result = fixture.getGrossWeight();
-
-	assertNotNull(result);
-    }
-
-    @Test
-    public void testGetGrossWeight_PassengerCarValid() throws TrainException {
-	Integer numOfSeats = 10;
-	RollingStock fixture = new PassengerCar(new Integer(100), numOfSeats);
-
-	Integer result = fixture.getGrossWeight();
-
-	assertNotNull(result);
-	assertTrue(result == 100);
-    }
-
-    @Test
-    public void testGetGrossWeight_nullGrossWeight() throws TrainException {
-	String goodsCode = "G";
-	Integer grossWeight = null;
-
-	try {
-	    @SuppressWarnings("unused")
-	    RollingStock fixture = new FreightCar(grossWeight, goodsCode);
-	    fail("Didn't catch exception.");
-	} catch (NullPointerException expected) {
-	    assertNull(grossWeight);
-	    println(expected.toString() + " Gross Weight: " + grossWeight);
+		System.out.println(line);
 	}
-    }
 
-    @Test
-    public void testToString_LocomotiveNotNull() throws TrainException {
-	RollingStock fixture = new Locomotive(new Integer(100), "1E");
+	@Test
+	public void testGetGrossWeight_FreightCarNotNull() throws TrainException {
 
-	String result = fixture.toString();
+		RollingStock fixture = new FreightCar(new Integer(100), "G");
 
-	assertNotNull(result);
-    }
+		Integer result = fixture.getGrossWeight();
 
-    @Test
-    public void testToString_FreightCarNotNull() throws TrainException {
-	RollingStock fixture = new FreightCar(new Integer(100), "G");
+		assertNotNull(result);
+	}
 
-	String result = fixture.toString();
+	@Test
+	public void testGetGrossWeight_FreightCarValid() throws TrainException {
 
-	assertNotNull(result);
-    }
+		String goodsCode = "G";
+		RollingStock fixture = new FreightCar(new Integer(100), goodsCode);
 
-    @Test
-    public void testToString_PassengerCarNotNull() throws TrainException {
-	RollingStock fixture = new PassengerCar(new Integer(100), VALID_TEST_SEATS);
+		Integer result = fixture.getGrossWeight();
 
-	String result = fixture.toString();
+		assertNotNull(result);
+		assertTrue(result == 100);
+	}
 
-	assertNotNull(result);
-    }
+	@Test
+	public void testGetGrossWeight_LocomotiveNotNull() throws TrainException {
 
-    @Test
-    public void testToString_LocomotiveValid() throws TrainException {
-	RollingStock fixture = new Locomotive(new Integer(100), "1E");
+		RollingStock fixture = new Locomotive(new Integer(100), "1E");
 
-	String result = fixture.toString();
+		Integer result = fixture.getGrossWeight();
 
-	assertNotNull(result);
-	assertEquals("Locomotive(1E)", result);
-    }
+		assertNotNull(result);
+	}
 
-    @Test
-    public void testToString_FreightCarValid() throws TrainException {
-	String goodsCode = "G";
-	RollingStock fixture = new FreightCar(new Integer(100), goodsCode);
+	@Test
+	public void testGetGrossWeight_LocomotiveValid() throws TrainException {
 
-	String result = fixture.toString();
+		RollingStock fixture = new FreightCar(new Integer(100), "G");
 
-	assertNotNull(result);
-	assertEquals("Freight(" + goodsCode + ")", result);
-    }
+		Integer result = fixture.getGrossWeight();
 
-    @Test
-    public void testToString_PassengerCarValid() throws TrainException {
-	RollingStock fixture = new PassengerCar(new Integer(100), VALID_TEST_SEATS);
+		assertNotNull(result);
+		assertTrue(result == 100);
+	}
 
-	String result = fixture.toString();
+	@Test
+	public void testGetGrossWeight_PassengerCarNotNull() throws TrainException {
 
-	assertNotNull(result);
-	assertEquals("Passenger(0|10)", result);
-    }
+		Integer numOfSeats = 10;
+		RollingStock fixture = new PassengerCar(new Integer(100), numOfSeats);
 
-    @Test
-    public void testToString_PassengerLowerBound() throws TrainException {
-	RollingStock fixture = new PassengerCar(new Integer(100), 1);
+		Integer result = fixture.getGrossWeight();
 
-	String result = fixture.toString();
+		assertNotNull(result);
+	}
 
-	assertNotNull(result);
-	assertEquals("Passenger(0|1)", result);
-    }
+	@Test
+	public void testGetGrossWeight_PassengerCarValid() throws TrainException {
 
-    @Test
-    public void testToString_noPassengers() throws TrainException {
-	RollingStock fixture = new PassengerCar(new Integer(100), 0);
+		Integer numOfSeats = 10;
+		RollingStock fixture = new PassengerCar(new Integer(100), numOfSeats);
 
-	String result = fixture.toString();
+		Integer result = fixture.getGrossWeight();
 
-	assertNotNull(result);
-	assertEquals("Passenger(0|0)", result);
-    }
+		assertNotNull(result);
+		assertTrue(result == 100);
+	}
 
-    @Test
-    public void testRollingStock_LocomotiveConstructorNotNull() throws TrainException {
-	RollingStock rollingStock = new Locomotive(new Integer(100), "1E");
+	@Test
+	public void testGetGrossWeight_nullGrossWeight() throws TrainException {
 
-	assertNotNull(rollingStock);
-    }
+		String goodsCode = "G";
+		Integer grossWeight = null;
 
-    @Test
-    public void testRollingStock_PassengerCarConstructorNotNull() throws TrainException {
-	RollingStock rollingStock = new PassengerCar(new Integer(100), VALID_TEST_SEATS);
+		try {
+			@SuppressWarnings("unused")
+			RollingStock fixture = new FreightCar(grossWeight, goodsCode);
+			fail("Didn't catch exception.");
+		} catch (NullPointerException expected) {
+			assertNull(grossWeight);
+			println(expected.toString() + " Gross Weight: " + grossWeight);
+		}
+	}
 
-	assertNotNull(rollingStock);
-    }
+	@Test
+	public void testToString_LocomotiveNotNull() throws TrainException {
 
-    @Test
-    public void testRollingStock_FreightCarConstructorNotNull() throws TrainException {
-	RollingStock rollingStock = new FreightCar(new Integer(100), "G");
+		RollingStock fixture = new Locomotive(new Integer(100), "1E");
 
-	assertNotNull(rollingStock);
-    }
+		String result = fixture.toString();
 
-    /**
-     * Perform pre-test initialization.
-     * 
-     * @throws TrainException
-     *             if the initialization fails for some reason
-     */
-    @Before
-    public void setUp() throws TrainException {
-	// add additional set up code here
-    }
+		assertNotNull(result);
+	}
 
-    /**
-     * Perform post-test clean-up.
-     * 
-     * @throws TrainException
-     *             if the clean-up fails for some reason
-     */
-    @After
-    public void tearDown() throws TrainException {
-	// Add additional tear down code here
-    }
+	@Test
+	public void testToString_FreightCarNotNull() throws TrainException {
 
-    /**
-     * Launch the test.
-     * 
-     * @param args
-     *            the command line arguments
-     */
-    public static void main(String[] args) {
-	new org.junit.runner.JUnitCore().run(RollingStockTest.class);
-    }
+		RollingStock fixture = new FreightCar(new Integer(100), "G");
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+	}
+
+	@Test
+	public void testToString_PassengerCarNotNull() throws TrainException {
+
+		RollingStock fixture = new PassengerCar(new Integer(100),
+				VALID_TEST_SEATS);
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+	}
+
+	@Test
+	public void testToString_LocomotiveValid() throws TrainException {
+
+		RollingStock fixture = new Locomotive(new Integer(100), "1E");
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+		assertEquals("Locomotive(1E)", result);
+	}
+
+	@Test
+	public void testToString_FreightCarValid() throws TrainException {
+
+		String goodsCode = "G";
+		RollingStock fixture = new FreightCar(new Integer(100), goodsCode);
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+		assertEquals("Freight(" + goodsCode + ")", result);
+	}
+
+	@Test
+	public void testToString_PassengerCarValid() throws TrainException {
+
+		RollingStock fixture = new PassengerCar(new Integer(100),
+				VALID_TEST_SEATS);
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+		assertEquals("Passenger(0|10)", result);
+	}
+
+	@Test
+	public void testToString_PassengerLowerBound() throws TrainException {
+
+		RollingStock fixture = new PassengerCar(new Integer(100), 1);
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+		assertEquals("Passenger(0|1)", result);
+	}
+
+	@Test
+	public void testToString_noPassengers() throws TrainException {
+
+		RollingStock fixture = new PassengerCar(new Integer(100), 0);
+
+		String result = fixture.toString();
+
+		assertNotNull(result);
+		assertEquals("Passenger(0|0)", result);
+	}
+
+	@Test
+	public void testRollingStock_LocomotiveConstructorNotNull()
+			throws TrainException {
+
+		RollingStock rollingStock = new Locomotive(new Integer(100), "1E");
+
+		assertNotNull(rollingStock);
+	}
+
+	@Test
+	public void testRollingStock_PassengerCarConstructorNotNull()
+			throws TrainException {
+
+		RollingStock rollingStock = new PassengerCar(new Integer(100),
+				VALID_TEST_SEATS);
+
+		assertNotNull(rollingStock);
+	}
+
+	@Test
+	public void testRollingStock_FreightCarConstructorNotNull()
+			throws TrainException {
+
+		RollingStock rollingStock = new FreightCar(new Integer(100), "G");
+
+		assertNotNull(rollingStock);
+	}
+
+	/**
+	 * Perform pre-test initialization.
+	 * 
+	 * @throws TrainException
+	 *             if the initialization fails for some reason
+	 */
+	@Before
+	public void setUp() throws TrainException {
+
+		// add additional set up code here
+	}
+
+	/**
+	 * Perform post-test clean-up.
+	 * 
+	 * @throws TrainException
+	 *             if the clean-up fails for some reason
+	 */
+	@After
+	public void tearDown() throws TrainException {
+
+		// Add additional tear down code here
+	}
+
+	/**
+	 * Launch the test.
+	 * 
+	 * @param args
+	 *            the command line arguments
+	 */
+	public static void main(String[] args) {
+
+		new org.junit.runner.JUnitCore().run(RollingStockTest.class);
+	}
 
 }

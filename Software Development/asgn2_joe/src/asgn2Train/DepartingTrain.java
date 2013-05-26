@@ -25,9 +25,15 @@ public class DepartingTrain {
 
 	private List<RollingStock> train;
 	private Locomotive locomotive;
-	private int currentCarNum; // tracks the last train carriage that was called
-								// with firstCarriage/nextCarriage
-
+	private int currentCarNum; 	// tracks the last train carriage that was called
+					// with firstCarriage/nextCarriage
+	/**
+	 * Departing Train constructor.
+	 * Constructs a train object containing no carriages.
+	 * 
+	 * Sets currentCarNum to indicated NO_ROLLINGSTOCK
+	 * 
+	 */
 	public DepartingTrain() {
 
 		this.train = new ArrayList<RollingStock>();
@@ -66,11 +72,10 @@ public class DepartingTrain {
 	 */
 	public RollingStock nextCarriage() {
 
-		if (currentCarNum++ == NO_ROLLINGSTOCK) { // Return locomotive if no
-													// other carriage
+		if (currentCarNum++ == NO_ROLLINGSTOCK) { // Return locomotive if no other carriage
 			return locomotive;
-		} else { // Conditional operation, returning null no new carriage
-					// exists, or the nextCarriage if one does.
+		} else {	// Conditional operation, returning null no new carriage
+		    		// exists, or the nextCarriage if one does.
 			return currentCarNum > train.size() ? null : train
 					.get(currentCarNum - 1);
 		}
@@ -87,8 +92,7 @@ public class DepartingTrain {
 		Integer numberOnBoard = 0;
 
 		for (RollingStock rollingStock : train) { // Iterate through train
-			if (rollingStock instanceof PassengerCar) { // Determine if
-														// Passenger Car
+			if (rollingStock instanceof PassengerCar) { // Determine if Passenger Car
 				numberOnBoard += ((PassengerCar) rollingStock).numberOnBoard();
 			}
 		}
@@ -107,8 +111,7 @@ public class DepartingTrain {
 		Integer totalSeats = 0;
 
 		for (RollingStock rollingStock : train) { // Iterate through train
-			if (rollingStock instanceof PassengerCar) { // Determine if
-														// Passenger Car
+			if (rollingStock instanceof PassengerCar) { // Determine if Passenger Car
 				totalSeats += ((PassengerCar) rollingStock).numberOfSeats();
 			}
 		}
@@ -136,8 +139,7 @@ public class DepartingTrain {
 			Integer passengersToBoard = newPassengers;
 
 			for (RollingStock rollingStock : train) { // Iterate through train
-				if (rollingStock instanceof PassengerCar) { // Found passenger
-															// car
+				if (rollingStock instanceof PassengerCar) { // Found passenger car
 					if (((PassengerCar) rollingStock).numberOnBoard() < ((PassengerCar) rollingStock)
 							.numberOfSeats()) {
 						// Number on board < Number of seats

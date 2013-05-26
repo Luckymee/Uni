@@ -20,7 +20,7 @@ import asgn2RollingStock.RollingStock;
  * The class <code>RollingStockTest</code> contains tests for the class
  * <code>{@link RollingStock}</code>.
  * 
- * @author Connor
+ * @author Connor Livsey - n8510873
  * @version $Revision: 1.0 $
  */
 public class RollingStockTest {

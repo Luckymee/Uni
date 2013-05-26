@@ -18,7 +18,7 @@ import asgn2RollingStock.Locomotive;
  * <code>{@link Locomotive}</code>.
  * 
  * 
- * @author Connor
+ * @author Connor Livsey - n8510873
  * @version $Revision: 1.0 $
  */
 public class LocomotiveTest {

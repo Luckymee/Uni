@@ -244,7 +244,6 @@ public class RollingStockTest {
 	@Before
 	public void setUp() throws TrainException {
 
-		// add additional set up code here
 	}
 
 	/**
@@ -256,7 +255,6 @@ public class RollingStockTest {
 	@After
 	public void tearDown() throws TrainException {
 
-		// Add additional tear down code here
 	}
 
 	/**

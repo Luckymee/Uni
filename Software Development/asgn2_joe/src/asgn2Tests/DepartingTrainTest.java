@@ -1362,13 +1362,10 @@ public class DepartingTrainTest {
 	 * 
 	 * @throws Exception
 	 *             if the initialization fails for some reason
-	 * 
-	 * 
 	 */
 	@Before
 	public void setUp() throws Exception {
 
-		// add additional set up code here
 	}
 
 	/**
@@ -1376,13 +1373,10 @@ public class DepartingTrainTest {
 	 * 
 	 * @throws Exception
 	 *             if the clean-up fails for some reason
-	 * 
-	 * 
 	 */
 	@After
 	public void tearDown() throws Exception {
 
-		// Add additional tear down code here
 	}
 
 	/**
@@ -1390,8 +1384,6 @@ public class DepartingTrainTest {
 	 * 
 	 * @param args
 	 *            the command line arguments
-	 * 
-	 * 
 	 */
 	public static void main(String[] args) {
 

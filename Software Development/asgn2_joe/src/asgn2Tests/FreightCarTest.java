@@ -161,7 +161,6 @@ public class FreightCarTest {
 	@Before
 	public void setUp() throws TrainException {
 
-		// add additional set up code here
 	}
 
 	/**
@@ -173,7 +172,6 @@ public class FreightCarTest {
 	@After
 	public void tearDown() throws TrainException {
 
-		// Add additional tear down code here
 	}
 
 	/**

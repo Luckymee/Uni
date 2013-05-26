@@ -58,7 +58,6 @@ public class LocomotiveTest {
 
 		Locomotive result = new Locomotive(grossWeight, classification);
 
-		// add additional test code here
 		assertNotNull(result);
 		assertTrue(result.power() == 100);
 	}
@@ -71,7 +70,6 @@ public class LocomotiveTest {
 
 		Locomotive result = new Locomotive(grossWeight, classification);
 
-		// add additional test code here
 		assertNotNull(result);
 		assertTrue(result.power() == 900);
 	}
@@ -112,7 +110,6 @@ public class LocomotiveTest {
 
 		Locomotive result = new Locomotive(grossWeight, classification);
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("Locomotive(9E)", result.toString());
 	}
@@ -130,7 +127,6 @@ public class LocomotiveTest {
 
 		Locomotive result = new Locomotive(grossWeight, classification);
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("Locomotive(9D)", result.toString());
 	}
@@ -143,7 +139,6 @@ public class LocomotiveTest {
 
 		Locomotive result = new Locomotive(grossWeight, classification);
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("Locomotive(9S)", result.toString());
 	}
@@ -216,7 +211,6 @@ public class LocomotiveTest {
 
 		Locomotive result = new Locomotive(grossWeight, classification);
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("Locomotive(9S)", result.toString());
 	}
@@ -267,7 +261,6 @@ public class LocomotiveTest {
 	@Before
 	public void setUp() throws TrainException {
 
-		// add additional set up code here
 	}
 
 	/**
@@ -279,7 +272,6 @@ public class LocomotiveTest {
 	@After
 	public void tearDown() throws TrainException {
 
-		// Add additional tear down code here
 	}
 
 	/**

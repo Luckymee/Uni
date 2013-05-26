@@ -41,7 +41,6 @@ public class PassengerCarTest {
 
 		PassengerCar result = new PassengerCar(grossWeight, numberOfSeats);
 
-		// add additional test code here
 		assertNotNull(result);
 
 	}
@@ -54,7 +53,7 @@ public class PassengerCarTest {
 
 		PassengerCar result = new PassengerCar(grossWeight, numberOfSeats);
 		result.board(5);
-		// add additional test code here
+
 		assertNotNull(result);
 		assertEquals("Passenger(5|10)", result.toString());
 	}
@@ -146,7 +145,6 @@ public class PassengerCarTest {
 		fixture.board(newPassengers);
 		Integer result = fixture.numberOnBoard();
 
-		// add additional test code here
 		assertNotNull(result);
 	}
 
@@ -159,7 +157,6 @@ public class PassengerCarTest {
 		fixture.board(newPassengers);
 		Integer result = fixture.numberOnBoard();
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("1", result.toString());
 	}
@@ -173,7 +170,6 @@ public class PassengerCarTest {
 		fixture.board(newPassengers);
 		Integer result = fixture.numberOnBoard();
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("0", result.toString());
 	}
@@ -191,7 +187,6 @@ public class PassengerCarTest {
 		} catch (TrainException expected) {
 			println(expected.toString() + " Found: " + newPassengers);
 		}
-		// add additional test code here
 	}
 
 	@Test
@@ -203,7 +198,6 @@ public class PassengerCarTest {
 		fixture.board(newPassengers);
 		Integer result = fixture.numberOnBoard();
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("5", result.toString());
 		assertEquals("Passenger(5|10)", fixture.toString());
@@ -243,7 +237,6 @@ public class PassengerCarTest {
 
 		Integer result = fixture.numberOfSeats();
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("10", result.toString());
 	}
@@ -256,7 +249,6 @@ public class PassengerCarTest {
 
 		Integer result = fixture.numberOfSeats();
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("10", result.toString());
 		assertEquals("Passenger(0|10)", fixture.toString());
@@ -275,7 +267,7 @@ public class PassengerCarTest {
 		} catch (TrainException expected) {
 			println(expected + " Found: " + numberOfSeats);
 		}
-		// add additional test code here
+
 	}
 
 	@Test
@@ -301,7 +293,6 @@ public class PassengerCarTest {
 
 		Integer result = fixture.numberOnBoard();
 
-		// add additional test code here
 		assertNotNull(result);
 		assertEquals("0", result.toString());
 		assertEquals(0.0, result.doubleValue(), 1.0);
@@ -319,7 +310,6 @@ public class PassengerCarTest {
 
 		String result = fixture.toString();
 
-		// add additional test code here
 		assertEquals("Passenger(0|0)", result);
 	}
 
@@ -330,7 +320,6 @@ public class PassengerCarTest {
 
 		String result = fixture.toString();
 
-		// add additional test code here
 		assertEquals("Passenger(0|10)", result);
 	}
 
@@ -343,7 +332,6 @@ public class PassengerCarTest {
 		fixture.board(newPassengers);
 		Integer result = fixture.numberOnBoard();
 
-		// add additional test code here
 		assertEquals("5", result.toString());
 		assertEquals("Passenger(5|10)", fixture.toString());
 	}
@@ -357,7 +345,6 @@ public class PassengerCarTest {
 	@Before
 	public void setUp() throws TrainException {
 
-		// add additional set up code here
 	}
 
 	/**
@@ -369,7 +356,6 @@ public class PassengerCarTest {
 	@After
 	public void tearDown() throws TrainException {
 
-		// Add additional tear down code here
 	}
 
 	/**

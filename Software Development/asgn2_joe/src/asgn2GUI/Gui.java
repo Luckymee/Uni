@@ -50,8 +50,6 @@ public class Gui extends JFrame {
 	private static final Color TRAFFIC_GREEN = new Color(0, 128, 0);
 	private static final Color TRAFFIC_RED = new Color(191, 0, 0);
 
-	private boolean addingPassengers = false;
-
 	// Primary Window
 	private static final int WINDOW_X = 1200;
 	private static final int WINDOW_Y = 800;
@@ -77,6 +75,9 @@ public class Gui extends JFrame {
 
 	private static final TrainCar.FreightTypes DEFAULT_TYPE = TrainCar.FreightTypes.NONE;
 
+	// Boolean Check
+	private boolean addingPassengers = false;
+	
 	// Primary JPanels
 	private JPanel trainDrawArea;
 	private JPanel informationPanel;
@@ -125,6 +126,10 @@ public class Gui extends JFrame {
 	private JPanel trainCanMovePanel;
 	private JPanel seatsAvailablePanel;
 
+	/**
+	 * Names Default JFrame.
+	 * Sets default close behavior.
+	 */
 	public Gui() {
 
 		super("Train Simulation");
@@ -461,7 +466,7 @@ public class Gui extends JFrame {
 	/**
 	 * Adds a passengers car to the train and draws it on the trainDrawArea
 	 * 
-	 * @param selectedType
+	 * @param numberOfPassengers
 	 *            String: User selected passenger car capacity
 	 * @param inputedWeight
 	 *            String: user selected passenger car weight

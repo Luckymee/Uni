@@ -9,6 +9,8 @@ import javax.swing.SwingConstants;
 
 /**
  * Graphical representation of Train cars.
+ * 
+ * @author Connor Livsey - n8510873
  */
 public class TrainCar extends JPanel {
 
@@ -51,7 +53,7 @@ public class TrainCar extends JPanel {
 	 *            TrainTypes: Enum of potential Rolling Stock.
 	 * @param label
 	 *            String: Textual representation of Rolling Stock.
-	 * @param locoType
+	 * @param freightType
 	 *            FreightTypes: Enum of potential freight cargo.
 	 */
 	public TrainCar(TrainTypes type, String label, FreightTypes freightType) {

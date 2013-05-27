@@ -556,18 +556,18 @@ public class Gui extends JFrame {
 		hasPassengerCar = false;
 		
 		try {// Check NaN
-		    tempAmount = Integer.parseInt(inputedAmount);
+		    	tempAmount = Integer.parseInt(inputedAmount);
 		} catch (Exception e) {
-		    errorLogger("Invalid Input. Positive integers only.\n");
-		    return INVALID_INPUT;
+		    	errorLogger("Invalid Input. Positive integers only.\n");
+		    	return INVALID_INPUT;
 		}
 		
 		try {// Check if valid board
-		    tempAmount = Train.board(tempAmount);
+		    	tempAmount = Train.board(tempAmount);
 		} catch (TrainException expected) {
-		    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
-		    errorLogger(errorOutput + "\n");
-		    return INVALID_INPUT;
+		    	String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
+		    	errorLogger(errorOutput + "\n");
+		    	return INVALID_INPUT;
 		}
 		
 		// Check for passenger car in train.
@@ -580,7 +580,7 @@ public class Gui extends JFrame {
 				+ ". No Seats Available Seats.\n");
 		    }
 		} else { // No passenger car on train.
-		    errorLogger("Passengers unable to board: " + tempAmount 
+		    	errorLogger("Passengers unable to board: " + tempAmount 
 			    + ". No Passenger Car.\n");
 		}
 		// update all affected sections of the GUI

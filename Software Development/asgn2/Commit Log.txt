@@ -1,0 +1,520 @@
+commit cced85b6f5ced2e010b1b9f807e09eeef3a96959
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 27 14:45:09 2013 +1000
+
+    Renamed asgn2_joe to asgn2
+
+commit c3532417f20684db7f5011c8f5577cfaf635dc4c
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 27 14:36:43 2013 +1000
+
+    JavaDoc Generated
+
+commit 10696fc642ed6501867aa1010546ff283d1e1a9c
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sun May 26 18:15:56 2013 +1000
+
+    Further Comment Fixes
+
+commit 61e124f6a9f4fc68bfc99e6f14744526236663c8
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sun May 26 18:14:26 2013 +1000
+
+    Fixed some commenting
+
+commit 974dd847a5d959ec7e5ba311de78163c4193cc32
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sun May 26 18:07:10 2013 +1000
+
+    Tests throw TrainException
+
+commit 60715851a2f12efd8fc0c501d00419493162b2f7
+Author: Joe <joe.me@live.com.au>
+Date:   Sun May 26 17:25:37 2013 +1000
+
+    Removed unneeded comments from tests
+
+commit 69e351aaae292c2556966def84ff75baac6fe468
+Author: Joe <joe.me@live.com.au>
+Date:   Sun May 26 17:09:59 2013 +1000
+
+    Fixed TODO's
+
+commit 6a5927d0e27d2e58c12799f552a75a27bf2d5449
+Author: Joe <joe.me@live.com.au>
+Date:   Sun May 26 16:50:00 2013 +1000
+
+    Added additional comments where needed, java doc comments for GUI.java
+    and fixed formatting
+
+commit 5bcdb3709132c9a69db4010787d3a885038e8271
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Wed May 22 20:07:17 2013 +1000
+
+    Fixed commenting in DepartingTrain
+
+commit e9ca4b8c7889bea2bf5e56dde5d04acc9d0b6d2d
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Wed May 22 19:57:21 2013 +1000
+
+    Added JavaDoc to TrainCar, fixed typo.
+
+commit 80c75e68478b49ca5ea7a375608b05c391b88918
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Wed May 22 19:50:33 2013 +1000
+
+    Renamed TestAll.
+    
+    This is in regards to an email with Jim Hogan.
+    Stating that our test can be split into distinct classes.
+
+commit c875c094e0475202f15b4a6272fa7c92f041479f
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Wed May 22 19:47:50 2013 +1000
+
+    Removed most JavaDoc test comments.
+
+commit e0fa4014d89c95ca5ae719f994283d91896c6955
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Wed May 22 19:37:49 2013 +1000
+
+    Fixed FreightTypes enum.
+    
+    Naming error.
+
+commit e027c0359459038b9ded891aea5a88dd14430a4d
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Wed May 22 19:35:27 2013 +1000
+
+    Inset change to fix graphics bug
+
+commit 9e8b2c3ff93c2310889856d63bf99b132cb1da01
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 22 19:02:34 2013 +1000
+
+    Fixed button logic for passenger cars
+
+commit 11233dbcd5a7f00c2bf019d2038cc981e05eb2e5
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 22 18:54:47 2013 +1000
+
+    Improved buttons
+
+commit 61e5af93c67c4eba4c77083d01e37b7df5afbc54
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 22 17:28:26 2013 +1000
+
+    Updated GUI with file from other branch
+
+commit 4aad3b7665b5ad1cd23e79bcf6e7254153656ac8
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 20 21:07:40 2013 +1000
+
+    nextCarriage returns Locomotive
+
+commit 00523b7a547342ce66804f448fa42314b041f699
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sun May 19 15:12:12 2013 +1000
+
+    Removed command line prints
+
+commit cd60da0044d5be8fcceb3e15083e2fa96eb5df4d
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sun May 19 13:13:09 2013 +1000
+
+    LocomotiveType Switch
+    
+    Changed to neaten code.
+
+commit 20dd6beb39b2a26656b30772732314376bf67948
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sun May 19 11:36:30 2013 +1000
+
+    GUI Full Functionality
+    
+    Needs a heap of clean up.
+    Refactoring of some classes to obtain required output.
+
+commit 0947fb9ab914ff1c2f84267de835c3bee8059059
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sat May 18 22:31:49 2013 +1000
+
+    Implemented addFreightCar in GUI
+    
+    Edited FreightCar to only return the first position of the goodsType
+    code.
+
+commit 1245861601215018ebcfbabb226ab1e332cc67b5
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sat May 18 21:11:05 2013 +1000
+
+    RemoveLastCar Implemented
+    
+    Cleaned up some variable names.
+
+commit ebb247ad9e43ff6d1906fd25146c9afdf9c30843
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sat May 18 20:32:06 2013 +1000
+
+    Regex Error Log
+    
+    Cuts down error log line length.
+    Added full stops to errors.
+
+commit f84e2332dca274465b7e503a880bd33e7e9cc6a7
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sat May 18 20:08:52 2013 +1000
+
+    Gui Update
+    
+    Stoped user interaction on logger.
+    Set minimumSize to stop frame from breaking on minimize.
+
+commit ce36414f1d3dfef7a8132db8df3cdeb5522c4b74
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sat May 18 19:53:14 2013 +1000
+
+    Initial GUI Commit
+    
+    This needs some serious work and cleanup
+
+commit 5bd6a007f48ca488b85a24814772220f56acdffd
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Fri May 17 18:25:03 2013 +1000
+
+    Graphic TrainCar Class
+
+commit f4e0ad254a33c835b5950d8b6d5ad5f20021bb50
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Wed May 15 20:58:16 2013 +1000
+
+    Extra nextCarriage() test added
+    
+    Removed extra println.
+
+commit a9c31c85c7a639565b973dd8da6a7cb5427ea6cf
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 14 16:21:05 2013 +1000
+
+    Refactor of TrainCanMove
+    
+    Train can move with no loco. Fixed tests accordingly.
+
+commit c830979cfeec5464f4689711053689e3a8403de1
+Author: Joe <joe.me@live.com.au>
+Date:   Tue May 14 16:03:55 2013 +1000
+
+    Merged the 2 differing DepartingTrainTests
+
+commit f9220f7adaadca7eec3a7fb276e2c047482a780e
+Merge: 55b2c5a 11dafe2
+Author: Joe <joe.me@live.com.au>
+Date:   Tue May 14 15:58:25 2013 +1000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 55b2c5ac8ab0ca67c5d45d193dae2789d97981e2
+Author: Joe <joe.me@live.com.au>
+Date:   Tue May 14 15:58:07 2013 +1000
+
+    Fixing
+
+commit 11dafe2c6fce9c00d82b43cbefe8711353ed3f14
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 14 15:30:49 2013 +1000
+
+    Fix DepartingTrainTests
+
+commit 7c7c5179a8079fce9d5a99d90ff8e88ba8d30f42
+Merge: 631ef23 404cc15
+Author: Joe <joe.me@live.com.au>
+Date:   Tue May 14 15:19:44 2013 +1000
+
+    Merged DepartingTrainTests
+
+commit 631ef233d43dc52ac6c7b04c3a1b6acbe0e3efee
+Author: Joe <joe.me@live.com.au>
+Date:   Tue May 14 15:16:22 2013 +1000
+
+    Added trainCaneMove() tests
+
+commit 404cc1551580f2fce302a42e17ed93895e06f029
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 14 15:08:55 2013 +1000
+
+    trainCanMove() tests implemented.
+
+commit 81d02d60a705642616da0f34ffc590fa782a24cd
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 14 14:58:36 2013 +1000
+
+    removeCarriage() tests implemented
+    
+    Added TrainException over default exception.
+
+commit b0959520f21fff1048ef815a6b9c1cae0117d918
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 14 14:31:43 2013 +1000
+
+    toString() tests implemented.
+
+commit ac56aaff19b2f919ebaf6e014e218f2c8fe28177
+Author: Joe <joe.me@live.com.au>
+Date:   Tue May 14 13:52:32 2013 +1000
+
+    Added Negative Passenger Exception to DepartingTrain.board
+
+commit 2a63c2f08301cee4f60b23c7976996b72a35bd80
+Author: Joe <joe.me@live.com.au>
+Date:   Tue May 14 13:29:02 2013 +1000
+
+    Fixed StringIndexOutOfBoundsException in FreightCar
+
+commit a6de5e0fff201736e53265f634a34bbe285d665b
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 14 13:15:04 2013 +1000
+
+    Added Quantum Mechanics Test
+    
+    Named as such as it causes people to exist, in multiple places
+    simultaneously.
+
+commit b250f3090ee8fbd01702235f0020f7d60acbbf2b
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 13 15:34:57 2013 +1000
+
+    DepartingTrainTest Update.
+    
+    Refactoring of DepartingTrain to pass tests.
+    TODO: removeCarriage, trainCanMove, toString.
+
+commit 8f2f50483e05bbfb627f6782976fcc773e72f2d2
+Author: Joe <joe.me@live.com.au>
+Date:   Sun May 12 16:32:30 2013 +1000
+
+    Fixed DepartingTrain formatting
+
+commit 3338edc4e7141bb30ea086b6159a8ae2f8c311a9
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sun May 12 16:11:51 2013 +1000
+
+    Refactored Departing train.
+    
+    Use of enhanced for loops.
+
+commit 315ee79ee50499bb45a281cca660a71c70404068
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sat May 11 13:30:33 2013 +1000
+
+    Set the arrayList<RollingStock> train to private.
+
+commit b114fc5509e6e0ba1b8183b7895ff4e4a8359922
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Sat May 11 11:16:08 2013 +1000
+
+    Removed Unused INB370 Stuff
+    
+    Also regenerated and fixed doc.
+
+commit 86ed10ba9e823a1b6e1bca0cc8a677e93f06c3a6
+Author: Joe <joe.me@live.com.au>
+Date:   Sat May 11 01:24:41 2013 +1000
+
+    Fixed firstCarriage (wasn't working correctly when there was no train)
+
+commit 5e68230aeaebaeaf122d3166bd05efe7b6bdbf02
+Merge: a0f9ebd 33feaf0
+Author: Joe <joe.me@live.com.au>
+Date:   Sat May 11 01:18:19 2013 +1000
+
+    Fixed merge error, adding departingtrain constructor
+
+commit a0f9ebd69a25aea36a1965ec56d3db0515e8a6e7
+Author: Joe <joe.me@live.com.au>
+Date:   Sat May 11 01:12:32 2013 +1000
+
+    Added DepartingTrain constructor
+
+commit 33feaf04bdf8724d8badb915596633f9d4816982
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Thu May 9 22:38:54 2013 +1000
+
+    Fixing Merge Error
+    
+    Check for potential overwrite.
+
+commit 56dde2b0d0d34387408cf5a2d99a60e6eed014e6
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 20:35:41 2013 +1000
+
+    Added java doc comments, amended some methods after re-reading the java
+    docs and reading part 2 specifications.
+
+commit a65999a7d4787a20d1431976d0309d326a3c0778
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 20:34:30 2013 +1000
+
+    Fixed mistake in java doc comments
+
+commit a23397b671d47015d65ce29d256f82e8d86d47f7
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 16:23:58 2013 +1000
+
+    Testing
+
+commit bcc162656ba01a366f0278f0c6d97a17dab0479b
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 15:29:34 2013 +1000
+
+    Testing eclipse
+
+commit 3e63e9a13a919dfcda19d493add751bdf403991f
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 14:27:04 2013 +1000
+
+    suppressed DepartingTrain warnings
+
+commit be97e73b425ce547e4581c979029a1fa5d8c0bed
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 12:38:25 2013 +1000
+
+    Removed uneeded exceptions and testing eclipse
+
+commit 9a25d9847749b455a02625e68d1a1e08f7625a22
+Merge: bbd4740 d1a5307
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 12:07:53 2013 +1000
+
+    Merge branch 'master' of https://github.com/Luckymee/Uni
+
+commit bbd47402da1bc0b2f7511a2dc07172e116cff7f7
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 12:06:41 2013 +1000
+
+    testing eclipse
+
+commit a04dc067d2b21b4f90eba874d205219e36b707f1
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 11:53:23 2013 +1000
+
+    Testing eclipse
+
+commit d90a73eecd68da0ddc9c18cb726f4de39862199c
+Author: Joe <joe.me@live.com.au>
+Date:   Thu May 9 11:47:21 2013 +1000
+
+    testing eclipse
+
+commit d1a53070232bf792198d7bc535e873ba0be896bd
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Wed May 8 18:52:32 2013 +1000
+
+    Added more javadoc comments to Test classes
+
+commit 6b66bb634c73f167747503a2f730950eeac87383
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Wed May 8 18:45:52 2013 +1000
+
+    PassengerCar Tests
+    
+    Will need to clean up and add more.
+
+commit ec5b476956cb74656562cabcc4d5da544f84752a
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 8 13:46:41 2013 +1000
+
+    Minor DepartingTrain fix
+
+commit 298fb8ac34f99177465b8a2f9832009e03e63e38
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 8 13:34:48 2013 +1000
+
+    departing train re-done
+
+commit 5ce1463a4dd541b0b91743ff0e46cb3808478225
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 8 12:43:09 2013 +1000
+
+    restructuring
+
+commit 785bd68ae74651ef2b60d94803952b6a46237ecc
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 8 12:33:30 2013 +1000
+
+    Restructuring
+
+commit cc4234f5d02fa9a3126038d670823ed795eb2513
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 8 12:20:34 2013 +1000
+
+    whole project + zip
+
+commit df812f28b141f6948fb9e779b2372b23cacaffb1
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 8 06:15:39 2013 +1000
+
+    attempt at TrainDepart
+
+commit fd603df52d0584d62065a8b231cdd28069889cba
+Author: Joe <joe.me@live.com.au>
+Date:   Wed May 8 02:02:28 2013 +1000
+
+    My classes
+
+commit b9245a4b2aa09c7e8adaa0c6ca3fe4324a893e46
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 7 15:43:42 2013 +1000
+
+    Project files.
+    
+    Zip of project files. As github removes ability to build into eclipse.
+
+commit 79e28190101614ac1712aca36aa9432f9346ca94
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 7 10:27:51 2013 +1000
+
+    Remove Assignment1 decluttering
+
+commit 0221dd08a8a46a9762a47e2e0f15fb053f48a839
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 6 22:26:10 2013 +1000
+
+    FreightCar UnitTest Commit
+    
+    Added some toUpperCase logic.
+
+commit 5e5ff8d0aee36b8a275b91846c0a97efebe857e7
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 6 18:28:08 2013 +1000
+
+    Locomotive and RollingStock test cases added.
+    
+    Need to do PassengerCar and FreightCar
+
+commit 7f14be04e4d790e6b3d1897ddb9086d5aa6aca47
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 6 17:16:42 2013 +1000
+
+    Documentation Test
+
+commit 40285fa5cdc67abfa71c356a42c916c01316686f
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 6 16:59:12 2013 +1000
+
+    Test Commits
+    
+    Have not started Freight Car. Only pre-generated test
+
+commit b7e79f9cf0ac2036929f3ff2a279259b5746dd76
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 6 13:31:46 2013 +1000
+
+    Updated PassengerCar
+
+commit b535f2c0adb94da75a9f55e738666251b74a8042
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 6 12:46:20 2013 +1000
+
+    Initial Commit
+    
+    INB370 & INB371

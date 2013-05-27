@@ -1,3 +1,11 @@
+commit f896992a98ea6bd5b6dc5b5ffcf668d47226ee0c
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 27 23:36:48 2013 +1000
+
+    Clean Up
+    
+    Adding left out private fields.
+
 commit eb26ed90b2e23398081e14fbd8ced31b65b7633c
 Author: Connor Livsey <connor.livsey@student.qut.edu.au>
 Date:   Mon May 27 23:03:52 2013 +1000

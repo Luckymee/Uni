@@ -55,7 +55,7 @@ public class PassengerCar extends RollingStock {
 	 * @throws TrainException
 	 *             if the number of new passengers is negative.
 	 */
-	public int board(Integer newPassengers) throws TrainException {
+	public Integer board(Integer newPassengers) throws TrainException {
 
 		if (newPassengers < MIN_PASSENGERS) { // negative new passengers
 			throw new TrainException("Number of passengers cannot be negative");
@@ -87,8 +87,7 @@ public class PassengerCar extends RollingStock {
 	 */
 	public void alight(Integer departingPassengers) throws TrainException {
 
-		if (departingPassengers < MIN_PASSENGERS) { // negative passengers
-													// leaving
+		if (departingPassengers < MIN_PASSENGERS) { // negative passengers leaving
 			throw new TrainException("Number of passengers cannot be negative");
 		} else if (departingPassengers > numberOnBoard) { // to many departing
 			throw new TrainException(

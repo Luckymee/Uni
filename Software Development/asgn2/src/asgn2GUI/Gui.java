@@ -61,6 +61,7 @@ public class Gui extends JFrame {
 
 	private static final int MIN_PASSENGERS = 0;
 	private static final int INITAL_SEATS = 0;
+	private static final int INVALID_INPUT = -1;
 
 	private static final String[] LOCOMOTIVE_TYPES = { "Electric", "Diesel",
 			"Steam" };
@@ -77,6 +78,7 @@ public class Gui extends JFrame {
 
 	// Boolean Check
 	private boolean addingPassengers = false;
+	private boolean hasPassengerCar = false;
 	
 	// Primary JPanels
 	private JPanel trainDrawArea;
@@ -285,7 +287,7 @@ public class Gui extends JFrame {
 		try { // Check if is NaN
 			tempWeight = Integer.parseInt(inputedWeight);
 		} catch (Exception expected) {
-			errorLogger("Invalid Weight \n");
+			errorLogger("Invalid Weight. Positive integers only.\n");
 			return false;
 		}
 
@@ -370,7 +372,7 @@ public class Gui extends JFrame {
 		try {// Check NaN
 			tempWeight = Integer.parseInt(inputedWeight);
 		} catch (Exception expected) {
-			errorLogger("Invalid Weight. \n");
+			errorLogger("Invalid Weight. Positive integers only.\n");
 			return false;
 		}
 
@@ -483,7 +485,7 @@ public class Gui extends JFrame {
 			tempCapacity = Integer.parseInt(numberOfPassengers);
 			tempWeight = Integer.parseInt(inputedWeight);
 		} catch (Exception expected) {
-			errorLogger("Invalid Input" + "\n");
+			errorLogger("Invalid Input. Positive integers only.\n");
 			return false;
 		}
 
@@ -551,32 +553,39 @@ public class Gui extends JFrame {
 
 		int tempAmount;
 		addingPassengers = false;
-
+		hasPassengerCar = false;
+		
 		try {// Check NaN
-			tempAmount = Integer.parseInt(inputedAmount);
+		    tempAmount = Integer.parseInt(inputedAmount);
 		} catch (Exception e) {
-			errorLogger("Invalid Amount. \n");
-			return -1;
+		    errorLogger("Invalid Input. Positive integers only.\n");
+		    return INVALID_INPUT;
 		}
-
+		
 		try {// Check if valid board
-			tempAmount = Train.board(tempAmount);
+		    tempAmount = Train.board(tempAmount);
 		} catch (TrainException expected) {
-			String errorOutput = expected.getMessage().replaceAll(
-					"^[+:Train Exception:]+", "");
-			errorLogger(errorOutput + "\n");
-			return -1;
+		    String errorOutput = expected.getMessage().replaceAll("^[+:Train Exception:]+", "");
+		    errorLogger(errorOutput + "\n");
+		    return INVALID_INPUT;
 		}
-
-		if (tempAmount > 0) { // Number of passengers unable to board
-			errorLogger("Passengers unable to board: " + tempAmount + "\n");
-		}
-
-		// update all affected sections of the GUI
-		updateButtons();
+		
+		// Check for passenger car in train.
 		addingPassengers = true;
 		updatePassengerInfo();
-
+		
+		if (hasPassengerCar) { // If has passengerCar, no free seats.
+		    if (tempAmount > INITAL_SEATS) { // Number of passengers unable to board
+			errorLogger("Passengers unable to board: " + tempAmount 
+				+ ". No Seats Available Seats.\n");
+		    }
+		} else { // No passenger car on train.
+		    errorLogger("Passengers unable to board: " + tempAmount 
+			    + ". No Passenger Car.\n");
+		}
+		// update all affected sections of the GUI
+		updateButtons();
+		updatePassengerInfo();
 		return tempAmount;
 	}
 
@@ -599,6 +608,7 @@ public class Gui extends JFrame {
 			// each train car graphic
 			for (int i = 0; i < trainGraphicList.size(); ++i) {
 				if (currentCar instanceof PassengerCar) {// is passenger car
+				    	hasPassengerCar = true;
 					trainGraphicList.remove(i);// remove graphic
 					trainDrawArea.remove(i);// remove car from train
 					TrainCar newTrainGraphics = new TrainCar(

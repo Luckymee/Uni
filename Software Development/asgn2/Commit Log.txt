@@ -1,3 +1,21 @@
+commit eb26ed90b2e23398081e14fbd8ced31b65b7633c
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 27 23:03:52 2013 +1000
+
+    Indenting in GUI
+
+commit cdb42afa8f10b5e9a3bd5fbe2aa66bca0c491aa8
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 27 23:02:25 2013 +1000
+
+    Better errorlogger output
+
+commit ed5639fc428903cb7725796d18b078aead9dd224
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 27 14:57:19 2013 +1000
+
+    Added Commit Log.
+
 commit cced85b6f5ced2e010b1b9f807e09eeef3a96959
 Author: Connor Livsey <connor.livsey@student.qut.edu.au>
 Date:   Mon May 27 14:45:09 2013 +1000

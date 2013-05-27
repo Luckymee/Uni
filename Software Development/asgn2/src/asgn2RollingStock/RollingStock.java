@@ -11,7 +11,8 @@ import asgn2Exceptions.TrainException;
  */
 public abstract class RollingStock {
 
-	private final int MIN_WEIGHT = 0;
+    	private static final int MIN_WEIGHT = 0;
+    	
 	private int grossWeight;
 
 	/**

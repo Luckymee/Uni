@@ -11,14 +11,14 @@ import asgn2Exceptions.TrainException;
  */
 public class Locomotive extends RollingStock {
 
-	final int POWER = 0;
-	final int ENGINE = 1;
-	final int PULL_POWER = 100;
-	final int MIN_POWER = 1;
-	final int MAX_POWER = 9;
-	final int MIN_WEIGHT = 0;
-	String classification;
-	String classificationError;
+	private static final  int POWER = 0;
+	private static final int ENGINE = 1;
+	private static final int PULL_POWER = 100;
+	private static final int MIN_POWER = 1;
+	private static final int MAX_POWER = 9;
+	
+	private String classification;
+	private String classificationError;
 
 	/**
 	 * Constructs a new locomotive object with a fixed gross weight and
@@ -35,8 +35,7 @@ public class Locomotive extends RollingStock {
 
 		super(grossWeight);
 
-		if (!checkClassificationCode(classification)) { // invalid
-														// classification
+		if (!checkClassificationCode(classification)) { // invalid classification
 			throw new TrainException("Invalid classification: "
 					+ classificationError);
 		}
@@ -80,8 +79,7 @@ public class Locomotive extends RollingStock {
 
 		boolean isValid = false;
 
-		if (Character.isDigit(classification.charAt(POWER))) { // first char is
-																// digit (0-9)
+		if (Character.isDigit(classification.charAt(POWER))) { // first char is digit (0-9)
 			int powerCode = Character.getNumericValue(classification
 					.charAt(POWER));
 			char engineCode = classification.toUpperCase().charAt(ENGINE);
@@ -99,8 +97,7 @@ public class Locomotive extends RollingStock {
 					validEngine = true;
 					break;
 				default:
-					classificationError = "Engine Type"; // specifying error
-															// type
+					classificationError = "Engine Type"; // specifying error type
 			}
 
 			if (powerCode >= MIN_POWER && powerCode <= MAX_POWER) { // is valid
@@ -109,12 +106,8 @@ public class Locomotive extends RollingStock {
 			} else { // specifying error type
 				classificationError = "Power Range";
 			}
-
-			isValid = ((validEngine == validPower) == true); // true when both
-																// validEngine
-																// and
-																// validPower
-																// are true
+			// true when both validEngine and validPower are true
+			isValid = ((validEngine == validPower) == true);
 
 			if (!validPower && !validEngine) { // specifying error type
 				classificationError = "Engine Type and Power Range";

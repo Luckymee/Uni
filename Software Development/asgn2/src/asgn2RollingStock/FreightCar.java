@@ -12,8 +12,8 @@ import asgn2Exceptions.TrainException;
 public class FreightCar extends RollingStock {
 
 	private String goodsType;
-	final int GOODS_TYPE = 0;
-	final int ONE_CHAR = 1;
+	private static final int GOODS_TYPE = 0;
+	private static final int ONE_CHAR = 1;
 
 	/**
 	 * Constructs a freight car object.

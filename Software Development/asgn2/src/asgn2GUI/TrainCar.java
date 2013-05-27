@@ -43,8 +43,8 @@ public class TrainCar extends JPanel {
 	private static final int TRAIN_WIDTH = 27;
 
 	// Swing Objects
-	private static Dimension trainSize;
-	private static JLabel infoLabel;
+	private Dimension trainSize;
+	private JLabel infoLabel;
 
 	/**
 	 * Constructor for TrainCar.

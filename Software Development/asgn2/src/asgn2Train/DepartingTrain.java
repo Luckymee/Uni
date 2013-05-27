@@ -18,10 +18,10 @@ import asgn2RollingStock.RollingStock;
  */
 public class DepartingTrain {
 
-	private final int FIRST_CAR = 0;
-	private final int ONE_CAR = 1;
-	private final int NO_PASSENGERS = 0;
-	private final int NO_ROLLINGSTOCK = -1;
+    	private static final int FIRST_CAR = 0;
+    	private static final int ONE_CAR = 1;
+    	private static final int NO_PASSENGERS = 0;
+    	private static final int NO_ROLLINGSTOCK = -1;
 
 	private List<RollingStock> train;
 	private Locomotive locomotive;

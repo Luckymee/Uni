@@ -1,3 +1,11 @@
+commit aad7bbb4790bbbe42d90a3900312dd2726827b3e
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Mon May 27 23:40:18 2013 +1000
+
+    Refactored OurLogs
+    
+    Renamed from Commit Log
+
 commit f896992a98ea6bd5b6dc5b5ffcf668d47226ee0c
 Author: Connor Livsey <connor.livsey@student.qut.edu.au>
 Date:   Mon May 27 23:36:48 2013 +1000

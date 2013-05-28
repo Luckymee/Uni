@@ -1,0 +1,22 @@
+/******************STUDENTS*******************/
+	Joe Maher - n8571520
+	Connor Livsey - n8510873
+
+/****************CONTRIBUTION*****************/
+	Both Joe, and Connor made equitable
+	contributions to asgn2.
+	
+/******************GUI TOOLS******************/
+	NO GUI editing tools were used.
+
+/******************AGREEMENT******************/
+	Both Joe, and Connor are in agreement to
+	the correctness of the information enclosed
+	within this document.
+
+/***************CORRESPONDENCE****************/
+	We have sort permission from Jim to split 
+	our tests into individual classes, and to 
+	inhbit the use of buttons, thus invalidating 
+	"Test Script 5" of the GUI. Emails can be 
+	supplied on request.

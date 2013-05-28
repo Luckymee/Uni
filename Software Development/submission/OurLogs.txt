@@ -1,3 +1,17 @@
+commit f3a874b6a82998621ae46fc8a267ebb671d0ec35
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 28 13:15:24 2013 +1000
+
+    Removed some magic numbers.
+    
+    JavaDoc
+
+commit 877e41139cf396e73f2c5ca57e1c96dcbe6618ed
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 28 11:40:30 2013 +1000
+
+    Packaged Submission
+
 commit d4f26f53d13b3a200180b806235cc53529d20d18
 Author: Connor Livsey <connor.livsey@student.qut.edu.au>
 Date:   Tue May 28 11:38:38 2013 +1000

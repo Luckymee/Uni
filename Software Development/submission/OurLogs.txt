@@ -1,3 +1,9 @@
+commit d4f26f53d13b3a200180b806235cc53529d20d18
+Author: Connor Livsey <connor.livsey@student.qut.edu.au>
+Date:   Tue May 28 11:38:38 2013 +1000
+
+    Directory Clean Up
+
 commit ae71c3fabe8fc16ba1512080a774992ea29d4847
 Author: Connor Livsey <connor.livsey@student.qut.edu.au>
 Date:   Tue May 28 11:31:12 2013 +1000

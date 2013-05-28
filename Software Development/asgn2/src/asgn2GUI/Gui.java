@@ -595,9 +595,9 @@ public class Gui extends JFrame {
 	 */
 	private void updatePassengerInfo() {
 
-		totalPassengers.setText("<html>Passengers<br />"
+		totalPassengers.setText("<html><b>Passengers<br/>"
 				+ Train.numberOnBoard() + " | " + Train.numberOfSeats()
-				+ "</html>");
+				+ "</b></html>");
 		totalPassengers.revalidate();
 		totalPassengers.repaint();
 		trainCapacity();
@@ -736,8 +736,8 @@ public class Gui extends JFrame {
 		informationPanel.add(trainDrawArea, constraints);
 
 		// Passenger info
-		totalPassengers = new JLabel("<html>Passengers<br />" + MIN_PASSENGERS
-				+ " | " + INITAL_SEATS + "</html>");
+		totalPassengers = new JLabel("<html><b>Passengers<br/>" + MIN_PASSENGERS
+				+ " | " + INITAL_SEATS + "</b></html>");
 		constraints.fill = GridBagConstraints.NONE;
 		constraints.insets = new Insets(0, 6, 0, 0);
 		constraints.anchor = GridBagConstraints.LAST_LINE_START;

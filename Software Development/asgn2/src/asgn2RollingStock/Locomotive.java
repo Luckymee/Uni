@@ -11,7 +11,7 @@ import asgn2Exceptions.TrainException;
  */
 public class Locomotive extends RollingStock {
 
-	private static final  int POWER = 0;
+	private static final int POWER = 0;
 	private static final int ENGINE = 1;
 	private static final int PULL_POWER = 100;
 	private static final int MIN_POWER = 1;

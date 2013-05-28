@@ -22,6 +22,8 @@ public class DepartingTrain {
     	private static final int ONE_CAR = 1;
     	private static final int NO_PASSENGERS = 0;
     	private static final int NO_ROLLINGSTOCK = -1;
+    	private static final int INITIAL_WEIGHT = 0;
+    	private static final int INITIAL_SEATS = 0;
 
 	private List<RollingStock> train;
 	private Locomotive locomotive;
@@ -77,7 +79,7 @@ public class DepartingTrain {
 		} else {	// Conditional operation, returning null no new carriage
 		    		// exists, or the nextCarriage if one does.
 			return currentCarNum > train.size() ? null : train
-					.get(currentCarNum - 1);
+					.get(currentCarNum - ONE_CAR);
 		}
 	}
 
@@ -89,7 +91,7 @@ public class DepartingTrain {
 	 */
 	public Integer numberOnBoard() {
 
-		Integer numberOnBoard = 0;
+		Integer numberOnBoard = NO_PASSENGERS;
 
 		for (RollingStock rollingStock : train) { // Iterate through train
 			if (rollingStock instanceof PassengerCar) { // Determine if Passenger Car
@@ -108,7 +110,7 @@ public class DepartingTrain {
 	 */
 	public Integer numberOfSeats() {
 
-		Integer totalSeats = 0;
+		Integer totalSeats = INITIAL_SEATS;
 
 		for (RollingStock rollingStock : train) { // Iterate through train
 			if (rollingStock instanceof PassengerCar) { // Determine if Passenger Car
@@ -308,7 +310,7 @@ public class DepartingTrain {
 	 */
 	private Integer getTotalWeight() {
 
-		int totalWeight = 0;
+		int totalWeight = INITIAL_WEIGHT;
 
 		if (locomotive != null) { // Locomotive exists
 			totalWeight += locomotive.getGrossWeight();
